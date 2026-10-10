@@ -267,37 +267,70 @@ const basedInDisplay = `${city ?? 'Your City'}${country ? `, ${country}` : ''}`;
     </div>
   </section>
 
-  <!-- Work with me -->
+  <!-- Comunidad EDTEC -->
   <section class="relative z-10 py-[var(--space-section-md)] bg-background border-t border-border">
-    <div class="mx-auto max-w-6xl px-6 flex flex-col gap-8">
-      <div class="flex flex-col items-center gap-4 text-center" data-reveal>
-        <div class="flex flex-col items-center gap-6">
-          <Badge variant="brand" pill>
-            <Icon name="handshake" size="sm" />
-            {workWithMe.badge}
-          </Badge>
-          <h2 class="font-display text-3xl md:text-4xl font-bold text-foreground text-balance">
-            {workWithMe.heading}
-          </h2>
-        </div>
+    <div class="mx-auto max-w-5xl px-6 flex flex-col gap-10" data-reveal>
+      <div class="flex flex-col items-center gap-4 text-center">
+        <Badge variant="brand" pill>
+          <Icon name="users" size="sm" />
+          Comunidad EDTEC
+        </Badge>
+        <h2 class="font-display text-3xl md:text-5xl font-bold text-foreground text-balance">
+          ¿Cómo formar parte de nuestra comunidad?
+        </h2>
         <p class="text-lg text-foreground-muted max-w-2xl mx-auto text-balance">
-          {workWithMe.lead}
+          El EDTEC Lab es un espacio abierto para toda la comunidad ucabista.
         </p>
       </div>
 
-      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-        {workWithMe.cards.map((card, i) => (
-          <ProofTile icon={card.icon} title={card.title} data-reveal data-reveal-delay={i || undefined}>
-            {card.description}
-          </ProofTile>
-        ))}
-      </div>
+      <div class="grid gap-8 md:grid-cols-2">
+        <!-- Tarjeta Para Estudiantes -->
+        <div class="relative overflow-hidden rounded-2xl border border-border bg-background-secondary/50 p-8 flex flex-col gap-6 shadow-sm hover:border-brand-500/40 transition-all">
+          <div class="flex items-center gap-4">
+            <div class="w-12 h-12 rounded-xl bg-orange-500/10 text-orange-500 flex items-center justify-center font-bold">
+              <Icon name="graduation-cap" size="lg" />
+            </div>
+            <div>
+              <span class="text-xs uppercase tracking-wider font-semibold text-orange-500">Para Estudiantes</span>
+              <h3 class="font-display text-2xl font-bold text-foreground">Laboratorio Experiencial</h3>
+            </div>
+          </div>
 
-      <div class="flex justify-center mt-4" data-reveal>
-        <Button size="lg" href={servicesUrl} class="cta-btn-brand">
-          {workWithMe.cta}
-          <Icon name="arrow-right" size="sm" />
-        </Button>
+          <div class="flex flex-col gap-4 text-foreground-muted leading-relaxed">
+            <p>
+              Si quieres aprender a desarrollar soluciones tecnológicas sin importar qué carrera estás estudiando, contáctanos y súmate a nuestras sesiones de laboratorio experiencial.
+            </p>
+            <div class="rounded-xl bg-background p-4 border border-border text-sm">
+              <p class="text-foreground">
+                <strong class="text-brand-500 font-semibold">Profesores y estudiantes:</strong> si deseas formular un nuevo proyecto para generar innovación en una o varias asignaturas, igualmente contáctanos para darte la bienvenida a nuestra comunidad.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tarjeta Para Profesores -->
+        <div class="relative overflow-hidden rounded-2xl border border-border bg-background-secondary/50 p-8 flex flex-col gap-6 shadow-sm hover:border-brand-500/40 transition-all">
+          <div class="flex items-center gap-4">
+            <div class="w-12 h-12 rounded-xl bg-indigo-500/10 text-indigo-500 flex items-center justify-center font-bold">
+              <Icon name="presentation" size="lg" />
+            </div>
+            <div>
+              <span class="text-xs uppercase tracking-wider font-semibold text-indigo-500">Para Profesores</span>
+              <h3 class="font-display text-2xl font-bold text-foreground">Implementa en tu Cátedra</h3>
+            </div>
+          </div>
+
+          <div class="flex flex-col gap-4 text-foreground-muted leading-relaxed">
+            <p>
+              Si quieres implementar alguna de las herramientas presentadas en tus asignaturas, solo debes contactarnos y acordamos una reunión para determinar el alcance y realizar la inducción respectiva.
+            </p>
+            <div class="rounded-xl bg-background p-4 border border-border text-sm">
+              <p class="text-foreground">
+                <strong class="text-brand-500 font-semibold">Profesores y estudiantes:</strong> si deseas formular un nuevo proyecto para generar innovación en una o varias asignaturas, igualmente contáctanos para darte la bienvenida a nuestra comunidad.
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
