@@ -532,14 +532,14 @@
         "description": "A free, fast Astro 7 starter theme to build anything on: 44 designed components, 8 colour themes, dark mode, and built-in i18n."
       },
       "hero": {
-        "badge": "Available for new projects",
-        "titleLine1": "EDTEC Lab —",
-        "titleLine2": "Web Designer",
-        "titleLine3": "& Developer",
-        "description": "A free, lightning-fast Astro 7 starter theme to build anything on: 44 designed components, 8 colour themes, and dark mode.",
-        "descriptionMobile": "A free, lightning-fast Astro 7 starter theme to build anything on: 44 designed components and 8 colour themes.",
-        "github": "Get it on GitHub",
-        "getStarted": "Get started"
+        "badge": "Innovación Educativa",
+        "titleLine1": "Potenciamos el aprendizaje y",
+        "titleLine2": "favorecemos la transformación",
+        "titleLine3": "curricular en la UCAB",
+        "description": "A través de iniciativas centradas en I+D+i, integramos Inteligencia Artificial, simuladores virtuales y tecnologías emergentes al servicio de la innovación educativa.",
+        "descriptionMobile": "A través de iniciativas centradas en I+D+i, integramos Inteligencia Artificial, simuladores virtuales y tecnologías emergentes.",
+        "github": "Conoce más",
+        "getStarted": "Nuestros proyectos"
       },
       "services": {
         "badge": "What I do",
