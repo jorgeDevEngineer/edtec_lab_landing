@@ -192,30 +192,6 @@ const basedInDisplay = `${city ?? 'Your City'}${country ? `, ${country}` : ''}`;
       </Button>
     </Fragment>
 
-    <!-- Tech-stack marquee floored into the hero in place of the scroll indicator:
-         the content stays at the top and the marquee sits low near the bottom, with
-         a roomy gap above it (a guaranteed minimum gap, so it never crowds the
-         CTAs). Constrained to the content width; one decorative row; hidden on
-         phones. cardWidth="auto" lets each card hug its logo + name so the logos sit
-         close together; StackMarquee repeats the set to fill the row so the loop
-         stays seamless. -->
-    <div slot="bottom" class="mx-auto w-full max-w-6xl px-6">
-      <!-- Tablet & up: the animated tech-stack marquee. -->
-      <div class="hp-hero-marquee" aria-hidden="true">
-        <StackMarquee items={heroStackItems} rows={1} duration={55} pauseOnHover={false} linked={false} cardWidth="auto" gap="1rem" />
-      </div>
-      <!-- Portrait phone: a static, non-animated row of the four core-stack logos.
-           No marquee machinery — no duplicated track and no infinite animation — so
-           there's zero ongoing compositor/battery cost on mobile. Logos only,
-           non-interactive, with a one-time fade-in to match the marquee's entrance. -->
-      <div class="hp-hero-logos" aria-hidden="true">
-        {heroStackItems.slice(0, 4).map((item) => (
-          <span class="hp-hero-logo">
-            <Icon name={item.icon} size="lg" />
-          </span>
-        ))}
-      </div>
-    </div>
   </Hero>
 
 
