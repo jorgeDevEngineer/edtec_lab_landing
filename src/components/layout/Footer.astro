@@ -407,10 +407,7 @@ function getSocialIcon(platform: string): string {
                 <slot name="logo" />
               ) : (
                 <a href={logoHref} class="flex items-center gap-2">
-                  <Logo size="md" class="bg-brand-600" />
-                  <span class="font-display text-base font-bold text-brand-700 dark:text-foreground">
-                    {siteConfig.name}
-                  </span>
+                  <Logo size="xl" class="h-10 w-auto" />
                 </a>
               )}
               {(hasTaglineSlot || tagline) && (

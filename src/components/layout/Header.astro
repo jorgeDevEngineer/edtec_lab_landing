@@ -234,19 +234,7 @@ const buttonId = `${menuId}-button`;
           <slot name="logo" />
         ) : (
           <a href={logoHref} class="flex items-center gap-2">
-            <Logo size={size === 'sm' ? 'md' : 'lg'} forceDark={isInvert} class="bg-brand-600" />
-            {/* One line at every width: the wordmark never wraps, and it eases
-                20px → 16px between 345px and 320px so it clears the header
-                icons on the smallest screens. From 345px up the clamp
-                resolves to exactly text-xl (20px). */}
-            <span
-              class={cn(
-                'font-display text-[clamp(1rem,16vw_-_2.2rem,1.25rem)] font-bold tracking-tight whitespace-nowrap',
-                isFloating ? 'hdr-logo-text' : (isInvert ? 'text-brand-700 dark:text-foreground lg:text-on-invert' : 'text-brand-700 dark:text-foreground')
-              )}
-            >
-              {logoText || siteConfig.name}
-            </span>
+            <Logo size="xl" class="h-10 w-auto" />
           </a>
         ))
     }
