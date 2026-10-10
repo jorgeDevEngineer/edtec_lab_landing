@@ -372,9 +372,9 @@ const siteConfig: SiteConfig = {
   i18n: i18nConfig,
   branding: {
     logo: {
-      alt: 'Astro Rocket',
-      // image: '/logo.svg', // Optional: set to a file in public/ to use a custom logo image instead of the letter monogram.
-      imageUrl: '/favicon.svg',
+      alt: 'EDTEC Lab',
+      image: '/logo.png',
+      imageUrl: '/logo.png',
     },
     favicon: {
       svg: '/favicon.svg',
