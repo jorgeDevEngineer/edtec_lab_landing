@@ -1,25 +1,25 @@
 {
   "nav": {
-    "skipToContent": "Skip to content",
-    "openMenu": "Open menu",
-    "closeMenu": "Close menu",
-    "selectLanguage": "Select language",
-    "currentLanguage": "Current language",
-    "mainNav": "Main navigation",
-    "mobileNav": "Mobile navigation",
-    "toggleMenu": "Toggle menu",
-    "sectionNavigate": "Navigate",
-    "searchSite": "Search this site",
-    "sectionTheme": "Theme",
-    "sectionLanguage": "Language",
-    "sectionConnect": "Connect",
+    "skipToContent": "Saltar al contenido",
+    "openMenu": "Abrir menú",
+    "closeMenu": "Cerrar menú",
+    "selectLanguage": "Seleccionar idioma",
+    "currentLanguage": "Idioma actual",
+    "mainNav": "Navegación principal",
+    "mobileNav": "Navegación móvil",
+    "toggleMenu": "Alternar menú",
+    "sectionNavigate": "Navegación",
+    "searchSite": "Buscar en el sitio",
+    "sectionTheme": "Tema",
+    "sectionLanguage": "Idioma",
+    "sectionConnect": "Conectar",
     "items": {
-      "home": "Home",
-      "services": "Services",
-      "projects": "Projects",
+      "home": "Inicio",
+      "services": "Servicios",
+      "projects": "Proyectos",
       "blog": "Blog",
-      "about": "About",
-      "contact": "Contact"
+      "about": "Nosotros",
+      "contact": "Contacto"
     }
   },
   "common": {
