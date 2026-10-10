@@ -235,8 +235,8 @@ const buttonId = `${menuId}-button`;
         ) : (
           <a href={logoHref} class="flex items-center gap-2.5">
             <Logo size="xl" class="h-9 w-auto" />
-            <span class="font-display text-xl font-bold tracking-tight text-slate-900 whitespace-nowrap">
-              EDTEC <span class="text-indigo-600">Lab</span>
+            <span class="font-display text-xl font-bold tracking-tight text-blue-700 whitespace-nowrap">
+              EDTEC Lab
             </span>
           </a>
         ))
@@ -1025,17 +1025,16 @@ const buttonId = `${menuId}-button`;
     }
   }
 
-  /* Always white floating header so the logo icon background never clashes */
+  /* Pure solid white floating header */
   [data-header-shape="floating"],
   .dark [data-header-shape="floating"],
   html:not(.dark) [data-header-shape="floating"],
   [data-header-shape="floating"][data-scrolled],
   .dark [data-header-shape="floating"][data-scrolled],
   html:not(.dark) [data-header-shape="floating"][data-scrolled] {
-    background: rgba(255, 255, 255, 0.95) !important;
-    backdrop-filter: blur(20px) !important;
-    border: 1px solid rgba(0, 0, 0, 0.08) !important;
-    box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.12), 0 2px 6px -1px rgba(0, 0, 0, 0.06) !important;
+    background: #ffffff !important;
+    border: 1px solid #e2e8f0 !important;
+    box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.08), 0 2px 6px -1px rgba(0, 0, 0, 0.04) !important;
   }
 
   [data-header-shape="floating"] .nav-link,
