@@ -406,8 +406,11 @@ function getSocialIcon(platform: string): string {
               {hasLogoSlot ? (
                 <slot name="logo" />
               ) : (
-                <a href={logoHref} class="flex items-center gap-2">
-                  <Logo size="xl" class="h-10 w-auto" />
+                <a href={logoHref} class="flex items-center gap-2.5">
+                  <Logo size="xl" class="h-9 w-auto" />
+                  <span class="font-display text-xl font-bold tracking-tight text-foreground whitespace-nowrap">
+                    EDTEC <span class="text-brand-500">Lab</span>
+                  </span>
                 </a>
               )}
               {(hasTaglineSlot || tagline) && (

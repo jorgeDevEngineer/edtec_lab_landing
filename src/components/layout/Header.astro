@@ -233,8 +233,11 @@ const buttonId = `${menuId}-button`;
         (hasLogoSlot ? (
           <slot name="logo" />
         ) : (
-          <a href={logoHref} class="flex items-center gap-2">
-            <Logo size="xl" class="h-10 w-auto" />
+          <a href={logoHref} class="flex items-center gap-2.5">
+            <Logo size="xl" class="h-9 w-auto" />
+            <span class="font-display text-xl font-bold tracking-tight text-slate-900 whitespace-nowrap">
+              EDTEC <span class="text-indigo-600">Lab</span>
+            </span>
           </a>
         ))
     }
