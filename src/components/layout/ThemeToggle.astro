@@ -17,41 +17,24 @@ const labelTemplate = t('common.themeMode', locale, { mode: '{mode}' });
 const titleTemplate = t('common.themeModeTitle', locale, { mode: '{mode}' });
 ---
 
-<!-- 3-state colour-mode cycler. Click cycles: system → light → dark → system.
-     The visible icon is driven by <html data-theme-mode="…"> so it stays in
-     sync with the inline bootstrap (no FOUC of the wrong icon). -->
+<!-- 2-state Dark/Light toggle. Click switches between Dark and Light.
+     When in dark mode, clicking switches to light. When in light mode, clicking switches to dark. -->
 <button
   type="button"
   id="theme-toggle"
   class={cn(
-    'theme-toggle inline-flex items-center justify-center rounded-md p-2',
-    'text-muted-foreground hover:text-foreground hover:bg-secondary',
+    'theme-toggle inline-flex items-center justify-center rounded-full border border-border-strong p-1.5',
+    'text-foreground-muted hover:text-foreground hover:bg-secondary',
     'transition-colors duration-(--transition-fast)',
     'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2',
     className
   )}
-  aria-label={labelTemplate.replace('{mode}', 'system')}
-  title={titleTemplate.replace('{mode}', 'system')}
-  data-i18n-label={labelTemplate}
-  data-i18n-title={titleTemplate}
+  aria-label="Cambiar tema claro/oscuro"
+  title="Cambiar tema claro/oscuro"
 >
-  <!-- Monitor icon — shown when mode === 'system' -->
+  <!-- Sun icon (shown when dark mode is active, to indicate switching to light) -->
   <svg
-    class="theme-toggle__icon theme-toggle__icon--system h-5 w-5"
-    xmlns="http://www.w3.org/2000/svg"
-    fill="none"
-    viewBox="0 0 24 24"
-    stroke="currentColor"
-    stroke-width="2"
-    aria-hidden="true"
-  >
-    <rect x="2.75" y="3.75" width="18.5" height="13" rx="2" />
-    <path stroke-linecap="round" d="M8 20.25h8M12 16.75v3.5" />
-  </svg>
-
-  <!-- Sun icon — shown when mode === 'light' -->
-  <svg
-    class="theme-toggle__icon theme-toggle__icon--light h-5 w-5"
+    class="theme-toggle__icon theme-toggle__icon--sun h-4 w-4"
     xmlns="http://www.w3.org/2000/svg"
     fill="none"
     viewBox="0 0 24 24"
@@ -66,9 +49,9 @@ const titleTemplate = t('common.themeModeTitle', locale, { mode: '{mode}' });
     />
   </svg>
 
-  <!-- Moon icon — shown when mode === 'dark' -->
+  <!-- Moon icon (shown when light mode is active, to indicate switching to dark) -->
   <svg
-    class="theme-toggle__icon theme-toggle__icon--dark h-5 w-5"
+    class="theme-toggle__icon theme-toggle__icon--moon h-4 w-4"
     xmlns="http://www.w3.org/2000/svg"
     fill="none"
     viewBox="0 0 24 24"
@@ -85,69 +68,46 @@ const titleTemplate = t('common.themeModeTitle', locale, { mode: '{mode}' });
 </button>
 
 <style>
-  /* Show exactly one icon based on the saved colour-mode. The bootstrap
-     sets data-theme-mode synchronously before paint, so the right icon is
-     visible from frame 0 (no flash). */
   .theme-toggle__icon { display: none; }
-  :global(html[data-theme-mode='system']) .theme-toggle .theme-toggle__icon--system,
-  :global(html[data-theme-mode='light'])  .theme-toggle .theme-toggle__icon--light,
-  :global(html[data-theme-mode='dark'])   .theme-toggle .theme-toggle__icon--dark {
+  /* When dark, show Sun icon */
+  :global(html.dark) .theme-toggle .theme-toggle__icon--sun {
+    display: block;
+  }
+  /* When light, show Moon icon */
+  :global(html:not(.dark)) .theme-toggle .theme-toggle__icon--moon {
     display: block;
   }
 </style>
 
 <script>
-  type Mode = 'system' | 'light' | 'dark';
-  const MODES: readonly Mode[] = ['system', 'light', 'dark'] as const;
+  function isCurrentDark(): boolean {
+    return document.documentElement.classList.contains('dark');
+  }
 
-  function readMode(): Mode {
+  function applyMode(dark: boolean): void {
+    const root = document.documentElement;
+    root.setAttribute('data-theme-mode', dark ? 'dark' : 'light');
+    root.classList.toggle('dark', dark);
     try {
-      const stored = localStorage.getItem('theme');
-      if (stored === 'system' || stored === 'light' || stored === 'dark') return stored;
+      localStorage.setItem('theme', dark ? 'dark' : 'light');
     } catch {
       /* private mode */
     }
-    return 'system';
-  }
-
-  function applyMode(mode: Mode): void {
-    const root = document.documentElement;
-    root.setAttribute('data-theme-mode', mode);
-    const isDark =
-      mode === 'dark' ||
-      (mode === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
-    root.classList.toggle('dark', isDark);
-  }
-
-  function syncLabel(button: HTMLElement, mode: Mode): void {
-    const label = button.dataset.i18nLabel ?? 'Theme: {mode}';
-    const title = button.dataset.i18nTitle ?? 'Theme: {mode} (click to cycle)';
-    button.setAttribute('aria-label', label.replace('{mode}', mode));
-    button.setAttribute('title', title.replace('{mode}', mode));
   }
 
   function initThemeToggle(): void {
-    const toggle = document.getElementById('theme-toggle');
-    if (!toggle || toggle.dataset.themeInit) return;
-    toggle.dataset.themeInit = 'true';
+    const toggles = document.querySelectorAll('.theme-toggle');
+    toggles.forEach((btn) => {
+      if ((btn as HTMLElement).dataset.themeInit) return;
+      (btn as HTMLElement).dataset.themeInit = 'true';
 
-    syncLabel(toggle, readMode());
-
-    toggle.addEventListener('click', () => {
-      const current = readMode();
-      const next = MODES[(MODES.indexOf(current) + 1) % MODES.length];
-
-      try {
-        localStorage.setItem('theme', next);
-      } catch {
-        /* private mode */
-      }
-      applyMode(next);
-      syncLabel(toggle, next);
+      btn.addEventListener('click', () => {
+        const nextDark = !isCurrentDark();
+        applyMode(nextDark);
+      });
     });
   }
 
-  // Run on initial load and after every view-transition swap
   initThemeToggle();
   document.addEventListener('astro:after-swap', initThemeToggle);
 </script>

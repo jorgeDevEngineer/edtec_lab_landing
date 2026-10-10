@@ -88,7 +88,7 @@ if (commentsConfig?.enabled) {
 ---
 
 <!doctype html>
-<html lang={locale} class="scroll-smooth dark" data-theme="blue" data-theme-mode="system">
+<html lang={locale} class="scroll-smooth dark" data-theme="indigo" data-theme-mode="dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -151,22 +151,20 @@ if (commentsConfig?.enabled) {
     <script is:inline>
       (function () {
         const COLOR_THEMES = ['emerald', 'teal', 'cyan', 'sky', 'blue', 'indigo', 'violet', 'purple'];
-        const VALID_MODES = ['system', 'light', 'dark'];
+        const VALID_MODES = ['light', 'dark'];
 
         function getMode() {
           try {
             const stored = localStorage.getItem('theme');
             if (VALID_MODES.indexOf(stored) !== -1) return stored;
           } catch { /* private mode / disabled storage */ }
-          return 'system';
+          return 'dark';
         }
 
         function applyMode(el) {
           const mode = getMode();
           el.setAttribute('data-theme-mode', mode);
-          const isDark =
-            mode === 'dark' ||
-            (mode === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+          const isDark = mode === 'dark';
           if (isDark) el.classList.add('dark');
           else el.classList.remove('dark');
         }

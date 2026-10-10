@@ -101,7 +101,7 @@ const {
   actions = [],
   showSearch = true,
   showThemeToggle = true,
-  showThemeSelector = true,
+  showThemeSelector = false,
   showMobileMenu = true,
   showSocialLinks = siteConfig.header?.showSocialLinks ?? false,
   showLanguageSwitcher = i18nIsEnabled(),
@@ -301,7 +301,7 @@ const buttonId = `${menuId}-button`;
 
             {showThemeToggle && (
               <div class="flex">
-                <ThemeModeDropdown class={isFloating ? 'hdr-invert-text' : undefined} />
+                <ThemeToggle class={isFloating ? 'hdr-invert-text' : undefined} />
               </div>
             )}
 

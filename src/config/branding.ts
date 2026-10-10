@@ -9,7 +9,7 @@
  *
  * Change them here. `site.config.ts` reads from this file.
  */
-export const SITE_NAME = 'Astro Rocket';
+export const SITE_NAME = 'EDTEC Lab';
 
-/** Browser toolbar colour, and the fill behind the favicon letter. */
-export const THEME_COLOR = '#0083fe';
+/** Browser toolbar colour, and the fill behind the favicon letter (Indigo). */
+export const THEME_COLOR = '#6366f1';
