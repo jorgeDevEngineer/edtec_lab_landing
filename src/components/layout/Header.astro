@@ -1022,28 +1022,44 @@ const buttonId = `${menuId}-button`;
     }
   }
 
-  .dark [data-header-shape="floating"] {
-    background: color-mix(in oklch, var(--color-background) 65%, transparent);
-    border-color: color-mix(in oklch, var(--color-brand-400) 35%, transparent);
-    box-shadow: none;
-  }
-  .dark [data-header-shape="floating"][data-scrolled] {
-    background: color-mix(in oklch, var(--color-background) 88%, transparent);
-    border-color: rgba(255, 255, 255, 0.14);
-    box-shadow: 0 4px 32px rgba(255, 255, 255, 0.07), 0 12px 40px -8px rgba(0, 0, 0, 0.6), 0 2px 8px -2px rgba(0, 0, 0, 0.4);
+  /* Always white floating header so the logo icon background never clashes */
+  [data-header-shape="floating"],
+  .dark [data-header-shape="floating"],
+  html:not(.dark) [data-header-shape="floating"],
+  [data-header-shape="floating"][data-scrolled],
+  .dark [data-header-shape="floating"][data-scrolled],
+  html:not(.dark) [data-header-shape="floating"][data-scrolled] {
+    background: rgba(255, 255, 255, 0.95) !important;
+    backdrop-filter: blur(20px) !important;
+    border: 1px solid rgba(0, 0, 0, 0.08) !important;
+    box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.12), 0 2px 6px -1px rgba(0, 0, 0, 0.06) !important;
   }
 
-  /* Light-mode floating header at rest: dark-glass capsule, mirroring the
-     dark-mode look so it reads cleanly over the home hero's black→brand
-     gradient. A neutral 18% white hairline sits below the badge and pill
-     borders so the header reads as the quiet frame those chips live in. */
-  html:not(.dark) [data-header-shape="floating"]:not([data-scrolled]) {
-    background: color-mix(in oklch, var(--surface-invert) 70%, transparent);
-    border-color: color-mix(in oklch, var(--color-on-invert) 18%, transparent);
-    box-shadow: none;
+  [data-header-shape="floating"] .nav-link,
+  [data-header-shape="floating"] .hdr-invert-text,
+  [data-header-shape="floating"] .theme-spin-btn,
+  [data-header-shape="floating"] .search-trigger,
+  [data-header-shape="floating"] .hdr-hamburger {
+    color: #1e293b !important;
   }
-  html:not(.dark) [data-header-shape="floating"][data-scrolled] {
-    box-shadow: 0 8px 32px -8px rgba(0, 0, 0, 0.14), 0 2px 8px -2px rgba(0, 0, 0, 0.08);
+
+  [data-header-shape="floating"] .nav-link:hover,
+  [data-header-shape="floating"] .hdr-invert-text:hover,
+  [data-header-shape="floating"] .theme-spin-btn:hover,
+  [data-header-shape="floating"] .search-trigger:hover,
+  [data-header-shape="floating"] .hdr-hamburger:hover {
+    color: #0f172a !important;
+    background-color: rgba(0, 0, 0, 0.06) !important;
+  }
+
+  [data-header-shape="floating"] .nav-link.hdr-nav-active {
+    color: #4338ca !important;
+    background-color: rgba(99, 102, 241, 0.12) !important;
+  }
+
+  [data-header-shape="floating"] .theme-spin-btn,
+  [data-header-shape="floating"] .search-trigger {
+    border-color: rgba(0, 0, 0, 0.12) !important;
   }
 
   html:not(.dark) [data-header-shape="floating"][data-header-color-scheme="default"]:not([data-scrolled]) .hdr-logo-text {
