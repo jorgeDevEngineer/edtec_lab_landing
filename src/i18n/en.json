@@ -177,18 +177,18 @@
     "error": "Subscription failed. Please try again."
   },
   "contact": {
-    "heading": "Get in touch",
-    "name": "Name",
-    "email": "Email",
-    "subject": "Subject",
-    "message": "Message",
-    "send": "Send message",
-    "sending": "Sending…",
-    "success": "Message sent successfully!",
-    "genericError": "Something went wrong",
-    "notConfigured": "Not configured yet — set RESEND_API_KEY to switch this on. Only you can see this line.",
-    "unavailable": "This form is not available right now.",
-    "error": "Failed to send message. Please try again."
+    "heading": "Ponte en contacto",
+    "name": "Nombre",
+    "email": "Correo electrónico",
+    "subject": "Asunto",
+    "message": "Mensaje",
+    "send": "Enviar mensaje",
+    "sending": "Enviando…",
+    "success": "¡Mensaje enviado con éxito!",
+    "genericError": "Algo salió mal",
+    "notConfigured": "Aún no configurado: establece RESEND_API_KEY para habilitarlo. Solo tú puedes ver esta línea.",
+    "unavailable": "Este formulario no está disponible en este momento.",
+    "error": "Error al enviar el mensaje. Por favor, intenta de nuevo."
   },
   "theme": {
     "selectColourTheme": "Select colour theme",
@@ -566,18 +566,18 @@
         "description": "¿Tienes una propuesta o proyecto? Contáctanos y conversemos sobre innovación educativa y tecnologías emergentes."
       },
       "hero": {
-        "badge": "Start a project",
-        "titleLead": "Tell me about your",
-        "titleHighlight": "new project",
-        "description": "I'd love to hear from you. Send a message with the form below, or reach out on one of the other channels below."
+        "badge": "Inicia un proyecto",
+        "titleLead": "Cuéntanos sobre tu",
+        "titleHighlight": "nuevo proyecto",
+        "description": "Nos encantaría escucharte. Envía un mensaje con el formulario o contáctanos a través de nuestros otros canales."
       },
-      "formTitle": "Project details",
-      "channelsTitle": "Other channels",
-      "channelsSubtitle": "Prefer a direct channel? Pick whichever works best.",
-      "emailLabel": "Email",
-      "emailNote": "Drop us a line",
-      "socialNote": "Follow along",
-      "basedIn": "Based in {country}"
+      "formTitle": "Detalles del proyecto",
+      "channelsTitle": "Otros canales",
+      "channelsSubtitle": "¿Prefieres un canal directo? Elige el que mejor te funcione.",
+      "emailLabel": "Correo electrónico",
+      "emailNote": "Escríbenos",
+      "socialNote": "Síguenos",
+      "basedIn": "Con sede en {country}"
     },
     "home": {
       "meta": {
