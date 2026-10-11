@@ -1,0 +1,110 @@
+---
+/**
+ * HeroCosineParticles.astro
+ *
+ * Partículas suaves flotantes en el hero que se desplazan de derecha a izquierda
+ * siguiendo una trayectoria ondulada (coseno / onda sinusoidal suave y alargada).
+ * Ligero, responsivo y respetuoso con prefers-reduced-motion.
+ */
+interface Props {
+  count?: number;
+  class?: string;
+}
+
+const { count = 22, class: className } = Astro.props;
+
+// Generar parámetros únicos por partícula para variar posición vertical, tamaño, opacidad, velocidad y desfase.
+const particles = Array.from({ length: count }, (_, i) => {
+  const top = (i * 4.3 + (i % 5) * 3) % 92 + 4; // Entre 4% y 96%
+  const size = ((i % 4) + 1.8) * 1.5; // Entre 2.7px y 7.2px
+  const duration = 20 + ((i * 7) % 18); // Duración lenta entre 20s y 37s
+  const delay = -((i * 4.7) % 25); // Desfase negativo para que el campo esté poblado inmediatamente
+  const opacity = 0.25 + ((i % 5) * 0.12); // Opacidad suave entre 0.25 y 0.73
+  const amplitude = 35 + ((i % 4) * 20); // Amplitud del coseno entre 35px y 95px
+  const isGlow = i % 3 === 0;
+
+  return {
+    id: i,
+    top,
+    size,
+    duration,
+    delay,
+    opacity,
+    amplitude,
+    isGlow,
+  };
+});
+---
+
+<div class:list={['hero-cosine-particles pointer-events-none absolute inset-0 overflow-hidden z-0', className]} aria-hidden="true">
+  {particles.map((p) => (
+    <div
+      class="particle-track absolute w-full"
+      style={`top: ${p.top}%;`}
+    >
+      <span
+        class="particle-item block rounded-full"
+        style={`
+          --travel-duration: ${p.duration}s;
+          --travel-delay: ${p.delay}s;
+          --wave-amplitude: ${p.amplitude}px;
+          --particle-opacity: ${p.opacity};
+          width: ${p.size}px;
+          height: ${p.size}px;
+          background: radial-gradient(circle, var(--color-brand-400, #60a5fa) 0%, var(--color-brand-500, #3b82f6) 60%, transparent 100%);
+          box-shadow: ${p.isGlow ? '0 0 12px rgba(59, 130, 246, 0.7)' : '0 0 6px rgba(96, 165, 250, 0.4)'};
+        `}
+      />
+    </div>
+  ))}
+</div>
+
+<style>
+  .particle-track {
+    left: 0;
+    height: 0;
+  }
+
+  .particle-item {
+    opacity: var(--particle-opacity);
+    will-change: transform, opacity;
+    animation: moveCosineRL var(--travel-duration) linear infinite;
+    animation-delay: var(--travel-delay);
+  }
+
+  /* Movimiento de derecha a izquierda describiendo un coseno alargado suave:
+     Y(t) oscila con forma de onda de coseno sobre la vertical
+     X(t) recorre linealmente desde el 105vw hasta -10vw */
+  @keyframes moveCosineRL {
+    0% {
+      transform: translate3d(105vw, calc(-1 * var(--wave-amplitude)), 0);
+      opacity: 0;
+    }
+    10% {
+      opacity: var(--particle-opacity);
+    }
+    25% {
+      transform: translate3d(76vw, 0px, 0);
+    }
+    50% {
+      transform: translate3d(48vw, var(--wave-amplitude), 0);
+    }
+    75% {
+      transform: translate3d(19vw, 0px, 0);
+    }
+    90% {
+      opacity: var(--particle-opacity);
+    }
+    100% {
+      transform: translate3d(-10vw, calc(-1 * var(--wave-amplitude)), 0);
+      opacity: 0;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .particle-item {
+      animation: none !important;
+      display: none !important;
+    }
+  }
+</style>
