@@ -1025,42 +1025,56 @@ const buttonId = `${menuId}-button`;
     }
   }
 
-  /* Pure solid white floating header */
-  [data-header-shape="floating"],
-  .dark [data-header-shape="floating"],
-  html:not(.dark) [data-header-shape="floating"],
-  [data-header-shape="floating"][data-scrolled],
-  .dark [data-header-shape="floating"][data-scrolled],
-  html:not(.dark) [data-header-shape="floating"][data-scrolled] {
+  /* Pure solid white header for ALL pages and shapes (floating and bar) */
+  header,
+  header[data-header-shape="bar"],
+  header[data-header-shape="floating"],
+  .dark header,
+  .dark header[data-header-shape="bar"],
+  .dark header[data-header-shape="floating"],
+  html:not(.dark) header,
+  html:not(.dark) header[data-header-shape="bar"],
+  html:not(.dark) header[data-header-shape="floating"],
+  header[data-scrolled],
+  .dark header[data-scrolled],
+  html:not(.dark) header[data-scrolled] {
     background: #ffffff !important;
+    background-color: #ffffff !important;
+    border-bottom: 1px solid #e2e8f0 !important;
+  }
+
+  header[data-header-shape="floating"],
+  .dark header[data-header-shape="floating"],
+  html:not(.dark) header[data-header-shape="floating"] {
     border: 1px solid #e2e8f0 !important;
     box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.08), 0 2px 6px -1px rgba(0, 0, 0, 0.04) !important;
   }
 
-  [data-header-shape="floating"] .nav-link,
-  [data-header-shape="floating"] .hdr-invert-text,
-  [data-header-shape="floating"] .theme-spin-btn,
-  [data-header-shape="floating"] .search-trigger,
-  [data-header-shape="floating"] .hdr-hamburger {
+  header .nav-link,
+  header .hdr-invert-text,
+  header .theme-spin-btn,
+  header .search-trigger,
+  header .hdr-hamburger {
     color: #1e293b !important;
   }
 
-  [data-header-shape="floating"] .nav-link:hover,
-  [data-header-shape="floating"] .hdr-invert-text:hover,
-  [data-header-shape="floating"] .theme-spin-btn:hover,
-  [data-header-shape="floating"] .search-trigger:hover,
-  [data-header-shape="floating"] .hdr-hamburger:hover {
+  header .nav-link:hover,
+  header .hdr-invert-text:hover,
+  header .theme-spin-btn:hover,
+  header .search-trigger:hover,
+  header .hdr-hamburger:hover {
     color: #0f172a !important;
     background-color: rgba(0, 0, 0, 0.06) !important;
   }
 
-  [data-header-shape="floating"] .nav-link.hdr-nav-active {
+  header .nav-link.hdr-nav-active {
     color: #1d4ed8 !important;
     background-color: rgba(37, 99, 235, 0.12) !important;
+    font-weight: 600 !important;
   }
 
-  [data-header-shape="floating"] .theme-spin-btn,
-  [data-header-shape="floating"] .search-trigger {
+  header .theme-spin-btn,
+  header .search-trigger {
     border-color: rgba(0, 0, 0, 0.12) !important;
   }
 
