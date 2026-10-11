@@ -399,6 +399,28 @@ const basedInDisplay = `${city ?? 'Your City'}${country ? `, ${country}` : ''}`;
             <Icon name="arrow-up-right" size="xs" />
           </a>
         </div>
+
+        <!-- Proyectos del concurso en desarrollo -->
+        <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          <!-- Fray Tempus -->
+          <div class="rounded-2xl border border-border bg-background p-7 flex flex-col gap-4 shadow-sm hover:border-brand-500/40 transition-all" data-reveal>
+            <div class="w-12 h-12 rounded-xl bg-purple-500/10 text-purple-600 dark:text-purple-400 flex items-center justify-center">
+              <Icon name="hourglass" size="lg" />
+            </div>
+            <div>
+              <span class="text-xs font-semibold text-purple-600 dark:text-purple-400 uppercase tracking-wider">Escape Room Inmersivo</span>
+              <h4 class="font-display text-2xl font-bold text-foreground mt-1">Fray Tempus</h4>
+              <p class="text-xs text-brand-500 font-medium">Laberinto del Tiempo®</p>
+            </div>
+            <p class="text-foreground-muted leading-relaxed text-sm md:text-base">
+              Escape Room interactivo en Genially sobre la evolución histórica y el futuro de la jornada laboral, promoviendo el aprendizaje activo y el pensamiento crítico.
+            </p>
+            <div class="pt-2 border-t border-border/60 text-xs text-foreground-muted flex flex-col gap-1">
+              <span><strong>Equipo:</strong> María Estela Mangia, Jeanette Da Silva, Claudia Medina</span>
+              <span><strong>Mentores:</strong> Nidia Marcano, Oswaldo Sánchez</span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
