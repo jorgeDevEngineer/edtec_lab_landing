@@ -241,6 +241,57 @@
       },
       "teamImageAlt": "Team en gemeenschap EDTEC Lab UCAB",
       "comiteImageAlt": "Organisatiecomite en beurzen CIIDEA - EDTEC Lab UCAB",
+      "respaldos": {
+        "badge": "Institutionele Ondersteuning",
+        "heading": "Directies en eenheden die EDTEC Lab ondersteunen",
+        "lead": "Een initiatief van CIIDEA met steun van het Academisch Vicerectoraat en een solide netwerk van interdisciplinaire allianties binnen UCAB.",
+        "mainBadge": "Hoofdcoordinatie & Superieure Steun",
+        "mainTitle": "CIIDEA & Academisch Vicerectoraat",
+        "mainDescription": "EDTEC Lab opereert vanuit het Centrum voor Onderzoek, Innovatie en Academische Ontwikkeling (CIIDEA), met directe steun van het Academisch Vicerectoraat van UCAB om universitair onderwijs te transformeren.",
+        "alliancesBadge": "Interdisciplinaire Allianties",
+        "items": [
+          {
+            "icon": "shield-check",
+            "title": "CIIDEA",
+            "description": "Centrum voor Onderzoek, Innovatie en Academische Ontwikkeling. Leidende eenheid in ontwerp en implementatie van educatieve technologieprojecten."
+          },
+          {
+            "icon": "award",
+            "title": "Academisch Vicerectoraat",
+            "description": "Hoogste academische instantie van UCAB die institutionele en strategische steun biedt aan EDTEC Lab."
+          },
+          {
+            "icon": "cpu",
+            "title": "CIDI",
+            "description": "Centrum voor Onderzoek en Ontwikkeling van Ingenieurswetenschappen. Sleutelpartner in technologische ontwikkeling en toegepaste informatica."
+          },
+          {
+            "icon": "sparkles",
+            "title": "CIED",
+            "description": "Centrum voor Educatieve Innovatie. Pedagogische samenwerking voor experimenten met nieuwe onderwijsmethoden."
+          },
+          {
+            "icon": "briefcase",
+            "title": "CIE",
+            "description": "Centrum voor Innovatie en Ondernemerschap. Stimulans voor projecten met overdraagbare impact en ondernemende visie."
+          },
+          {
+            "icon": "book-open",
+            "title": "Onderwijsschool",
+            "description": "Pedagogische validatie, didactische grondslagen en integratie van opkomende technologieën in het klaslokaal."
+          },
+          {
+            "icon": "brain",
+            "title": "Psychologieschool",
+            "description": "Evaluatie van cognitieve processen, gebruikerservaring en psycho-educatieve factoren in digitale leeromgevingen."
+          },
+          {
+            "icon": "layers",
+            "title": "Faculteit Ingenieurswetenschappen",
+            "description": "Inbreng van toptalent in softwareontwikkeling, virtual reality, simulatie, kunstmatige intelligentie en hardware."
+          }
+        ]
+      },
       "whatYouGet": {
         "badge": "Wat je krijgt",
         "heading": "Alles wat een website nodig heeft",

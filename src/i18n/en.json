@@ -241,6 +241,57 @@
       },
       "teamImageAlt": "Equipo y Comunidad EDTEC Lab UCAB",
       "comiteImageAlt": "Comité Organizador y becas trabajo del CIIDEA - EDTEC Lab UCAB",
+      "respaldos": {
+        "badge": "Respaldo Institucional",
+        "heading": "Direcciones y Unidades que respaldan a EDTEC Lab",
+        "lead": "Una iniciativa del CIIDEA con el respaldo del Vicerrectorado Académico y una sólida red de alianzas interdisciplinarias en la UCAB.",
+        "mainBadge": "Coordinación Principal & Respaldo Superior",
+        "mainTitle": "CIIDEA & Vicerrectorado Académico",
+        "mainDescription": "EDTEC Lab nace y opera desde el Centro de Investigación, Innovación y Desarrollo Académico (CIIDEA), contando con el respaldo directo del Vicerrectorado Académico de la Universidad Católica Andrés Bello para transformar la educación universitaria.",
+        "alliancesBadge": "Alianzas Interdisciplinarias",
+        "items": [
+          {
+            "icon": "shield-check",
+            "title": "CIIDEA",
+            "description": "Centro de Investigación, Innovación y Desarrollo Académico. Unidad líder en el diseño e implementación de proyectos de tecnología educativa."
+          },
+          {
+            "icon": "award",
+            "title": "Vicerrectorado Académico",
+            "description": "Máxima instancia académica de la UCAB que brinda respaldo institucional y estratégico a las iniciativas de EDTEC Lab."
+          },
+          {
+            "icon": "cpu",
+            "title": "CIDI",
+            "description": "Centro de Investigación y Desarrollo de Ingeniería. Alianza clave en desarrollo tecnológico, prototipado y computación aplicada."
+          },
+          {
+            "icon": "sparkles",
+            "title": "CIED",
+            "description": "Centro de Innovación Educativa. Cooperación pedagógica para la experimentación de nuevas metodologías docentes."
+          },
+          {
+            "icon": "briefcase",
+            "title": "CIE",
+            "description": "Centro de Innovación y Emprendimiento. Impulso a proyectos con impacto transferible, escalabilidad y visión emprendedora."
+          },
+          {
+            "icon": "book-open",
+            "title": "Escuela de Educación",
+            "description": "Validación pedagógica, fundamentación didáctica e integración de tecnologías emergentes en las aulas de clase."
+          },
+          {
+            "icon": "brain",
+            "title": "Escuela de Psicología",
+            "description": "Evaluación de procesos cognitivos, experiencia de usuario y factores psicoeducativos en entornos de aprendizaje digital."
+          },
+          {
+            "icon": "layers",
+            "title": "Facultad de Ingeniería",
+            "description": "Aporte de talento de vanguardia en desarrollo de software, realidad virtual, simulación, inteligencia artificial y hardware."
+          }
+        ]
+      },
       "whatYouGet": {
         "badge": "What you get",
         "heading": "Everything a website needs",

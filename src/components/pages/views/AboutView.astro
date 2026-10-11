@@ -62,14 +62,16 @@ const hero = tData<{
   typingWordsMobile: string[];
   description: string;
 }>('pages.about.hero', locale)!;
-const whatYouGet = tData<{ badge: string; heading: string; lead: string; items: IconText[] }>(
-  'pages.about.whatYouGet',
-  locale
-)!;
-const principles = tData<{ badge: string; heading: string; lead: string; items: IconText[] }>(
-  'pages.about.principles',
-  locale
-)!;
+const respaldos = tData<{
+  badge: string;
+  heading: string;
+  lead: string;
+  mainBadge: string;
+  mainTitle: string;
+  mainDescription: string;
+  alliancesBadge: string;
+  items: IconText[];
+}>('pages.about.respaldos', locale)!;
 const stack = tData<{ badge: string; title: string; description: string }>('pages.about.stack', locale)!;
 const faq = tData<{ badge: string; heading: string; lead: string; cards: FaqCard[] }>('pages.about.faq', locale)!;
 const openSource = tData<{
@@ -187,54 +189,48 @@ const cta = tData<{ badge: string; heading: string; description: string; button:
     </div>
   </section>
 
-  <!-- What you get -->
+  <!-- Direcciones y Respaldo Institucional -->
   <section class="py-[var(--space-section-md)] bg-background-secondary border-t border-border">
-    <div class="mx-auto max-w-6xl px-6 flex flex-col gap-8">
+    <div class="mx-auto max-w-6xl px-6 flex flex-col gap-10">
       <div class="flex flex-col items-center gap-4 text-center" data-reveal data-reveal-eager data-reveal-ease="smooth">
         <div class="flex flex-col items-center gap-6">
           <Badge variant="brand" pill>
-            <Icon name="list-checks" size="sm" />
-            {whatYouGet.badge}
+            <Icon name="shield-check" size="sm" />
+            {respaldos.badge}
           </Badge>
           <h2 class="font-display text-3xl md:text-4xl font-bold text-foreground text-balance">
-            {whatYouGet.heading}
+            {respaldos.heading}
           </h2>
         </div>
-        <p class="text-lg text-foreground-muted max-w-2xl mx-auto text-balance">
-          {whatYouGet.lead}
+        <p class="text-lg text-foreground-muted max-w-3xl mx-auto text-balance">
+          {respaldos.lead}
         </p>
       </div>
 
+      <!-- Coordinación Principal & Vicerrectorado -->
+      <div class="rounded-2xl border border-brand-500/30 bg-gradient-to-r from-brand-500/10 via-brand-500/5 to-transparent p-6 md:p-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6" data-reveal>
+        <div class="flex items-start gap-4">
+          <div class="w-12 h-12 rounded-xl bg-brand-500/20 text-brand-600 dark:text-brand-400 flex items-center justify-center shrink-0 mt-1">
+            <Icon name="award" size="lg" />
+          </div>
+          <div>
+            <span class="inline-block text-xs font-semibold uppercase tracking-wider text-brand-600 dark:text-brand-400 mb-1">
+              {respaldos.mainBadge}
+            </span>
+            <h3 class="font-display text-xl md:text-2xl font-bold text-foreground">
+              {respaldos.mainTitle}
+            </h3>
+            <p class="text-foreground-muted text-sm md:text-base mt-2 max-w-3xl leading-relaxed">
+              {respaldos.mainDescription}
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Alianzas y Direcciones -->
       <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {whatYouGet.items.map((item, i) => (
+        {respaldos.items.map((item, i) => (
           <ProofTile icon={item.icon} title={item.title} data-reveal data-reveal-delay={i % 3 || undefined}>
-            {item.description}
-          </ProofTile>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- Principles -->
-  <section class="py-[var(--space-section-md)] bg-background border-t border-border">
-    <div class="mx-auto max-w-6xl px-6">
-      <div class="mb-8 text-center flex flex-col items-center gap-4" data-reveal>
-        <div class="flex flex-col items-center gap-6">
-          <Badge variant="brand" pill>
-            <Icon name="pen-tool" size="sm" />
-            {principles.badge}
-          </Badge>
-          <h2 class="font-display text-4xl font-bold text-foreground">
-            {principles.heading}
-          </h2>
-        </div>
-        <p class="text-lg text-foreground-muted max-w-2xl mx-auto text-balance">
-          {principles.lead}
-        </p>
-      </div>
-      <div class="grid gap-6 sm:grid-cols-3">
-        {principles.items.map((item, i) => (
-          <ProofTile icon={item.icon} title={item.title} data-reveal data-reveal-delay={i || undefined}>
             {item.description}
           </ProofTile>
         ))}
