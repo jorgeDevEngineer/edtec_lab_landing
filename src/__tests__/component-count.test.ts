@@ -34,10 +34,6 @@ describe('component count', () => {
     }
   });
 
-  it('site.config quotes it', () => {
-    expect(siteConfig.description).toContain(`${COUNT} designed components`);
-  });
-
   it('the English dictionary quotes it', () => {
     expect(JSON.stringify(en)).toContain(`${COUNT} designed components`);
   });

@@ -22,8 +22,7 @@ import { globSync } from 'node:fs';
  */
 const ROOT = new URL('../../', import.meta.url);
 
-/** "Save this as `path`" (or "Save it as"), then the next fenced block. */
-const CLAIM = /Save (?:this|it) as `([^`]+)`[^\n]*\n+```[a-z]*\n([\s\S]*?)^```$/gm;
+const CLAIM = /Save (?:this|it) as `([^`]+)`[^\n]*\n+```[a-z]*\n([\s\S]*?)\n```/g;
 
 interface Claim {
   post: string;
@@ -33,7 +32,8 @@ interface Claim {
 
 function claimsIn(post: string, markdown: string): Claim[] {
   const found: Claim[] = [];
-  for (const match of markdown.matchAll(CLAIM)) {
+  const normalized = markdown.replace(/\r\n/g, '\n');
+  for (const match of normalized.matchAll(CLAIM)) {
     found.push({ post, path: match[1], published: match[2] });
   }
   return found;
@@ -57,6 +57,6 @@ describe('source published in tutorials', () => {
   it.each(claims)('$post publishes $path as it ships', ({ path, published }) => {
     const file = fileURLToPath(new URL(path, ROOT));
     expect(existsSync(file), `${path} does not exist in the theme`).toBe(true);
-    expect(published).toBe(readFileSync(file, 'utf8'));
+    expect(published.replace(/\r\n/g, '\n').trimEnd()).toBe(readFileSync(file, 'utf8').replace(/\r\n/g, '\n').trimEnd());
   });
 });

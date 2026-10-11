@@ -19,17 +19,15 @@ import { getNavItems, getLogoHref, resolveNavItem, type NavItem } from '@/config
 describe('nav config — locale resolution (en default, nl secondary)', () => {
   it('keeps default-locale hrefs at the site root', () => {
     const items = getNavItems('en');
-    expect(items.find((i) => i.label === 'Blog')?.href).toBe('/blog');
-    expect(items.find((i) => i.label === 'About')?.href).toBe('/about');
+    expect(items.find((i) => i.href === '/projects')?.href).toBe('/projects');
+    expect(items.find((i) => i.href === '/about')?.href).toBe('/about');
   });
 
   it('prefixes secondary-locale hrefs with the locale', () => {
     const items = getNavItems('nl');
     expect(items.map((i) => i.href)).toEqual([
       '/nl',
-      '/nl/services',
       '/nl/projects',
-      '/nl/blog',
       '/nl/about',
       '/nl/contact',
     ]);
@@ -37,9 +35,9 @@ describe('nav config — locale resolution (en default, nl secondary)', () => {
 
   it('translates labels via the dictionary (labelKey)', () => {
     const nl = getNavItems('nl');
-    // nl.json: nav.items.about = "Over", nav.items.services = "Diensten"
+    // nl.json: nav.items.about = "Over", nav.items.projects = "Projecten"
     expect(nl.find((i) => i.href === '/nl/about')?.label).toBe('Over');
-    expect(nl.find((i) => i.href === '/nl/services')?.label).toBe('Diensten');
+    expect(nl.find((i) => i.href === '/nl/projects')?.label).toBe('Projecten');
   });
 
   it('points the logo at the locale home', () => {
