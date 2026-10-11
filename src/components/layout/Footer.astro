@@ -403,6 +403,7 @@ function getSocialIcon(platform: string): string {
         <div class={useDerivedGrid ? derivedGridClass : footerColumnGridVariants({ columns: resolvedColumns })}>
           {/* Logo Column */}
           {!hideLogo && (
+            <div class="space-y-[var(--space-stack-md)]">
               <div class="flex items-center gap-3">
                 {hasLogoSlot ? (
                   <slot name="logo" />
