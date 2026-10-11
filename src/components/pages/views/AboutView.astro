@@ -61,10 +61,6 @@ const respaldos = tData<{
   footerBackground="secondary"
 >
   <Hero layout="centered" size="sm" class="isolate pb-[var(--space-section-md)]" showHeroHalo>
-    <Badge slot="badge" variant="brand" pill>
-      <Icon name="sparkles" size="sm" />
-      EDTEC Lab UCAB
-    </Badge>
     <h1 slot="title">
       <span class="text-foreground [-webkit-text-fill-color:currentColor]">{hero.titleLead}</span><br />
       <span class="text-brand-500 [-webkit-text-fill-color:var(--color-brand-500)] sm:hidden">
@@ -161,15 +157,9 @@ const respaldos = tData<{
   <section class="py-[var(--space-section-md)] bg-background-secondary border-t border-border">
     <div class="mx-auto max-w-6xl px-6 flex flex-col gap-10">
       <div class="flex flex-col items-center gap-4 text-center" data-reveal data-reveal-eager data-reveal-ease="smooth">
-        <div class="flex flex-col items-center gap-6">
-          <Badge variant="brand" pill>
-            <Icon name="shield-check" size="sm" />
-            {respaldos.badge}
-          </Badge>
-          <h2 class="font-display text-3xl md:text-4xl font-bold text-foreground text-balance">
-            {respaldos.heading}
-          </h2>
-        </div>
+        <h2 class="font-display text-3xl md:text-4xl font-bold text-foreground text-balance">
+          {respaldos.heading}
+        </h2>
         <p class="text-lg text-foreground-muted max-w-3xl mx-auto text-balance">
           {respaldos.lead}
         </p>
