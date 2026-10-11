@@ -41,7 +41,7 @@ const countKey = projects.length === 1 ? 'projects.tagCountOne' : 'projects.tagC
   eagerReveal
   footerBackground="secondary"
 >
-  <Hero layout="centered" size="sm" class="isolate" showHeroHalo>
+  <Hero layout="centered" size="sm" class="isolate !pt-28 !pb-6" showHeroHalo>
     <Badge slot="badge" variant="brand" pill>
       <Icon name="tag" size="sm" />
       {t('projects.tagBadge', locale)}
@@ -49,20 +49,20 @@ const countKey = projects.length === 1 ? 'projects.tagCountOne' : 'projects.tagC
 
     <h1
       slot="title"
-      class="!text-4xl sm:!text-5xl md:!text-6xl lg:!text-7xl break-words [overflow-wrap:anywhere]"
+      class="!text-3xl sm:!text-4xl md:!text-5xl break-words [overflow-wrap:anywhere]"
     >#{tag}</h1>
 
-    <p slot="description">
+    <p slot="description" class="!text-sm sm:!text-base max-w-xl mx-auto">
       {t(countKey, locale, { count: projects.length, tag })}
     </p>
   </Hero>
 
-  <section class="bg-background-secondary py-[var(--space-section-md)] border-t border-border">
-    <div class="mx-auto max-w-6xl px-6 flex flex-col gap-8">
-      <div class="flex flex-col items-center gap-4" data-reveal>
+  <section class="bg-background-secondary pt-6 pb-12 border-t border-border">
+    <div class="mx-auto max-w-6xl px-6 flex flex-col gap-6">
+      <div class="flex flex-col items-center gap-2" data-reveal>
         <a
           href={projectsHref}
-          class="group inline-flex items-center gap-2 rounded-lg border border-brand-500/40 bg-transparent px-4 py-2 text-sm font-medium text-brand-700 dark:text-brand-400 hover:border-brand-500/80 hover:bg-brand-500/10 transition-colors"
+          class="group inline-flex items-center gap-2 rounded-lg border border-brand-500/40 bg-transparent px-3 py-1.5 text-xs font-medium text-brand-700 dark:text-brand-400 hover:border-brand-500/80 hover:bg-brand-500/10 transition-colors"
         >
           <Icon name="arrow-left" size="sm" />
           {t('projects.allProjects', locale)}

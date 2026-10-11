@@ -50,21 +50,21 @@ const aboutUrl = localizedPath('/about', locale);
   eagerReveal
   footerBackground="secondary"
 >
-  <Hero layout="centered" size="sm" class="isolate" showHeroHalo>
-    <h1 slot="title">{t('projects.title', locale)}</h1>
+  <Hero layout="centered" size="sm" class="isolate !pt-28 !pb-6" showHeroHalo>
+    <h1 slot="title" class="!text-3xl sm:!text-4xl md:!text-5xl">{t('projects.title', locale)}</h1>
 
-    <p slot="description">
+    <p slot="description" class="!text-sm sm:!text-base max-w-xl mx-auto">
       {t('projects.heroDescription', locale)}
     </p>
   </Hero>
 
   <!-- All projects -->
   {projects.length > 0 && (
-    <section class="py-[var(--space-section-md)] bg-background-secondary border-t border-border">
-      <div class="mx-auto max-w-6xl px-6 flex flex-col gap-8">
+    <section class="pt-6 pb-12 bg-background-secondary border-t border-border">
+      <div class="mx-auto max-w-6xl px-6 flex flex-col gap-6">
 
         {topTags.length > 0 && (
-          <div class="flex flex-col items-center gap-4" data-reveal>
+          <div class="flex flex-col items-center gap-2" data-reveal>
             <ProjectTagList tags={topTags} locale={locale} class="justify-center" />
           </div>
         )}
