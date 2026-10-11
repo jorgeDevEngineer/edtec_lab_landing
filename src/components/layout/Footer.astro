@@ -426,10 +426,14 @@ function getSocialIcon(platform: string): string {
                 </div>
               )}
               <div class="flex items-center gap-2.5 pt-2">
-                <Button size="sm" href={localizedPath('/contact', locale)} class="inline-flex items-center gap-2">
-                  <Icon name="mail" size="xs" />
+                <Button
+                  size="sm"
+                  href={localizedPath('/contact', locale)}
+                  class="inline-flex items-center gap-2 !bg-brand-500 hover:!bg-brand-600 !text-white active:scale-[0.98] shadow-sm font-semibold !border-transparent"
+                >
+                  <Icon name="mail" size="xs" class="!text-white" />
                   Contacto
-                  <Icon name="arrow-right" size="xs" />
+                  <Icon name="arrow-right" size="xs" class="!text-white" />
                 </Button>
                 {showSocial && resolvedSocialLinks.map((social) => (
                   <a
