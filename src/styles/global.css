@@ -1606,96 +1606,96 @@ html.dark[data-theme="teal"] .mobile-menu-cta-wrap .btn-primary:hover {
 /* =============================================================================
    UNIVERSAL WHITE NAVBAR - ALWAYS SOLID WHITE IN BOTH LIGHT AND DARK MODE
    ============================================================================= */
-header,
-header.hdr-base,
-header[data-header-shape="floating"],
-header[data-header-shape="bar"],
-header[data-scrolled],
-header[data-header-returned],
-header.rounded-2xl,
-header.fixed,
-header.sticky,
-.dark header,
-.dark header[data-header-shape="floating"],
-.dark header[data-header-shape="bar"],
-.dark header[data-scrolled],
-.dark header[data-header-returned],
-.dark header.rounded-2xl,
-.dark header.fixed,
-.dark header.sticky,
-html.dark header,
-html.dark header[data-header-shape="floating"],
-html.dark header[data-header-shape="bar"],
-html.dark header[data-scrolled],
-html.dark header[data-header-returned],
-html.dark header.rounded-2xl,
-html.dark header.fixed,
-html.dark header.sticky,
-html.dark[data-theme] header,
-html.dark[data-theme] header[data-header-shape="floating"],
-html.dark[data-theme] header.rounded-2xl {
+header.site-header,
+header.site-header.hdr-base,
+header.site-header[data-header-shape="floating"],
+header.site-header[data-header-shape="bar"],
+header.site-header[data-scrolled],
+header.site-header[data-header-returned],
+header.site-header.rounded-2xl,
+header.site-header.fixed,
+header.site-header.sticky,
+.dark header.site-header,
+.dark header.site-header[data-header-shape="floating"],
+.dark header.site-header[data-header-shape="bar"],
+.dark header.site-header[data-scrolled],
+.dark header.site-header[data-header-returned],
+.dark header.site-header.rounded-2xl,
+.dark header.site-header.fixed,
+.dark header.site-header.sticky,
+html.dark header.site-header,
+html.dark header.site-header[data-header-shape="floating"],
+html.dark header.site-header[data-header-shape="bar"],
+html.dark header.site-header[data-scrolled],
+html.dark header.site-header[data-header-returned],
+html.dark header.site-header.rounded-2xl,
+html.dark header.site-header.fixed,
+html.dark header.site-header.sticky,
+html.dark[data-theme] header.site-header,
+html.dark[data-theme] header.site-header[data-header-shape="floating"],
+html.dark[data-theme] header.site-header.rounded-2xl {
   background: #ffffff !important;
   background-color: #ffffff !important;
   border-color: #e2e8f0 !important;
   box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.08), 0 2px 6px -1px rgba(0, 0, 0, 0.04) !important;
 }
 
-header .nav-link,
-header .hdr-invert-text,
-header .theme-spin-btn,
-header .search-trigger,
-header .hdr-hamburger,
-.dark header .nav-link,
-.dark header .hdr-invert-text,
-.dark header .theme-spin-btn,
-.dark header .search-trigger,
-.dark header .hdr-hamburger,
-html.dark header .nav-link,
-html.dark header .hdr-invert-text,
-html.dark header .theme-spin-btn,
-html.dark header .search-trigger,
-html.dark header .hdr-hamburger {
+header.site-header .nav-link,
+header.site-header .hdr-invert-text,
+header.site-header .theme-spin-btn,
+header.site-header .search-trigger,
+header.site-header .hdr-hamburger,
+.dark header.site-header .nav-link,
+.dark header.site-header .hdr-invert-text,
+.dark header.site-header .theme-spin-btn,
+.dark header.site-header .search-trigger,
+.dark header.site-header .hdr-hamburger,
+html.dark header.site-header .nav-link,
+html.dark header.site-header .hdr-invert-text,
+html.dark header.site-header .theme-spin-btn,
+html.dark header.site-header .search-trigger,
+html.dark header.site-header .hdr-hamburger {
   color: #1e293b !important;
 }
 
-header .nav-link:hover,
-header .hdr-invert-text:hover,
-header .theme-spin-btn:hover,
-header .search-trigger:hover,
-header .hdr-hamburger:hover,
-.dark header .nav-link:hover,
-.dark header .hdr-invert-text:hover,
-.dark header .theme-spin-btn:hover,
-.dark header .search-trigger:hover,
-.dark header .hdr-hamburger:hover,
-html.dark header .nav-link:hover,
-html.dark header .hdr-invert-text:hover,
-html.dark header .theme-spin-btn:hover,
-html.dark header .search-trigger:hover,
-html.dark header .hdr-hamburger:hover {
+header.site-header .nav-link:hover,
+header.site-header .hdr-invert-text:hover,
+header.site-header .theme-spin-btn:hover,
+header.site-header .search-trigger:hover,
+header.site-header .hdr-hamburger:hover,
+.dark header.site-header .nav-link:hover,
+.dark header.site-header .hdr-invert-text:hover,
+.dark header.site-header .theme-spin-btn:hover,
+.dark header.site-header .search-trigger:hover,
+.dark header.site-header .hdr-hamburger:hover,
+html.dark header.site-header .nav-link:hover,
+html.dark header.site-header .hdr-invert-text:hover,
+html.dark header.site-header .theme-spin-btn:hover,
+html.dark header.site-header .search-trigger:hover,
+html.dark header.site-header .hdr-hamburger:hover {
   color: #0f172a !important;
   background-color: rgba(0, 0, 0, 0.06) !important;
 }
 
-header .nav-link.hdr-nav-active,
-header .nav-link.nav-link-active,
-header [aria-current="page"].nav-link,
-.dark header .nav-link.hdr-nav-active,
-.dark header .nav-link.nav-link-active,
-.dark header [aria-current="page"].nav-link,
-html.dark header .nav-link.hdr-nav-active,
-html.dark header .nav-link.nav-link-active,
-html.dark header [aria-current="page"].nav-link {
+header.site-header .nav-link.hdr-nav-active,
+header.site-header .nav-link.nav-link-active,
+header.site-header [aria-current="page"].nav-link,
+.dark header.site-header .nav-link.hdr-nav-active,
+.dark header.site-header .nav-link.nav-link-active,
+.dark header.site-header [aria-current="page"].nav-link,
+html.dark header.site-header .nav-link.hdr-nav-active,
+html.dark header.site-header .nav-link.nav-link-active,
+html.dark header.site-header [aria-current="page"].nav-link {
   color: #1d4ed8 !important;
   background-color: rgba(37, 99, 235, 0.12) !important;
   font-weight: 600 !important;
 }
 
-header .theme-spin-btn,
-header .search-trigger,
-.dark header .theme-spin-btn,
-.dark header .search-trigger,
-html.dark header .theme-spin-btn,
-html.dark header .search-trigger {
+header.site-header .theme-spin-btn,
+header.site-header .search-trigger,
+.dark header.site-header .theme-spin-btn,
+.dark header.site-header .search-trigger,
+html.dark header.site-header .theme-spin-btn,
+html.dark header.site-header .search-trigger {
   border-color: rgba(0, 0, 0, 0.12) !important;
 }
