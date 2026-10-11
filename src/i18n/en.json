@@ -91,9 +91,9 @@
     "updated": "Updated",
     "rssFeed": "RSS Feed",
     "cta": {
-      "heading": "Ready to build?",
-      "description": "Clone Astro Rocket, pick a theme, and launch your next project in minutes.",
-      "button": "Get Started"
+      "heading": "¿Listo para construir?",
+      "description": "Clona Astro Rocket, elige un tema y lanza tu próximo proyecto en minutos.",
+      "button": "Comenzar"
     }
   },
   "comments": {
