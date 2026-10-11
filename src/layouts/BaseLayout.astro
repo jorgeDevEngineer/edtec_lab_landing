@@ -100,14 +100,12 @@ if (commentsConfig?.enabled) {
 
     {commentsPreconnectHref && <link rel="preconnect" href={commentsPreconnectHref} crossorigin />}
 
-    <!-- Favicon. The SVG letter is outlined to a vector path at build time (see
-         src/lib/favicon), and PNG/ICO fallbacks are provided so search-engine
-         crawlers, Safari and legacy browsers all render the brand mark. -->
-    <link rel="icon" type="image/svg+xml" href={siteConfig.branding.favicon.svg} />
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="manifest" href="/site.webmanifest" />
     <meta name="theme-color" content={siteConfig.branding.colors.themeColor} />
 
     <!-- SEO -->

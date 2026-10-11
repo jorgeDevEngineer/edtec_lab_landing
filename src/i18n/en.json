@@ -114,7 +114,7 @@
     "galleryClose": "Cerrar visor",
     "galleryNextImage": "Siguiente imagen",
     "galleryPreviousImage": "Imagen anterior",
-    "metaTitle": "Proyectos — EDTEC Lab UCAB",
+    "metaTitle": "Proyectos",
     "metaDescription": "Iniciativas y proyectos de tecnología y educación desarrollados en EDTEC Lab UCAB.",
     "heroBadge": "Innovación Curricular",
     "heroDescription": "Soluciones tecnológicas activas e iniciativas en desarrollo nacidas en la UCAB.",
@@ -147,22 +147,22 @@
     "morePages": "More pages"
   },
   "errors": {
-    "pageNotFound": "Page not found",
-    "pageNotFoundMessage": "The page you're looking for doesn't exist or has moved.",
-    "goHome": "Go to homepage",
-    "metaTitle": "Page not found",
-    "metaDescription": "This page has moved, been removed, or never existed in the first place.",
-    "badge": "404 — page not found",
-    "titleLead": "Page not",
-    "titleHighlight": "found.",
-    "description": "This page has moved, been removed, or never existed in the first place. Let's get you back on track.",
-    "backHome": "Back to home",
-    "browseBlog": "Browse the blog",
-    "tryInstead": "Try one of these instead",
-    "projectsDesc": "Selected work and case studies.",
-    "blogDesc": "Notes on design, code, and the craft.",
-    "contactTitle": "Contact",
-    "contactDesc": "Start a conversation about your project."
+    "pageNotFound": "Página no encontrada",
+    "pageNotFoundMessage": "La página que buscas no existe o ha sido movida.",
+    "goHome": "Ir al inicio",
+    "metaTitle": "Página no encontrada",
+    "metaDescription": "Esta página ha sido movida, eliminada o no existe.",
+    "badge": "404 — página no encontrada",
+    "titleLead": "Página no",
+    "titleHighlight": "encontrada.",
+    "description": "La página que estás buscando no existe o ha sido reubicada. Regresemos al contenido principal.",
+    "backHome": "Volver al inicio",
+    "browseBlog": "Explorar el blog",
+    "tryInstead": "Prueba una de estas secciones",
+    "projectsDesc": "Proyectos e iniciativas del laboratorio.",
+    "blogDesc": "Artículos y novedades de innovación educativa.",
+    "contactTitle": "Contacto",
+    "contactDesc": "Conversemos sobre tus ideas o proyectos."
   },
   "newsletter": {
     "heading": "Subscribe to the newsletter",
@@ -229,7 +229,7 @@
   "pages": {
     "about": {
       "meta": {
-        "title": "Sobre Nosotros — EDTEC Lab UCAB",
+        "title": "Sobre Nosotros",
         "description": "Conoce al Laboratorio de Tecnologías Emergentes para la Educación (EDTEC Lab) de la Universidad Católica Andrés Bello: innovación pedagógica, tecnología e investigación."
       },
       "hero": {
@@ -562,8 +562,8 @@
     },
     "contact": {
       "meta": {
-        "title": "Contact",
-        "description": "Starting something new? I design and build new websites from scratch — tell me about your project and I'll get back to you within 1 business day."
+        "title": "Contacto",
+        "description": "¿Tienes una propuesta o proyecto? Contáctanos y conversemos sobre innovación educativa y tecnologías emergentes."
       },
       "hero": {
         "badge": "Start a project",
@@ -581,8 +581,8 @@
     },
     "home": {
       "meta": {
-        "title": "Free open-source Astro 7 theme",
-        "description": "A free, fast Astro 7 starter theme to build anything on: 44 designed components, 8 colour themes, dark mode, and built-in i18n."
+        "title": "Inicio",
+        "description": "Laboratorio de Educación Tecnológica de la UCAB (EDTEC Lab). Innovación curricular, inteligencia artificial, realidad virtual y tecnologías emergentes para la educación."
       },
       "hero": {
         "badge": "Innovación Educativa",
