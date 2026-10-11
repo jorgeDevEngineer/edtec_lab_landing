@@ -83,11 +83,6 @@ export const POST: APIRoute = async ({ request }) => {
       ? `[${siteLabel}] ${result.data.subject}`
       : `[${siteLabel}] New contact from ${result.data.name}`;
 
-    const { error } = await resend.emails.send({
-      from: `Contact Form <${fromEmail}>`,
-      to: toEmail,
-      replyTo: result.data.email,
-      subject,
     const logoUrl = 'https://edtec-lab-landing.vercel.app/android-chrome-192x192.png';
     const siteUrl = siteConfig.url || 'https://edtec-lab-landing.vercel.app';
     const sanitizedName = escapeHtml(result.data.name);
