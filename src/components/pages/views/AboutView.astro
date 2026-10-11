@@ -19,6 +19,7 @@ import { Hero } from '@/components/hero';
 import { Image } from 'astro:assets';
 import edtecTeamImg from '@/assets/about/edtec-team.jpg';
 import comiteCiideaImg from '@/assets/about/comite-ciidea.jpg';
+import alianzasLogosImg from '@/assets/about/alianzas-logos.png';
 import TypingEffect from '@/components/ui/TypingEffect.astro';
 import { t, tData, defaultLocale } from '@/i18n';
 
@@ -201,6 +202,20 @@ const respaldos = tData<{
             {item.description}
           </ProofTile>
         ))}
+      </div>
+
+      <!-- Banner de Logos Institucionales y Colaboradores -->
+      <div class="rounded-2xl border border-border/80 bg-white dark:bg-zinc-900/90 p-4 sm:p-8 shadow-sm flex flex-col items-center justify-center gap-3" data-reveal>
+        <span class="text-xs font-semibold uppercase tracking-wider text-foreground-muted text-center">
+          Ecosistema Institucional y Alianzas Estratégicas
+        </span>
+        <div class="w-full flex items-center justify-center bg-white rounded-xl p-3 sm:p-6 ring-1 ring-black/5 dark:ring-white/10 shadow-inner">
+          <Image
+            src={alianzasLogosImg}
+            alt="Logos de direcciones, centros y aliados que respaldan a EDTEC Lab"
+            class="w-full max-w-4xl h-auto object-contain rounded-lg"
+          />
+        </div>
       </div>
     </div>
   </section>
