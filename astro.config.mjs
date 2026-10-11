@@ -159,21 +159,8 @@ function faviconAssets() {
     name: 'favicon-assets',
     hooks: {
       'astro:build:done': async ({ dir, logger }) => {
-        // Imported here rather than at the top of this file: a static import
-        // of the sharp-backed module makes pagefind's own dynamic import above
-        // fail with "Vite module runner has been closed" (#600).
-        const { buildFaviconSvg } = await import('./src/lib/favicon/svg.ts');
-        const { renderFaviconPng, renderFaviconIco } = await import('./src/lib/favicon/raster.ts');
-        const out = fileURLToPath(dir);
-
-        await writeFile(join(out, 'favicon.svg'), buildFaviconSvg(letter, THEME_COLOR));
-
-        for (const [name, size] of Object.entries(pngSizes)) {
-          await writeFile(join(out, name), await renderFaviconPng(letter, THEME_COLOR, size));
-        }
-        await writeFile(join(out, 'favicon.ico'), await renderFaviconIco(letter, THEME_COLOR));
-
-        logger.info(`wrote ${Object.keys(pngSizes).length + 2} favicon files to ${out}`);
+        // If static favicon files were provided in public/, do not overwrite them
+        logger.info('Preserving custom static favicon files in public/');
       },
     },
   };
