@@ -1602,3 +1602,88 @@ html.dark[data-theme="sky"] .mobile-menu-cta-wrap .btn-primary:hover,
 html.dark[data-theme="teal"] .mobile-menu-cta-wrap .btn-primary:hover {
   background-color: var(--color-brand-800);
 }
+
+/* =============================================================================
+   UNIVERSAL WHITE NAVBAR - ALWAYS SOLID WHITE IN BOTH LIGHT AND DARK MODE
+   ============================================================================= */
+header,
+header.hdr-base,
+header[data-header-shape="floating"],
+header[data-header-shape="bar"],
+header[data-scrolled],
+header[data-header-returned],
+.dark header,
+.dark header[data-header-shape="floating"],
+.dark header[data-header-shape="bar"],
+.dark header[data-scrolled],
+.dark header[data-header-returned],
+html.dark header,
+html.dark header[data-header-shape="floating"],
+html.dark header[data-header-shape="bar"],
+html.dark header[data-scrolled],
+html.dark header[data-header-returned] {
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+  border-color: #e2e8f0 !important;
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.08), 0 2px 6px -1px rgba(0, 0, 0, 0.04) !important;
+}
+
+header .nav-link,
+header .hdr-invert-text,
+header .theme-spin-btn,
+header .search-trigger,
+header .hdr-hamburger,
+.dark header .nav-link,
+.dark header .hdr-invert-text,
+.dark header .theme-spin-btn,
+.dark header .search-trigger,
+.dark header .hdr-hamburger,
+html.dark header .nav-link,
+html.dark header .hdr-invert-text,
+html.dark header .theme-spin-btn,
+html.dark header .search-trigger,
+html.dark header .hdr-hamburger {
+  color: #1e293b !important;
+}
+
+header .nav-link:hover,
+header .hdr-invert-text:hover,
+header .theme-spin-btn:hover,
+header .search-trigger:hover,
+header .hdr-hamburger:hover,
+.dark header .nav-link:hover,
+.dark header .hdr-invert-text:hover,
+.dark header .theme-spin-btn:hover,
+.dark header .search-trigger:hover,
+.dark header .hdr-hamburger:hover,
+html.dark header .nav-link:hover,
+html.dark header .hdr-invert-text:hover,
+html.dark header .theme-spin-btn:hover,
+html.dark header .search-trigger:hover,
+html.dark header .hdr-hamburger:hover {
+  color: #0f172a !important;
+  background-color: rgba(0, 0, 0, 0.06) !important;
+}
+
+header .nav-link.hdr-nav-active,
+header .nav-link.nav-link-active,
+header [aria-current="page"].nav-link,
+.dark header .nav-link.hdr-nav-active,
+.dark header .nav-link.nav-link-active,
+.dark header [aria-current="page"].nav-link,
+html.dark header .nav-link.hdr-nav-active,
+html.dark header .nav-link.nav-link-active,
+html.dark header [aria-current="page"].nav-link {
+  color: #1d4ed8 !important;
+  background-color: rgba(37, 99, 235, 0.12) !important;
+  font-weight: 600 !important;
+}
+
+header .theme-spin-btn,
+header .search-trigger,
+.dark header .theme-spin-btn,
+.dark header .search-trigger,
+html.dark header .theme-spin-btn,
+html.dark header .search-trigger {
+  border-color: rgba(0, 0, 0, 0.12) !important;
+}
