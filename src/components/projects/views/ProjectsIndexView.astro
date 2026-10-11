@@ -71,7 +71,12 @@ const aboutUrl = localizedPath('/about', locale);
 
         <div class="grid gap-6 md:grid-cols-2">
           {pageProjects.map((project, i) => (
-            <ProjectCard project={project} index={i} locale={locale} />
+            <ProjectCard
+              project={project}
+              index={i}
+              locale={locale}
+              variant={i === 0 ? 'featured' : 'standard'}
+            />
           ))}
         </div>
 
