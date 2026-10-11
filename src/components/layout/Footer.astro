@@ -403,22 +403,18 @@ function getSocialIcon(platform: string): string {
         <div class={useDerivedGrid ? derivedGridClass : footerColumnGridVariants({ columns: resolvedColumns })}>
           {/* Logo Column */}
           {!hideLogo && (
-            <div class="space-y-[var(--space-stack-md)]">
-              {hasLogoSlot ? (
-                <slot name="logo" />
-              ) : (
-                <a href={logoHref} class="flex items-center gap-2.5">
-                  <Logo size="xl" class="h-9 w-auto" />
-                  <span class="font-display text-xl font-bold tracking-tight text-foreground whitespace-nowrap">
-                    EDTEC <span class="text-brand-500">Lab</span>
-                  </span>
-                </a>
-              )}
-              {(hasTaglineSlot || tagline) && (
-                <p class="text-sm max-w-xs text-foreground-muted">
-                  {hasTaglineSlot ? <slot name="tagline" /> : tagline}
-                </p>
-              )}
+              <div class="flex items-center gap-3">
+                {hasLogoSlot ? (
+                  <slot name="logo" />
+                ) : (
+                  <a href={logoHref} class="flex items-center gap-2.5">
+                    <Logo size="xl" class="h-9 w-auto" />
+                    <span class="font-display text-xl font-bold tracking-tight text-foreground whitespace-nowrap">
+                      EDTEC <span class="text-brand-500">Lab</span>
+                    </span>
+                  </a>
+                )}
+              </div>
               {siteConfig.address && (
                 <div class="text-xs text-foreground-muted leading-relaxed flex items-start gap-2 pt-1">
                   <Icon name="map-pin" size="sm" class="shrink-0 text-brand-500 mt-0.5" />
@@ -428,12 +424,23 @@ function getSocialIcon(platform: string): string {
                   </p>
                 </div>
               )}
-              <div class="pt-3">
+              <div class="flex items-center gap-2.5 pt-2">
                 <Button size="sm" href={localizedPath('/contact', locale)} class="inline-flex items-center gap-2">
                   <Icon name="mail" size="xs" />
                   Contacto
                   <Icon name="arrow-right" size="xs" />
                 </Button>
+                {showSocial && resolvedSocialLinks.map((social) => (
+                  <a
+                    href={social.href}
+                    class="inline-flex items-center justify-center h-8 w-8 rounded-lg border border-border bg-background text-foreground-muted hover:text-brand-500 hover:border-brand-500/50 transition-colors shadow-sm"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={social.label || t('footer.followOn', locale, { platform: social.platform })}
+                  >
+                    <Icon name={getSocialIcon(social.platform)} size="sm" />
+                  </a>
+                ))}
               </div>
             </div>
           )}
@@ -487,18 +494,6 @@ function getSocialIcon(platform: string): string {
                       class="text-sm transition-colors text-foreground-muted hover:text-foreground"
                     >
                       {link.label}
-                    </a>
-                  ))}
-
-                  {showSocial && resolvedSocialLinks.map((social) => (
-                    <a
-                      href={social.href}
-                      class="transition-colors text-foreground-muted hover:text-foreground"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label={social.label || t('footer.followOn', locale, { platform: social.platform })}
-                    >
-                      <Icon name={getSocialIcon(social.platform)} size="md" />
                     </a>
                   ))}
                 </div>
