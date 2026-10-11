@@ -42,25 +42,14 @@ export async function getDerivedFooterGroups(
 
 
 
-  // Every visible project is listed; the ones marked `placeholder` have no
-  // page, so they carry no href and render as text. Dropping them left a
-  // column of two on the demo, and a demo where not everything is clickable
-  // reads as a demo rather than as a mistake.
-  // Projects that have a page come first, then the placeholders, each keeping
-  // the site's own `order` within its group. Straight `order` put four
-  // placeholders ahead of the second real project and the limit then cut it,
-  // so a column meant for navigating led with the entries that do not.
-  const allProjects = await getVisibleProjects(locale);
-  const projects = [...allProjects]
-    .sort((a, b) => Number(!!a.data.placeholder) - Number(!!b.data.placeholder))
-    .slice(0, PROJECTS_LIMIT)
-    .map((project) => ({
-      label: project.data.title,
-      href: project.data.placeholder ? undefined : getProjectUrl(project.id, locale),
-    }));
-  if (projects.length) {
-    groups.push({ title: t('footer.groups.projects', locale), links: projects });
-  }
+  // Proyectos oficiales de EDTEC Lab en el footer
+  const edtecProjects = [
+    { label: 'PredixIA', href: '/#work' },
+    { label: 'Nova Academy', href: '/#work' },
+    { label: 'Diálogo`s', href: '/#work' },
+    { label: 'Concurso EDTEC Lab', href: 'https://sites.google.com/ucab.edu.ve/concurso-edteclab-2026/inicio', external: true },
+  ];
+  groups.push({ title: t('footer.groups.projects', locale), links: edtecProjects });
 
   // Columns declared in config are appended to the derived ones, and go
   // through the same resolver as the nav so their labels translate and their

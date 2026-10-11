@@ -264,9 +264,9 @@ const siteConfig: SiteConfig = {
   // import this file, uses the same values. Change them there.
   name: SITE_NAME,
   description:
-    'A free, fast Astro 7 starter theme to build anything on: 44 designed components, 8 colour themes, dark mode, and built-in i18n.',
-  tagline: 'Astro 7 starter theme to build anything on',
-  footerNote: 'Free & open source · MIT licensed',
+    'Laboratorio de Educación Tecnológica de la Universidad Católica Andrés Bello (EDTEC Lab). Innovación curricular y tecnologías emergentes.',
+  tagline: 'Laboratorio de Educación Tecnológica de la UCAB',
+  footerNote: 'Universidad Católica Andrés Bello',
   url: SITE_URL || SITE_URL_FALLBACK,
   // Generated at build time from `name`, `tagline` and the brand colour below.
   // Point this at a file in `public/` to use your own — it has to be a raster
