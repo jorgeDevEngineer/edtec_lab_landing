@@ -30,9 +30,9 @@ export const headerVariants = cva('z-50', {
     // text. Clear glass looks better and reads worse.
     { shape: 'floating', variant: 'transparent', class: 'bg-white/[0.08] backdrop-blur-md border border-white/[0.1]' },
     // Floating + default: semi-transparent with blur
-    { shape: 'floating', variant: 'default', class: '!bg-background/90 backdrop-blur-xl !border border-border/50 !border-b-border/50' },
-    // Floating + solid: opaque
-    { shape: 'floating', variant: 'solid', class: '!bg-background !border border-border !border-b-border' },
+    { shape: 'floating', variant: 'default', class: '!bg-white/95 backdrop-blur-xl !border border-slate-200/80 !border-b-slate-200/80' },
+    // Floating + solid: opaque white
+    { shape: 'floating', variant: 'solid', class: '!bg-white !border border-slate-200 !border-b-slate-200' },
   ],
   defaultVariants: {
     position: 'sticky',
