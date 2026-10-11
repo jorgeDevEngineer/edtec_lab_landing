@@ -282,19 +282,13 @@ const siteConfig: SiteConfig = {
     country: 'Venezuela',
   },
   socialLinks: [
-    'https://github.com/hansmartensdev',
-    'https://x.com/hansmartens_dev',
-    'https://www.linkedin.com/in/hansmartensdev',
-    'https://bsky.app/profile/hansmartensdev.bsky.social',
+    'https://www.instagram.com/edtec_lab/?hl=es-la',
   ],
   header: {
-    // Flip to `true` to show the social icons (incl. GitHub) in the header.
+    // Flip to `true` to show the social icons in the header.
     showSocialLinks: false,
   },
-  twitter: {
-    site: 'https://x.com/hansmartens_dev',
-    creator: '@hansmartens_dev',
-  },
+  twitter: undefined,
   verification: {
     google: GOOGLE_SITE_VERIFICATION,
     bing: BING_SITE_VERIFICATION,

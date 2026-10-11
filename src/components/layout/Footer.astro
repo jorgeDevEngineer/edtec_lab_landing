@@ -26,8 +26,9 @@ import {
 import { footerVariants, footerColumnGridVariants } from './footer.variants';
 import Logo from '@/components/ui/marketing/Logo/Logo.astro';
 import Icon from '@/components/ui/primitives/Icon/Icon.astro';
+import Button from '@/components/ui/form/Button/Button.astro';
 import siteConfig from '@/config/site.config';
-import { t, tData, getLocaleFromPath } from '@/i18n';
+import { t, tData, getLocaleFromPath, localizedPath } from '@/i18n';
 import { getDerivedFooterGroups } from '@/lib/footer';
 import { resolveSocialLinks } from '@/lib/utils';
 import { getRssUrl } from '@/lib/blog';
