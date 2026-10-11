@@ -272,8 +272,8 @@ const siteConfig: SiteConfig = {
   // Point this at a file in `public/` to use your own — it has to be a raster
   // (PNG or JPEG): social platforms don't render SVG share images.
   ogImage: '/og/default.png',
-  author: 'Hans Martens',
-  email: 'hello@hansmartens.dev',
+  author: 'EDTEC Lab UCAB',
+  email: 'edteclab@ucab.edu.ve',
   address: {
     street: 'Final de la Av. Teherán, Montalbán',
     city: 'Caracas',
