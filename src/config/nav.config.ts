@@ -116,19 +116,7 @@ export const legalLinks: LegalLink[] = [];
  * somewhere else is worse than a short one, and worse still on a theme people
  * fork: they inherit whatever is here.
  */
-export const footerLinkGroups: FooterLinkGroupConfig[] = [
-  {
-    titleKey: 'footer.groups.questions',
-    title: 'Got questions?',
-    links: [
-      { label: 'FAQ', href: '/about#faq' },
-      { label: 'Email', href: 'mailto:hello@hansmartens.dev' },
-      { label: 'GitHub', href: 'https://github.com/hansmartensdev/Astro-Rocket', external: true },
-      { label: 'LinkedIn', href: 'https://www.linkedin.com/in/hansmartensdev', external: true },
-      { label: 'Bluesky', href: 'https://bsky.app/profile/hansmartensdev.bsky.social', external: true },
-    ],
-  },
-];
+export const footerLinkGroups: FooterLinkGroupConfig[] = [];
 
 /**
  * Hrefs that must never be locale-prefixed: absolute/protocol-relative URLs,

@@ -418,9 +418,13 @@ function getSocialIcon(platform: string): string {
                   {hasTaglineSlot ? <slot name="tagline" /> : tagline}
                 </p>
               )}
-              {showFooterNewsletter && !hasLogoSlot && (
-                <div class="max-w-xs pt-2">
-                  <NewsletterForm layout="stacked" size="sm" description={t('newsletter.description', locale)} />
+              {siteConfig.address && (
+                <div class="text-xs text-foreground-muted leading-relaxed flex items-start gap-2 pt-1">
+                  <Icon name="map-pin" size="sm" class="shrink-0 text-brand-500 mt-0.5" />
+                  <p>
+                    {siteConfig.address.street},<br />
+                    {siteConfig.address.city}, {siteConfig.address.zip}.
+                  </p>
                 </div>
               )}
             </div>

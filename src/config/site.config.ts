@@ -275,11 +275,11 @@ const siteConfig: SiteConfig = {
   author: 'Hans Martens',
   email: 'hello@hansmartens.dev',
   address: {
-    street: '',
-    city: 'Amsterdam',
+    street: 'Final de la Av. Teherán, Montalbán',
+    city: 'Caracas',
     state: '',
-    zip: '',
-    country: 'the Netherlands',
+    zip: 'Zona Postal 1020',
+    country: 'Venezuela',
   },
   socialLinks: [
     'https://github.com/hansmartensdev',
@@ -357,9 +357,8 @@ const siteConfig: SiteConfig = {
     },
   },
   newsletter: {
-    // On by default: the form knows whether it has keys and says so itself,
-    // in dev only. Set RESEND_API_KEY and RESEND_AUDIENCE_ID to make it work.
-    enabled: true,
+    // Disabled
+    enabled: false,
   },
   blog: {
     postsPerPage: 12,
