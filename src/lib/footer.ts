@@ -47,6 +47,7 @@ export async function getDerivedFooterGroups(
     { label: 'PredixIA', href: '/#work' },
     { label: 'Nova Academy', href: '/#work' },
     { label: 'Diálogo`s', href: '/#work' },
+    { label: 'Socra', href: '/#work' },
     { label: 'Concurso EDTEC Lab', href: 'https://sites.google.com/ucab.edu.ve/concurso-edteclab-2026/inicio', external: true },
   ];
   groups.push({ title: t('footer.groups.projects', locale), links: edtecProjects });

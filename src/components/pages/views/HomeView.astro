@@ -317,7 +317,7 @@ const basedInDisplay = `${city ?? 'Your City'}${country ? `, ${country}` : ''}`;
           </div>
         </div>
 
-        <div class="grid gap-6 md:grid-cols-3">
+        <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
           <!-- PredixIA -->
           <div class="rounded-2xl border border-border bg-background p-7 flex flex-col gap-4 shadow-sm hover:border-brand-500/40 transition-all" data-reveal>
             <div class="w-12 h-12 rounded-xl bg-brand-500/10 text-brand-500 flex items-center justify-center">
@@ -357,6 +357,20 @@ const basedInDisplay = `${city ?? 'Your City'}${country ? `, ${country}` : ''}`;
             </div>
             <p class="text-foreground-muted leading-relaxed text-sm md:text-base">
               Asistente conversacional para facilitar el aprendizaje activo mediante el diálogo guiado con contenidos curriculares.
+            </p>
+          </div>
+
+          <!-- Socra -->
+          <div class="rounded-2xl border border-border bg-background p-7 flex flex-col gap-4 shadow-sm hover:border-brand-500/40 transition-all" data-reveal data-reveal-delay="3">
+            <div class="w-12 h-12 rounded-xl bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 flex items-center justify-center">
+              <Icon name="brain-circuit" size="lg" />
+            </div>
+            <div>
+              <span class="text-xs font-semibold text-indigo-600 dark:text-indigo-400 uppercase tracking-wider">Fiscal Socrático & IA</span>
+              <h4 class="font-display text-2xl font-bold text-foreground mt-1">Socra</h4>
+            </div>
+            <p class="text-foreground-muted leading-relaxed text-sm md:text-base">
+              Sistema pedagógico con RAG que prohíbe respuestas cerradas para forzar la argumentación rigurosa con fuentes académicas y tablero Kanban.
             </p>
           </div>
         </div>

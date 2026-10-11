@@ -1,0 +1,82 @@
+---
+title: "Socra"
+locale: en
+description: "Infraestructura pedagógica inteligente bajo el paradigma de un Fiscal Socrático: prohíbe respuestas automáticas cerradas y potencia el pensamiento crítico y la fundamentación bibliográfica."
+icon: "brain-circuit"
+tags: ["Inteligencia Artificial", "Fiscal Socrático", "RAG", "Clean Architecture", "Go"]
+featured: true
+order: 5
+year: 2026
+role: "Maria Estela Mangia, Oliver Guillen, Leonardo Reyes, Mauricio Caldera, Humberto Villacis"
+services: ["Inteligencia Artificial", "RAG & Embeddings", "Clean Architecture", "Diseño Instruccional"]
+meta: ["Proyectos Avanzados", "Socra", "Fiscal Socrático", "Go", "PostgreSQL", "Redis Vector"]
+placeholder: false
+---
+
+## Resumen de la Propuesta
+
+**Socra** (anteriormente conocido durante su fase de formulación como *Cryptus*) es una avanzada infraestructura pedagógica inteligente y sistema de educación digital potenciado por Inteligencia Artificial, configurado bajo el paradigma de un **"Fiscal Socrático"**.
+
+El proyecto surge para romper el modelo pasivo de "respuesta directa" de los chats de IA comerciales estándar, los cuales debilitan el pensamiento crítico de los estudiantes al resolverles automáticamente las evaluaciones sin exigir esfuerzo analítico. 
+
+Socra prohíbe las respuestas cerradas automáticas; en su lugar, exige al alumno argumentar y defender sus posturas mediante un debate dialéctico continuo, sustentado rigurosamente en la bibliografía autorizada por el profesor, manteniendo la autoridad pedagógica del docente en todo momento.
+
+---
+
+## Equipo y Mentorías
+
+- **Integrantes del Equipo:** Maria Estela Mangia, Oliver Guillen, Leonardo Reyes, Mauricio Caldera y Humberto Villacis
+- **Mentores:** Roxana Acevedo y Guillermo Yaber
+- **Clasificación:** Proyecto Implementado y Avanzado / EDTEC Lab
+
+---
+
+## Desafío Pedagógico y Motivación
+
+Las soluciones comerciales tradicionales de IA generativa entregan respuestas inmediatas y terminadas, fomentando un aprendizaje superficial, sin rigor bibliográfico ni trazabilidad de razonamiento. Además, corren el riesgo de sustituir la guía del profesor y carecen de un seguimiento sistemático a largo plazo de la evolución cognitiva de cada estudiante.
+
+**Socra** empodera tanto al estudiante como al docente:
+- **Al Estudiante:** Lo transforma en un participante activo de su formación mediante debate dialéctico, exigencia de fuentes confiables y autogestión de tareas con tableros Kanban integrados.
+- **Al Docente:** Le proporciona un "asistente silencioso" que detecta cuellos de botella en la cohorte, redacta borradores de retos socráticos en diferido y le entrega analítica en tiempo real del aula sin restarle el control pedagógico ni la autoridad evaluadora.
+
+---
+
+## Competencias que Potencia el Sistema
+
+- **Pensamiento y Razonamiento Crítico:** Elevación continua del estándar argumentativo mediante debate socrático y preguntas guía.
+- **Precisión Conceptual y Fundamentación Bibliográfica:** Exigencia estricta de sustentación basada en las fuentes de conocimiento autorizadas por la cátedra.
+- **Autogestión y Disciplina Ágil:** Planificación y ejecución estructurada de actividades académicas mediante ciclos de trabajo y tableros Kanban.
+
+---
+
+## Arquitectura Tecnológica y Stack
+
+Socra está construido bajo una arquitectura desacoplada *API-first* de alto rendimiento y bajo costo operativo:
+
+| Capa del Sistema | Tecnología Especificada | Propósito / Responsabilidad |
+|---|---|---|
+| **Frontend (SPA)** | React 19, Vite 8, React Router v7, Axios | Interfaz cliente reactiva, modular y desacoplada. |
+| **Backend (API)** | Go 1.26 (Clean Architecture), Gin v1.12, GORM v1.31 | API RESTful de alto rendimiento, middleware Auth JWT, reglas de negocio del dominio. |
+| **Autenticación** | Supabase Auth (JWT Bearer en Go, GoTrue Admin API) | Gestión de identidades, roles RBAC (*teacher* / *student*) y firmado/verificación de tokens. |
+| **Base de Datos Relacional** | PostgreSQL 16 Alpine | Persistencia en 3NF para usuarios, materias, sesiones, tareas Kanban y logs de auditoría. |
+| **Memoria Vectorial (RAG)** | Redis Vector Database | Almacenamiento de embeddings, trazabilidad argumental a largo plazo y recuperación semántica contextual. |
+| **Almacenamiento de Objetos** | Cloud Object Storage (Buckets S3 / GCS) | Resguardo seguro de PDFs curriculares, audios y evidencias académicas. |
+| **Orquestación** | Docker & Docker Compose en VPS | Despliegue reproducible, liviano y escalable. |
+| **Integraciones IA** | Modelos LLM Bilingües (ES/EN) con RAG y APIs de audio | Procesamiento multimodal y generación del reto socrático. |
+
+---
+
+## Seguridad por Capas y Soberanía de Datos
+
+- **Aislamiento Multitenancy Pedagógico:** En Redis Vector DB, las consultas RAG aplican filtrado estricto por metadatos atados al `subject_id` del token JWT, garantizando que los datos de una materia sean completamente estancos y evitando fugas de contexto entre asignaturas.
+- **Control y Soberanía Docente:** Mediante el flag `is_ai_context`, el docente decide de forma granular cuáles documentos forman parte de la memoria semántica de la IA.
+- **Pipeline de Ingesta Inteligente:** Al activar un recurso, el sistema ejecuta de forma automática: Extracción del Bucket $\rightarrow$ Etiquetado de Metadatos $\rightarrow$ Segmentación (*Chunking*) y Generación de *Embeddings* $\rightarrow$ Indexación en Redis.
+- **Transaccionalidad y Rollback:** Mecanismo de rollback entre Supabase Auth y PostgreSQL para garantizar consistencia transaccional durante el registro.
+
+---
+
+## Sostenibilidad Técnica y Operativa
+
+- **Clean Architecture en Go:** Estructuración en capas (Domain, UseCases, Repositories, Delivery) que minimiza la deuda técnica y garantiza un mantenimiento económico y sustentable a largo plazo.
+- **Pipeline Asíncrono Basado en Borradores (JSON):** El motor socrático opera vía eventos programados generando borradores de retos que el docente valida en diferido, suprimiendo llamadas síncronas costosas a LLMs en horas pico.
+- **Stack Liviano y Open Source:** El uso de imágenes Alpine y Redis en servidores VPS minimiza el consumo de recursos en comparación con arquitecturas serverless propietarias sobredimensionadas.
