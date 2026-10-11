@@ -20,7 +20,6 @@ import { Image } from 'astro:assets';
 import edtecTeamImg from '@/assets/about/edtec-team.jpg';
 import comiteCiideaImg from '@/assets/about/comite-ciidea.jpg';
 import alianzasLogosImg from '@/assets/about/alianzas-logos.png';
-import TypingEffect from '@/components/ui/TypingEffect.astro';
 import { t, tData, defaultLocale } from '@/i18n';
 
 interface Props {
@@ -39,9 +38,6 @@ const { locale = defaultLocale } = Astro.props;
 const hero = tData<{
   badge: string;
   titleLead: string;
-  typingWords: string[];
-  /** Shorter set for phones (below sm), dropping the one word wide enough to clip at the hero size. */
-  typingWordsMobile: string[];
   description: string;
 }>('pages.about.hero', locale)!;
 const respaldos = tData<{
@@ -62,13 +58,8 @@ const respaldos = tData<{
 >
   <Hero layout="centered" size="sm" class="isolate pb-[var(--space-section-md)]" showHeroHalo>
     <h1 slot="title">
-      <span class="text-foreground [-webkit-text-fill-color:currentColor]">{hero.titleLead}</span><br />
-      <span class="text-brand-500 [-webkit-text-fill-color:var(--color-brand-500)] sm:hidden">
-        <TypingEffect words={hero.typingWordsMobile} />
-      </span>
-      <span class="text-brand-500 [-webkit-text-fill-color:var(--color-brand-500)] hidden sm:inline">
-        <TypingEffect words={hero.typingWords} />
-      </span>
+      <span class="text-foreground [-webkit-text-fill-color:currentColor]">{hero.titleLead}</span>{' '}
+      <span class="text-brand-500 [-webkit-text-fill-color:var(--color-brand-500)]">Innovación Educativa</span>
     </h1>
 
     <p slot="description" class="!text-balance">

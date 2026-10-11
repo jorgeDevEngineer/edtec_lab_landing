@@ -26,6 +26,7 @@ import siteConfig from '@/config/site.config';
 import { getPostUrl, getPublishedPosts } from '@/lib/blog';
 import { getVisibleProjects } from '@/lib/projects';
 import ProjectCard from '@/components/projects/ProjectCard.astro';
+import TypingEffect from '@/components/ui/TypingEffect.astro';
 import { t, tData, defaultLocale, localizedPath } from '@/i18n';
 
 interface Props {
@@ -89,6 +90,8 @@ const hero = tData<{
   titleLine1: string;
   titleLine2: string;
   titleLine3: string;
+  typingWords: string[];
+  typingWordsMobile: string[];
   description: string;
   /** Shorter variant shown below the `sm` breakpoint so the hero stays compact on phones. */
   descriptionMobile: string;
@@ -173,7 +176,13 @@ const basedInDisplay = `${city ?? 'Your City'}${country ? `, ${country}` : ''}`;
     <h1 slot="title" class="!text-[clamp(1.75rem,8vw,2.75rem)] sm:!text-4xl md:!text-5xl lg:!text-6xl font-bold tracking-tight">
       <span class="text-brand-600 dark:text-foreground [-webkit-text-fill-color:currentColor]">{hero.titleLine1}</span><br />
       <span class="text-brand-600 dark:text-foreground [-webkit-text-fill-color:currentColor]">{hero.titleLine2}</span>{' '}
-      <span class="text-brand-500 [-webkit-text-fill-color:currentColor]">{hero.titleLine3}</span>
+      <span class="text-brand-500 [-webkit-text-fill-color:var(--color-brand-500)] sm:hidden">
+        <TypingEffect words={hero.typingWordsMobile} />
+      </span>
+      <span class="text-brand-500 [-webkit-text-fill-color:var(--color-brand-500)] hidden sm:inline">
+        <TypingEffect words={hero.typingWords} />
+      </span><br class="hidden sm:inline" />{' '}
+      <span class="text-brand-600 dark:text-foreground [-webkit-text-fill-color:currentColor]">{hero.titleLine3}</span>
     </h1>
 
     <p slot="description" class="!text-balance max-w-2xl mx-auto text-base sm:text-lg">

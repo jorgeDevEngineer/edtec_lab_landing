@@ -589,6 +589,8 @@
         "titleLine1": "EDTEC Lab —",
         "titleLine2": "Webdesigner",
         "titleLine3": "& Ontwikkelaar",
+        "typingWords": ["transformación", "innovación", "tecnología", "evolución"],
+        "typingWordsMobile": ["transformación", "innovación", "tecnología"],
         "description": "Een gratis, razendsnel Astro 7 starter-thema om alles op te bouwen: 44 ontworpen componenten, 8 kleurthema's en donkere modus.",
         "descriptionMobile": "Een gratis, razendsnel Astro 7 starter-thema om alles op te bouwen: 44 ontworpen componenten en 8 kleurthema's.",
         "github": "Bekijk op GitHub",
