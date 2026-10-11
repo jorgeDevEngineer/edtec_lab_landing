@@ -317,74 +317,60 @@ const basedInDisplay = `${city ?? 'Your City'}${country ? `, ${country}` : ''}`;
           </div>
         </div>
 
-        <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+        <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           <!-- PredixIA -->
-          <div class="rounded-2xl border border-border bg-background p-7 flex flex-col gap-4 shadow-sm hover:border-brand-500/40 transition-all" data-reveal>
-            <div class="w-12 h-12 rounded-xl bg-brand-500/10 text-brand-500 flex items-center justify-center">
-              <Icon name="cpu" size="lg" />
+          <div class="rounded-2xl border border-border bg-background p-6 flex flex-col gap-3 shadow-sm hover:border-brand-500/40 transition-all" data-reveal>
+            <div class="w-10 h-10 rounded-xl bg-brand-500/10 text-brand-500 flex items-center justify-center">
+              <Icon name="cpu" size="md" />
             </div>
             <div>
               <span class="text-xs font-semibold text-brand-500 uppercase tracking-wider">Inteligencia Artificial</span>
-              <h4 class="font-display text-2xl font-bold text-foreground mt-1">PredixIA</h4>
+              <h4 class="font-display text-xl font-bold text-foreground mt-0.5">PredixIA</h4>
             </div>
-            <p class="text-foreground-muted leading-relaxed text-sm md:text-base">
-              Asistente de ventas y análisis de datos potenciado con inteligencia artificial.
+            <p class="text-foreground-muted text-sm leading-relaxed">
+              Asistente comercial y análisis predictivo de datos potenciado con IA.
             </p>
           </div>
 
           <!-- Nova Academy -->
-          <div class="rounded-2xl border border-border bg-background p-7 flex flex-col gap-4 shadow-sm hover:border-brand-500/40 transition-all" data-reveal data-reveal-delay="1">
-            <div class="w-12 h-12 rounded-xl bg-brand-500/10 text-brand-500 flex items-center justify-center">
-              <Icon name="sparkles" size="lg" />
+          <div class="rounded-2xl border border-border bg-background p-6 flex flex-col gap-3 shadow-sm hover:border-brand-500/40 transition-all" data-reveal data-reveal-delay="1">
+            <div class="w-10 h-10 rounded-xl bg-brand-500/10 text-brand-500 flex items-center justify-center">
+              <Icon name="sparkles" size="md" />
             </div>
             <div>
               <span class="text-xs font-semibold text-brand-500 uppercase tracking-wider">Competencias Digitales</span>
-              <h4 class="font-display text-2xl font-bold text-foreground mt-1">Nova Academy</h4>
+              <h4 class="font-display text-xl font-bold text-foreground mt-0.5">Nova Academy</h4>
             </div>
-            <p class="text-foreground-muted leading-relaxed text-sm md:text-base">
-              Rutas de aprendizaje para el desarrollo de competencias digitales y uso de IA en el ámbito universitario.
+            <p class="text-foreground-muted text-sm leading-relaxed">
+              Rutas de formación digital y adopción ética de inteligencia artificial.
             </p>
           </div>
 
           <!-- Diálogo`s -->
-          <div class="rounded-2xl border border-border bg-background p-7 flex flex-col gap-4 shadow-sm hover:border-brand-500/40 transition-all" data-reveal data-reveal-delay="2">
-            <div class="w-12 h-12 rounded-xl bg-brand-500/10 text-brand-500 flex items-center justify-center">
-              <Icon name="bot" size="lg" />
+          <div class="rounded-2xl border border-border bg-background p-6 flex flex-col gap-3 shadow-sm hover:border-brand-500/40 transition-all" data-reveal data-reveal-delay="2">
+            <div class="w-10 h-10 rounded-xl bg-brand-500/10 text-brand-500 flex items-center justify-center">
+              <Icon name="bot" size="md" />
             </div>
             <div>
               <span class="text-xs font-semibold text-brand-500 uppercase tracking-wider">Aprendizaje Activo</span>
-              <h4 class="font-display text-2xl font-bold text-foreground mt-1">Diálogo`s</h4>
+              <h4 class="font-display text-xl font-bold text-foreground mt-0.5">Diálogo`s</h4>
             </div>
-            <p class="text-foreground-muted leading-relaxed text-sm md:text-base">
-              Asistente conversacional para facilitar el aprendizaje activo mediante el diálogo guiado con contenidos curriculares.
+            <p class="text-foreground-muted text-sm leading-relaxed">
+              Asistente conversacional pedagógico para el diálogo curricular activo.
             </p>
           </div>
 
           <!-- Socra -->
-          <div class="rounded-2xl border border-border bg-background p-7 flex flex-col gap-4 shadow-sm hover:border-brand-500/40 transition-all" data-reveal data-reveal-delay="3">
-            <div class="w-12 h-12 rounded-xl bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 flex items-center justify-center">
-              <Icon name="brain-circuit" size="lg" />
+          <div class="rounded-2xl border border-border bg-background p-6 flex flex-col gap-3 shadow-sm hover:border-brand-500/40 transition-all" data-reveal data-reveal-delay="3">
+            <div class="w-10 h-10 rounded-xl bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 flex items-center justify-center">
+              <Icon name="brain-circuit" size="md" />
             </div>
             <div>
-              <span class="text-xs font-semibold text-indigo-600 dark:text-indigo-400 uppercase tracking-wider">Fiscal Socrático & IA</span>
-              <h4 class="font-display text-2xl font-bold text-foreground mt-1">Socra</h4>
+              <span class="text-xs font-semibold text-indigo-600 dark:text-indigo-400 uppercase tracking-wider">Fiscal Socrático</span>
+              <h4 class="font-display text-xl font-bold text-foreground mt-0.5">Socra</h4>
             </div>
-            <p class="text-foreground-muted leading-relaxed text-sm md:text-base">
-              Sistema pedagógico con RAG que prohíbe respuestas cerradas para forzar la argumentación rigurosa con fuentes académicas y tablero Kanban.
-            </p>
-          </div>
-
-          <!-- AURORA -->
-          <div class="rounded-2xl border border-border bg-background p-7 flex flex-col gap-4 shadow-sm hover:border-brand-500/40 transition-all" data-reveal>
-            <div class="w-12 h-12 rounded-xl bg-amber-500/10 text-amber-600 dark:text-amber-400 flex items-center justify-center">
-              <Icon name="compass" size="lg" />
-            </div>
-            <div>
-              <span class="text-xs font-semibold text-amber-600 dark:text-amber-400 uppercase tracking-wider">Realidad Virtual & Onboarding</span>
-              <h4 class="font-display text-2xl font-bold text-foreground mt-1">AURORA</h4>
-            </div>
-            <p class="text-foreground-muted leading-relaxed text-sm md:text-base">
-              Entorno virtual inmersivo para la inducción docente y comprobación andragógica del aprendizaje en el onboarding del personal académico de la UCAB.
+            <p class="text-foreground-muted text-sm leading-relaxed">
+              Sistema RAG pedagógico para argumentación rigurosa con fuentes académicas.
             </p>
           </div>
         </div>
@@ -392,118 +378,28 @@ const basedInDisplay = `${city ?? 'Your City'}${country ? `, ${country}` : ''}`;
 
       <!-- Bloque 2: Proyectos en Desarrollo (Concurso EDTEC Lab) -->
       <div class="flex flex-col gap-6 pt-4">
-        <div class="border-b border-border pb-3 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
-          <div>
-            <h3 class="font-display text-2xl font-bold text-foreground">
-              Proyectos en Desarrollo — Concurso EDTEC Lab
-            </h3>
-            <p class="text-sm text-foreground-muted">
-              Iniciativas interdisciplinarias de profesores y estudiantes en proceso de mentoría y desarrollo de prototipos.
-            </p>
-          </div>
-        </div>
-
         <!-- Banner contextual del Concurso EDTEC Lab 2026 -->
-        <div class="rounded-2xl border border-border bg-background p-6 md:p-8 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 shadow-sm" data-reveal>
-          <div class="flex-1 space-y-2">
+        <div class="rounded-2xl border border-border bg-background p-6 md:p-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 shadow-sm" data-reveal>
+          <div class="space-y-1.5">
             <div class="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-brand-500">
               <Icon name="trophy" size="sm" />
-              1er Concurso EDTEC Lab 2026 · Crea, innova y transforma
+              1er Concurso EDTEC Lab 2026
             </div>
             <h4 class="font-display text-xl font-bold text-foreground">
-              Propuestas seleccionadas rumbo al Demo Day
+              Proyectos seleccionados en fase de prototipado y mentorías
             </h4>
-            <p class="text-sm md:text-base text-foreground-muted leading-relaxed">
-              Tras el cierre de postulaciones, los equipos multidisciplinarios seleccionados avanzan a las etapas de mentorías y sprints de desarrollo para construir soluciones de tecnología educativa (EDTEC) en asignaturas del plan de estudios de la UCAB.
+            <p class="text-sm text-foreground-muted leading-relaxed max-w-2xl">
+              Fray Tempus, EDU Quest Jumper, Sinfonía UCAB 15, Simulador Virtual NexU y más iniciativas avanzan rumbo al Demo Day.
             </p>
           </div>
-          <a
-            href="https://sites.google.com/ucab.edu.ve/concurso-edteclab-2026/inicio"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl border border-brand-500/40 text-brand-600 dark:text-brand-400 font-semibold text-sm hover:bg-brand-500/10 transition-colors shrink-0"
-          >
-            Bases y próximas ediciones
-            <Icon name="arrow-up-right" size="xs" />
-          </a>
-        </div>
-
-        <!-- Proyectos del concurso en desarrollo -->
-        <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          <!-- Fray Tempus -->
-          <div class="rounded-2xl border border-border bg-background p-7 flex flex-col gap-4 shadow-sm hover:border-brand-500/40 transition-all" data-reveal>
-            <div class="w-12 h-12 rounded-xl bg-purple-500/10 text-purple-600 dark:text-purple-400 flex items-center justify-center">
-              <Icon name="hourglass" size="lg" />
-            </div>
-            <div>
-              <span class="text-xs font-semibold text-purple-600 dark:text-purple-400 uppercase tracking-wider">Escape Room Inmersivo</span>
-              <h4 class="font-display text-2xl font-bold text-foreground mt-1">Fray Tempus</h4>
-              <p class="text-xs text-brand-500 font-medium">Laberinto del Tiempo®</p>
-            </div>
-            <p class="text-foreground-muted leading-relaxed text-sm md:text-base">
-              Escape Room interactivo en Genially sobre la evolución histórica y el futuro de la jornada laboral, promoviendo el aprendizaje activo y el pensamiento crítico.
-            </p>
-            <div class="pt-2 border-t border-border/60 text-xs text-foreground-muted flex flex-col gap-1">
-              <span><strong>Equipo:</strong> María Estela Mangia, Jeanette Da Silva, Claudia Medina</span>
-              <span><strong>Mentores:</strong> Nidia Marcano, Oswaldo Sánchez</span>
-            </div>
-          </div>
-
-          <!-- EDU Quest Jumper -->
-          <div class="rounded-2xl border border-border bg-background p-7 flex flex-col gap-4 shadow-sm hover:border-brand-500/40 transition-all" data-reveal data-reveal-delay="1">
-            <div class="w-12 h-12 rounded-xl bg-blue-500/10 text-blue-600 dark:text-blue-400 flex items-center justify-center">
-              <Icon name="gamepad-2" size="lg" />
-            </div>
-            <div>
-              <span class="text-xs font-semibold text-blue-600 dark:text-blue-400 uppercase tracking-wider">Gamificación & IA</span>
-              <h4 class="font-display text-2xl font-bold text-foreground mt-1">EDU Quest Jumper</h4>
-              <p class="text-xs text-brand-500 font-medium">Plataforma Lúdica Interactiva</p>
-            </div>
-            <p class="text-foreground-muted leading-relaxed text-sm md:text-base">
-              Plataforma asistida por IA que transforma contenidos de clase en retos dinámicos y competitivos validados por docentes, con retroalimentación inmediata.
-            </p>
-            <div class="pt-2 border-t border-border/60 text-xs text-foreground-muted flex flex-col gap-1">
-              <span><strong>Equipo:</strong> Jorge Marín, Miguel Pinto, Arturo Pinto, Alfonso Márquez</span>
-              <span><strong>Mentores:</strong> Alejandro Ríos, Joel Dos Santos</span>
-            </div>
-          </div>
-
-          <!-- Sinfonía UCAB 15: CampusVivo -->
-          <div class="rounded-2xl border border-border bg-background p-7 flex flex-col gap-4 shadow-sm hover:border-brand-500/40 transition-all" data-reveal data-reveal-delay="2">
-            <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 flex items-center justify-center">
-              <Icon name="trees" size="lg" />
-            </div>
-            <div>
-              <span class="text-xs font-semibold text-emerald-600 dark:text-emerald-400 uppercase tracking-wider">Biodiversidad & Ciencia Ciudadana</span>
-              <h4 class="font-display text-2xl font-bold text-foreground mt-1">Sinfonía UCAB 15</h4>
-              <p class="text-xs text-brand-500 font-medium">Estación Itinerante · App CampusVivo</p>
-            </div>
-            <p class="text-foreground-muted leading-relaxed text-sm md:text-base">
-              Estación educativa y app móvil con geolocalización e integración con PlantNet para combatir la ceguera verde y explorar la flora del campus.
-            </p>
-            <div class="pt-2 border-t border-border/60 text-xs text-foreground-muted flex flex-col gap-1">
-              <span><strong>Equipo:</strong> Amanda Isturriaga, Jean Gabriel Moya, Celsa Afonso</span>
-              <span><strong>Mentores:</strong> Roxana Acevedo Peña, María Isabel López</span>
-            </div>
-          </div>
-
-          <!-- Simulador Virtual de Inmersión Interdisciplinaria (NexU) -->
-          <div class="rounded-2xl border border-border bg-background p-7 flex flex-col gap-4 shadow-sm hover:border-brand-500/40 transition-all" data-reveal>
-            <div class="w-12 h-12 rounded-xl bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 flex items-center justify-center">
-              <Icon name="glasses" size="lg" />
-            </div>
-            <div>
-              <span class="text-xs font-semibold text-cyan-600 dark:text-cyan-400 uppercase tracking-wider">Realidad Virtual & Unity</span>
-              <h4 class="font-display text-2xl font-bold text-foreground mt-1">Simulador Inmersivo</h4>
-              <p class="text-xs text-brand-500 font-medium">Plataforma XR NexU</p>
-            </div>
-            <p class="text-foreground-muted leading-relaxed text-sm md:text-base">
-              Entorno 3D fotorrealista a escala 1:1 en Unity URP para entrenar competencias jurídicas y de ingeniería en escenarios de alta fidelidad sin riesgos.
-            </p>
-            <div class="pt-2 border-t border-border/60 text-xs text-foreground-muted flex flex-col gap-1">
-              <span><strong>Equipo:</strong> Wilson Gutiérrez, Pascualino, Joana Salazar, Biagio Cante</span>
-              <span><strong>Mentores:</strong> María Victoria, Gustavo Lafontein</span>
-            </div>
+          <div class="flex items-center gap-3 shrink-0">
+            <a
+              href={projectsUrl}
+              class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-brand-500 text-white font-semibold text-sm hover:bg-brand-600 transition-colors shadow-sm"
+            >
+              Explorar todos los proyectos
+              <Icon name="arrow-right" size="xs" />
+            </a>
           </div>
         </div>
       </div>
