@@ -235,7 +235,7 @@ const basedInDisplay = `${city ?? 'Your City'}${country ? `, ${country}` : ''}`;
   </section>
 
   <!-- Comunidad EDTEC -->
-  <section class="relative z-10 py-[var(--space-section-md)] bg-background border-t border-border">
+  <section id="participar" class="relative z-10 py-[var(--space-section-md)] bg-background border-t border-border">
     <div class="mx-auto max-w-5xl px-6 flex flex-col gap-10" data-reveal>
       <div class="flex flex-col items-center gap-4 text-center">
         <h2 class="font-display text-3xl md:text-5xl font-bold text-foreground text-balance">
@@ -471,22 +471,18 @@ const basedInDisplay = `${city ?? 'Your City'}${country ? `, ${country}` : ''}`;
 
 
 
- <!-- CTA — `secondary` so it alternates with the `background` Blog section above and the `background` Footer below. -->
+  <!-- CTA -->
   <section class="relative z-10 py-[var(--space-section-md)] bg-background-secondary border-t border-border">
     <CtaBand>
       <h2 class="font-display text-4xl font-bold text-foreground mb-4 text-balance">
-        {cta.heading}
+        ¿Listo para innovar?
       </h2>
       <p class="text-lg text-foreground-muted mb-8 text-balance">
-        {cta.description}
+        Únete al EDTEC Lab y participa en la innovación curricular del mañana.
       </p>
       <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <Button size="lg" href={contactUrl}>
-          {cta.primary}
-          <Icon name="arrow-right" size="sm" />
-        </Button>
-        <Button size="lg" variant="outline" class="cta-btn-brand" href={aboutUrl}>
-          {cta.secondary}
+        <Button size="lg" href="#participar">
+          Empezar ahora
           <Icon name="arrow-right" size="sm" />
         </Button>
       </div>
