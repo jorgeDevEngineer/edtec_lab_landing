@@ -292,6 +292,33 @@
           }
         ]
       },
+      "news": {
+        "badge": "Pers & Nieuws",
+        "heading": "EDTEC Lab in de Media",
+        "lead": "Artikelen en berichtgeving van El Ucabista over onze initiatieven en techno-educatieve projecten.",
+        "readMore": "Lees volledig artikel",
+        "source": "El Ucabista",
+        "items": [
+          {
+            "tag": "Competitie 2026 · Uitreiking",
+            "date": "02 Oktober 2026",
+            "readTime": "5 min leestijd",
+            "title": "Concurso EDTEC LAB 2026 premió propuestas tecnoeducativas que buscan mejorar la formación en la UCAB",
+            "description": "Zeven baanbrekende projecten met AI, virtual reality en gamified simulatoren zijn bekroond voor hun pedagogische impact.",
+            "url": "https://elucabista.com/2026/10/02/concurso-edtec-lab-2026-premio-propuestas-tecnoeducativas-que-buscan-mejorar-la-formacion-en-la-ucab/",
+            "imageUrl": "https://elucabista.com/wp-content/uploads/2023/01/Concurso-Edtech-CIIDEA-2026-premiacionestatuilladef-Cortesia-CIIDEA.jpg"
+          },
+          {
+            "tag": "Oproep · Lancering",
+            "date": "08 April 2026",
+            "readTime": "4 min leestijd",
+            "title": "Primer Concurso EDTEC Lab premiará proyectos tecnológicos que mejoren el aprendizaje en la UCAB",
+            "description": "Officiele lancering van de open oproep voor docenten en studenten van Caracas en Guayana.",
+            "url": "https://elucabista.com/2026/04/08/primer-concurso-edtec-lab-premiara-proyectos-tecnologicos-que-mejoren-aprendizaje-en-la-ucab/",
+            "imageUrl": "https://elucabista.com/wp-content/uploads/2026/04/Aula-Realidad-UCAB-profesores-2026-MSarda-5.jpg"
+          }
+        ]
+      },
       "whatYouGet": {
         "badge": "Wat je krijgt",
         "heading": "Alles wat een website nodig heeft",

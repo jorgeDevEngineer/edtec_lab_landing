@@ -292,6 +292,33 @@
           }
         ]
       },
+      "news": {
+        "badge": "Prensa & Novedades",
+        "heading": "EDTEC Lab en los Medios",
+        "lead": "Artículos y coberturas especiales de El Ucabista sobre nuestras iniciativas, convocatorias y proyectos tecnoeducativos.",
+        "readMore": "Leer artículo completo",
+        "source": "El Ucabista",
+        "items": [
+          {
+            "tag": "Concurso 2026 · Premiación",
+            "date": "02 Octubre 2026",
+            "readTime": "5 min de lectura",
+            "title": "Concurso EDTEC LAB 2026 premió propuestas tecnoeducativas que buscan mejorar la formación en la UCAB",
+            "description": "Siete proyectos pioneros que integran Inteligencia Artificial, Realidad Virtual y simuladores gamificados fueron galardonados por su impacto pedagógico en las aulas de clase.",
+            "url": "https://elucabista.com/2026/10/02/concurso-edtec-lab-2026-premio-propuestas-tecnoeducativas-que-buscan-mejorar-la-formacion-en-la-ucab/",
+            "imageUrl": "https://elucabista.com/wp-content/uploads/2023/01/Concurso-Edtech-CIIDEA-2026-premiacionestatuilladef-Cortesia-CIIDEA.jpg"
+          },
+          {
+            "tag": "Convocatoria · Lanzamiento",
+            "date": "08 Abril 2026",
+            "readTime": "4 min de lectura",
+            "title": "Primer Concurso EDTEC Lab premiará proyectos tecnológicos que mejoren el aprendizaje en la UCAB",
+            "description": "Lanzamiento oficial de la convocatoria abierta a docentes y estudiantes de Caracas y Guayana para transformar la enseñanza universitaria mediante tecnologías emergentes.",
+            "url": "https://elucabista.com/2026/04/08/primer-concurso-edtec-lab-premiara-proyectos-tecnologicos-que-mejoren-aprendizaje-en-la-ucab/",
+            "imageUrl": "https://elucabista.com/wp-content/uploads/2026/04/Aula-Realidad-UCAB-profesores-2026-MSarda-5.jpg"
+          }
+        ]
+      },
       "whatYouGet": {
         "badge": "What you get",
         "heading": "Everything a website needs",
