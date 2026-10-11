@@ -164,7 +164,6 @@ const basedInDisplay = `${city ?? 'Your City'}${country ? `, ${country}` : ''}`;
        after. Same value as --bar-color in global.css, which ends the hero's
        gradient. See `paintBody` in BaseLayout.astro. -->
   <Hero layout="centered" size="xl" class="hero-dark-gradient" fullHeight data-header-flip-anchor data-bar-color="#000">
-    <Badge slot="badge" variant="brand" pill pulse class="dark:text-brand-200">{hero.badge}</Badge>
 
     {/* 12.6vw fills the mobile column (~95-98% at 320-390px), sized to the
         English demo strings — translated hero copy is the site owner's to
@@ -196,10 +195,6 @@ const basedInDisplay = `${city ?? 'Your City'}${country ? `, ${country}` : ''}`;
   <section class="relative z-10 py-[var(--space-section-md)] bg-background-secondary border-t border-border">
     <div class="mx-auto max-w-5xl px-6 flex flex-col gap-10" data-reveal>
       <div class="flex flex-col items-center gap-4 text-center">
-        <Badge variant="brand" pill>
-          <Icon name="sparkles" size="sm" />
-          Propósito & Misión
-        </Badge>
         <h2 class="font-display text-3xl md:text-5xl font-bold text-foreground max-w-3xl leading-tight">
           El epicentro de la innovación curricular en la <span class="text-brand-500">UCAB</span>
         </h2>
@@ -243,10 +238,6 @@ const basedInDisplay = `${city ?? 'Your City'}${country ? `, ${country}` : ''}`;
   <section class="relative z-10 py-[var(--space-section-md)] bg-background border-t border-border">
     <div class="mx-auto max-w-5xl px-6 flex flex-col gap-10" data-reveal>
       <div class="flex flex-col items-center gap-4 text-center">
-        <Badge variant="brand" pill>
-          <Icon name="users" size="sm" />
-          Comunidad EDTEC
-        </Badge>
         <h2 class="font-display text-3xl md:text-5xl font-bold text-foreground text-balance">
           ¿Cómo formar parte de nuestra comunidad?
         </h2>
@@ -311,10 +302,6 @@ const basedInDisplay = `${city ?? 'Your City'}${country ? `, ${country}` : ''}`;
   <section id="work" class="relative z-10 py-[var(--space-section-md)] bg-background-secondary border-t border-border">
     <div class="mx-auto max-w-6xl px-6 flex flex-col gap-10">
       <div class="flex flex-col items-center gap-4 text-center" data-reveal>
-        <Badge variant="brand" pill>
-          <Icon name="layers" size="sm" />
-          Proyectos Activos
-        </Badge>
         <h2 class="font-display text-3xl md:text-5xl font-bold text-foreground">
           Nuestros Proyectos
         </h2>
@@ -373,10 +360,6 @@ const basedInDisplay = `${city ?? 'Your City'}${country ? `, ${country}` : ''}`;
   <section class="relative z-10 py-[var(--space-section-md)] bg-background-secondary border-t border-border">
     <div class="mx-auto max-w-5xl px-6 flex flex-col gap-10" data-reveal>
       <div class="flex flex-col items-center gap-4 text-center">
-        <Badge variant="brand" pill>
-          <Icon name="shield-check" size="sm" />
-          Rigor & Excelencia
-        </Badge>
         <h2 class="font-display text-3xl md:text-5xl font-bold text-foreground">
           Comité Técnico
         </h2>
@@ -436,10 +419,6 @@ const basedInDisplay = `${city ?? 'Your City'}${country ? `, ${country}` : ''}`;
       <div class="grid gap-10 glitch:grid-cols-2 glitch:gap-12">
         <div class="flex flex-col justify-center sm:items-center sm:text-center glitch:items-start glitch:text-left" data-reveal data-reveal-ease="smooth">
           <div class="flex flex-col gap-6 mb-6 sm:items-center glitch:items-start">
-            <Badge variant="brand" pill class="self-start sm:self-center glitch:self-start">
-              <Icon name="user" size="sm" />
-              {aboutTeaser.badge}
-            </Badge>
             <h2 class="font-display text-3xl md:text-4xl font-bold text-foreground">
               {aboutTeaser.headingLine1}<br />
               <span class="text-brand-500">{aboutTeaser.headingLine2}</span>
