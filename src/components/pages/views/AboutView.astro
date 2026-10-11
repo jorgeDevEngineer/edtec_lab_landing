@@ -90,8 +90,8 @@ const cta = tData<{ badge: string; heading: string; description: string; button:
 >
   <Hero layout="centered" size="sm" class="isolate pb-[var(--space-section-md)]" showHeroHalo>
     <Badge slot="badge" variant="brand" pill>
-      <Icon name="rocket" size="sm" />
-      {hero.badge}
+      <Icon name="sparkles" size="sm" />
+      EDTEC Lab UCAB
     </Badge>
     <h1 slot="title">
       <span class="text-foreground [-webkit-text-fill-color:currentColor]">{hero.titleLead}</span><br />
@@ -151,19 +151,15 @@ const cta = tData<{ badge: string; heading: string; description: string; button:
     </div>
   </Hero>
 
-  <!-- Equipo Directivo, Comité Organizador y Becas de Trabajo CIIDEA -->
+  <!-- Comité Organizador -->
   <section class="py-[var(--space-section-md)] bg-background border-t border-border">
     <div class="mx-auto max-w-6xl px-6 flex flex-col gap-10">
       <div class="flex flex-col items-center gap-4 text-center" data-reveal data-reveal-eager>
-        <Badge variant="brand" pill>
-          <Icon name="users" size="sm" />
-          Comité & Mentorías
-        </Badge>
         <h2 class="font-display text-3xl md:text-4xl font-bold text-foreground text-balance">
-          Comité Organizador y Becas de Trabajo CIIDEA
+          Comité Organizador
         </h2>
         <p class="text-lg text-foreground-muted max-w-2xl mx-auto text-balance">
-          El motor humano que impulsa la investigación, el diseño instruccional y el acompañamiento tecnológico de los proyectos en la UCAB.
+          El equipo humano que impulsa la investigación, el diseño instruccional y el acompañamiento tecnológico de los proyectos en la UCAB.
         </p>
       </div>
 
@@ -177,7 +173,7 @@ const cta = tData<{ badge: string; heading: string; description: string; button:
         />
         <div class="p-6 md:p-8 bg-background-secondary border-t border-border flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div>
-            <h3 class="font-display text-lg font-bold text-foreground">Comité Organizador y Becarios de Investigación CIIDEA</h3>
+            <h3 class="font-display text-lg font-bold text-foreground">Comité Organizador</h3>
             <p class="text-sm text-foreground-muted">Centro de Investigación, Innovación y Desarrollo Académico (CIIDEA) & EDTEC Lab</p>
           </div>
           <span class="inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-full bg-brand-500/10 text-brand-600 dark:text-brand-400 border border-brand-500/20">
@@ -230,13 +226,16 @@ const cta = tData<{ badge: string; heading: string; description: string; button:
       <!-- Alianzas y Direcciones -->
       <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {respaldos.items.map((item, i) => (
-          <ProofTile icon={item.icon} title={item.title} data-reveal data-reveal-delay={i % 3 || undefined}>
+          <ProofTile icon={item.icon} title={item.title} data-reveal data-reveal-delay={item.title === 'CIIDEA' ? undefined : (i % 3 || undefined)}>
             {item.description}
           </ProofTile>
         ))}
       </div>
     </div>
   </section>
+
+  {/*
+  <!-- SECCIONES TRADUCIDAS COMENTADAS TEMPORALMENTE A PETICIÓN -->
 
   <!-- Tech Stack -->
   <TechStack
@@ -247,8 +246,7 @@ const cta = tData<{ badge: string; heading: string; description: string; button:
     background="secondary"
   />
 
-  <!-- FAQ. The id is what the footer's "Got questions?" column links to;
-       without it there was no way to point at this section. -->
+  <!-- FAQ -->
   <section id="faq" class="scroll-mt-24 py-[var(--space-section-md)] bg-background border-t border-border">
     <div class="mx-auto max-w-6xl px-6 flex flex-col gap-8">
       <div class="flex flex-col items-center gap-4 text-center" data-reveal>
@@ -296,7 +294,6 @@ const cta = tData<{ badge: string; heading: string; description: string; button:
   <section class="py-[var(--space-section-md)] bg-background-secondary border-t border-border">
     <div class="mx-auto max-w-6xl px-6">
       <div class="grid gap-8 sm:gap-10 glitch:grid-cols-2 glitch:items-center">
-        <!-- Text -->
         <div class="flex flex-col gap-4 sm:items-center sm:text-center glitch:items-start glitch:justify-center glitch:text-left" data-reveal data-reveal-ease="smooth">
           <Badge variant="brand" pill class="self-start sm:self-center glitch:self-start">
             <Icon name="github" size="sm" />
@@ -316,7 +313,6 @@ const cta = tData<{ badge: string; heading: string; description: string; button:
           </div>
         </div>
 
-        <!-- Info card -->
         <div class="flex flex-col h-full" data-reveal data-reveal-delay="1" data-reveal-ease="smooth">
           <Card variant="elevated" padding="lg" class="flex-1 flex flex-col justify-center gap-6">
             {openSource.cards.map((card) => (
@@ -346,6 +342,7 @@ const cta = tData<{ badge: string; heading: string; description: string; button:
       </Button>
     </CtaBand>
   </section>
+  */}
 </PageLayout>
 
 <style>
