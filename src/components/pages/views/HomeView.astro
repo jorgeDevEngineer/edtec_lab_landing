@@ -182,13 +182,9 @@ const basedInDisplay = `${city ?? 'Your City'}${country ? `, ${country}` : ''}`;
     </p>
 
     <Fragment slot="actions">
-      <Button size="lg" href={projectsUrl}>
-        {hero.getStarted}
-        <Icon name="arrow-right" size="sm" />
-      </Button>
-      <Button size="lg" variant="outline" href={aboutUrl}>
-        <Icon name="sparkles" size="sm" />
+      <Button size="lg" href={aboutUrl}>
         {hero.github}
+        <Icon name="arrow-right" size="sm" />
       </Button>
     </Fragment>
 
