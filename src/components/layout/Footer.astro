@@ -489,18 +489,7 @@ function getSocialIcon(platform: string): string {
                       {link.label}
                     </a>
                   ))}
-                  {/* The brand column carries the signup block in this layout,
-                      so the social row sits down here instead — opposite the
-                      copyright, which is where a reader looks for it. The feed
-                      leads it: it is the one subscription that needs no
-                      account, and it belongs with the other ways to follow. */}
-                  <a
-                    href={getRssUrl(locale)}
-                    class="transition-colors text-foreground-muted hover:text-foreground"
-                    aria-label={t('blog.rssFeed', locale)}
-                  >
-                    <Icon name="rss" size="md" />
-                  </a>
+
                   {showSocial && resolvedSocialLinks.map((social) => (
                     <a
                       href={social.href}
