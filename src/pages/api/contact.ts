@@ -76,7 +76,7 @@ export const POST: APIRoute = async ({ request }) => {
     const resend = new Resend(apiKey);
 
     const toEmail = siteConfig.email;
-    const fromEmail = import.meta.env.RESEND_FROM_EMAIL || toEmail;
+    const fromEmail = import.meta.env.RESEND_FROM_EMAIL || 'onboarding@resend.dev';
     const siteLabel = siteConfig.name;
 
     const subject = result.data.subject
