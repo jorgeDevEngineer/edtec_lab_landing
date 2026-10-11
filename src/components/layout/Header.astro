@@ -257,13 +257,9 @@ const buttonId = `${menuId}-button`;
                   'nav-link relative rounded-md px-3 py-2 text-sm',
                   'transition-all duration-(--transition-fast)',
                   isFloating && 'hdr-invert-text',
-                  isFloating
-                    ? (isActive(href)
-                        ? 'hdr-nav-active font-semibold'
-                        : 'font-medium')
-                    : (isActive(href)
-                        ? 'nav-link-active font-semibold text-foreground bg-secondary'
-                        : 'nav-link-inactive font-medium text-foreground-muted hover:text-foreground hover:bg-secondary/70')
+                  isActive(href)
+                    ? 'hdr-nav-active font-semibold text-blue-700 bg-blue-500/10'
+                    : 'font-medium text-slate-700 hover:text-slate-900 hover:bg-slate-100/80 dark:text-slate-700 dark:hover:text-slate-900'
                 )}
                 aria-current={isActive(href) ? 'page' : undefined}
               >
@@ -1067,7 +1063,9 @@ const buttonId = `${menuId}-button`;
     background-color: rgba(0, 0, 0, 0.06) !important;
   }
 
-  header .nav-link.hdr-nav-active {
+  header .nav-link.hdr-nav-active,
+  header .nav-link.nav-link-active,
+  header [aria-current="page"].nav-link {
     color: #1d4ed8 !important;
     background-color: rgba(37, 99, 235, 0.12) !important;
     font-weight: 600 !important;
