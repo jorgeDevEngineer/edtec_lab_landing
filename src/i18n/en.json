@@ -229,16 +229,18 @@
   "pages": {
     "about": {
       "meta": {
-        "title": "About — Free Open-Source Astro 7 Theme",
-        "description": "What Astro Rocket is and how it's built: a free Astro 7 starter theme with 44 designed components, 8 colour themes, i18n, and dark mode."
+        "title": "Sobre Nosotros — EDTEC Lab UCAB",
+        "description": "Conoce al Laboratorio de Tecnologías Emergentes para la Educación (EDTEC Lab) de la Universidad Católica Andrés Bello: innovación pedagógica, tecnología e investigación."
       },
       "hero": {
-        "badge": "About",
-        "titleLead": "Astro Rocket —",
-        "typingWords": ["Lightning-fast", "Starter theme", "44 Components", "8 Themes", "Dark Mode", "Built-in i18n"],
-        "typingWordsMobile": ["Lightning-fast", "Starter theme", "8 Themes", "Dark Mode", "Built-in i18n"],
-        "description": "A free, open-source Astro 7 starter\u00a0theme to build anything on."
+        "badge": "Sobre Nosotros",
+        "titleLead": "EDTEC Lab —",
+        "typingWords": ["Innovación Educativa", "Tecnologías Emergentes", "Inteligencia Artificial", "Realidad Virtual", "Comunidad UCAB", "Educación del Futuro"],
+        "typingWordsMobile": ["Innovación Educativa", "Tecnologías Emergentes", "EDTEC Lab UCAB", "Inteligencia Artificial", "Realidad Virtual"],
+        "description": "Laboratorio de Tecnologías Emergentes para la Educación de la UCAB: impulsando la transformación del aprendizaje mediante la investigación, el desarrollo tecnológico y la experimentación activa."
       },
+      "teamImageAlt": "Equipo y Comunidad EDTEC Lab UCAB",
+      "comiteImageAlt": "Comité Organizador y becas trabajo del CIIDEA - EDTEC Lab UCAB",
       "whatYouGet": {
         "badge": "What you get",
         "heading": "Everything a website needs",

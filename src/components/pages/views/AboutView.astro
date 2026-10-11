@@ -18,6 +18,9 @@ import Card from '@/components/ui/data-display/Card/Card.astro';
 import ProofTile from '@/components/ui/data-display/ProofTile/ProofTile.astro';
 import Button from '@/components/ui/form/Button/Button.astro';
 import { Hero } from '@/components/hero';
+import { Image } from 'astro:assets';
+import edtecTeamImg from '@/assets/about/edtec-team.jpg';
+import comiteCiideaImg from '@/assets/about/comite-ciidea.jpg';
 import ProjectImageSVG from '@/components/projects/ProjectImageSVG.astro';
 import TypingEffect from '@/components/ui/TypingEffect.astro';
 import TechStack from '@/components/landing/TechStack.astro';
@@ -129,12 +132,61 @@ const cta = tData<{ badge: string; heading: string; description: string; button:
          viewport's: 896px keeps the wide one, a phone's ~382px column takes
          the tall one. -->
     <div class="mt-[calc(var(--space-section-gap)_-_var(--space-stack-lg))] w-full max-w-4xl mx-auto">
-      <ProjectImageSVG
-        slug="astro-rocket"
-        title="Launch your next site with Astro Rocket — the rocket mark over a lit planet's edge, against a starfield."
-      />
+      <div class="relative overflow-hidden rounded-2xl border border-border shadow-2xl bg-card">
+        <Image
+          src={edtecTeamImg}
+          alt={t('pages.about.teamImageAlt', locale)}
+          widths={[640, 960, 1280]}
+          sizes="(max-width: 896px) 100vw, 896px"
+          class="w-full h-auto object-cover max-h-[520px]"
+          priority
+        />
+        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent flex items-end p-6 pointer-events-none">
+          <p class="text-white text-sm md:text-base font-medium drop-shadow-md">
+            Comunidad e Innovadores del Laboratorio de Tecnologías Emergentes para la Educación (EDTEC Lab UCAB)
+          </p>
+        </div>
+      </div>
     </div>
   </Hero>
+
+  <!-- Equipo Directivo, Comité Organizador y Becas de Trabajo CIIDEA -->
+  <section class="py-[var(--space-section-md)] bg-background border-t border-border">
+    <div class="mx-auto max-w-6xl px-6 flex flex-col gap-10">
+      <div class="flex flex-col items-center gap-4 text-center" data-reveal data-reveal-eager>
+        <Badge variant="brand" pill>
+          <Icon name="users" size="sm" />
+          Comité & Mentorías
+        </Badge>
+        <h2 class="font-display text-3xl md:text-4xl font-bold text-foreground text-balance">
+          Comité Organizador y Becas de Trabajo CIIDEA
+        </h2>
+        <p class="text-lg text-foreground-muted max-w-2xl mx-auto text-balance">
+          El motor humano que impulsa la investigación, el diseño instruccional y el acompañamiento tecnológico de los proyectos en la UCAB.
+        </p>
+      </div>
+
+      <div class="relative overflow-hidden rounded-2xl border border-border bg-card shadow-xl" data-reveal>
+        <Image
+          src={comiteCiideaImg}
+          alt={t('pages.about.comiteImageAlt', locale)}
+          widths={[640, 1024, 1600]}
+          sizes="(max-width: 1152px) 100vw, 1152px"
+          class="w-full h-auto object-cover max-h-[580px]"
+        />
+        <div class="p-6 md:p-8 bg-background-secondary border-t border-border flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div>
+            <h3 class="font-display text-lg font-bold text-foreground">Comité Organizador y Becarios de Investigación CIIDEA</h3>
+            <p class="text-sm text-foreground-muted">Centro de Investigación, Innovación y Desarrollo Académico (CIIDEA) & EDTEC Lab</p>
+          </div>
+          <span class="inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-full bg-brand-500/10 text-brand-600 dark:text-brand-400 border border-brand-500/20">
+            <Icon name="sparkles" size="xs" />
+            Concurso EDTEC Lab 2026
+          </span>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- What you get -->
   <section class="py-[var(--space-section-md)] bg-background-secondary border-t border-border">

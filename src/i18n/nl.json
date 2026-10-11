@@ -239,6 +239,8 @@
         "typingWordsMobile": ["Razendsnel", "Starter-thema", "8 Thema's", "Donkere modus", "Ingebouwde i18n"],
         "description": "Een gratis, open-source Astro 7 starter-thema om alles op te bouwen."
       },
+      "teamImageAlt": "Team en gemeenschap EDTEC Lab UCAB",
+      "comiteImageAlt": "Organisatiecomite en beurzen CIIDEA - EDTEC Lab UCAB",
       "whatYouGet": {
         "badge": "Wat je krijgt",
         "heading": "Alles wat een website nodig heeft",
