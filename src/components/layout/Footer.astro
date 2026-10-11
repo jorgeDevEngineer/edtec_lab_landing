@@ -426,15 +426,15 @@ function getSocialIcon(platform: string): string {
                 </div>
               )}
               <div class="flex items-center gap-2.5 pt-2">
-                <Button
-                  size="sm"
+                <a
                   href={localizedPath('/contact', locale)}
-                  class="inline-flex items-center gap-2 !bg-brand-500 hover:!bg-brand-600 !text-white active:scale-[0.98] shadow-sm font-semibold !border-transparent"
+                  style="background-color: #2563eb !important; color: #ffffff !important; border: none !important;"
+                  class="footer-contact-btn inline-flex items-center gap-2 h-8 px-3 rounded-md text-xs font-semibold shadow-sm transition-all hover:opacity-90 active:scale-[0.98]"
                 >
-                  <Icon name="mail" size="xs" class="!text-white" />
-                  Contacto
-                  <Icon name="arrow-right" size="xs" class="!text-white" />
-                </Button>
+                  <Icon name="mail" size="xs" style="color: #ffffff !important;" />
+                  <span style="color: #ffffff !important;">Contacto</span>
+                  <Icon name="arrow-right" size="xs" style="color: #ffffff !important;" />
+                </a>
                 {showSocial && resolvedSocialLinks.map((social) => (
                   <a
                     href={social.href}
@@ -598,3 +598,14 @@ function getSocialIcon(platform: string): string {
   {/* Default slot for additional content */}
   <slot />
 </footer>
+
+<style>
+  .footer-contact-btn,
+  .footer-contact-btn * {
+    background-color: #2563eb !important;
+    color: #ffffff !important;
+  }
+  .footer-contact-btn:hover {
+    background-color: #1d4ed8 !important;
+  }
+</style>
