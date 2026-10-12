@@ -343,19 +343,20 @@ const basedInDisplay = `${city ?? 'Your City'}${country ? `, ${country}` : ''}`;
           const icon = project.data.icon || 'sparkles';
           const primaryTag = project.data.tags?.[0] || 'EDTEC Lab';
           
-          // Efecto zigzag vertical en 3 columnas desktop: columnas del medio o pares se desfasan
+          // Efecto zigzag vertical en desktop: columnas pares se desfasan
           const isShifted = index % 2 === 1;
-          const floatClass = index % 3 === 0 ? 'project-float-a' : index % 3 === 1 ? 'project-float-b' : 'project-float-c';
+          const floatDelay = ((index * 0.7) % 3.5).toFixed(1);
+          const floatDuration = (4.2 + (index % 3) * 0.8).toFixed(1);
 
           return (
             <div class:list={[
               'transition-transform duration-500',
-              isShifted ? 'lg:translate-y-8 sm:translate-y-4' : '',
-              floatClass
+              isShifted ? 'lg:translate-y-8 sm:translate-y-4' : ''
             ]}>
               <a
                 href={url}
-                class="group relative flex flex-col justify-between rounded-2xl border border-border/80 bg-background/90 dark:bg-card/90 backdrop-blur-md p-6 sm:p-7 shadow-sm transition-all duration-300 hover:border-brand-500/60 hover:shadow-xl hover:shadow-brand-500/10 hover:-translate-y-1.5 overflow-hidden min-h-[175px]"
+                class="project-card-float group relative flex flex-col justify-between rounded-2xl border border-border/80 bg-background/90 dark:bg-card/90 backdrop-blur-md p-6 sm:p-7 shadow-sm transition-all duration-300 hover:border-brand-500/60 hover:shadow-xl hover:shadow-brand-500/10 overflow-hidden min-h-[175px]"
+                style={`animation-delay: -${floatDelay}s; animation-duration: ${floatDuration}s;`}
                 data-reveal
                 data-reveal-delay={(index % 4 || undefined)?.toString()}
               >
@@ -602,22 +603,17 @@ const basedInDisplay = `${city ?? 'Your City'}${country ? `, ${country}` : ''}`;
       animation: hp-hero-marquee-fade 0.6s ease-out 1.2s backwards;
     }
 
-    .project-float-a {
-      animation: projectFloat 6.5s ease-in-out infinite;
-    }
-    .project-float-b {
-      animation: projectFloat 7.5s ease-in-out 1.2s infinite;
-    }
-    .project-float-c {
-      animation: projectFloat 8.2s ease-in-out 2.5s infinite;
+    .project-card-float {
+      will-change: transform;
+      animation: projectCardFloat 4.5s ease-in-out infinite;
     }
 
-    @keyframes projectFloat {
+    @keyframes projectCardFloat {
       0%, 100% {
-        transform: translateY(0);
+        transform: translateY(0px);
       }
       50% {
-        transform: translateY(-8px);
+        transform: translateY(-12px);
       }
     }
   }
