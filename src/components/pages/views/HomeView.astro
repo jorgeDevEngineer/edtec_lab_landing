@@ -305,12 +305,12 @@ const basedInDisplay = `${city ?? 'Your City'}${country ? `, ${country}` : ''}`;
     </div>
   </section>
 
-  <!-- Proyectos: Teaser Showcase Flotante en Zigzag -->
+  <!-- Proyectos: Carrusel Continuo Flotante en Zigzag -->
   <section id="work" class="relative z-10 py-[var(--space-section-md)] bg-background-secondary border-t border-border overflow-hidden">
     <!-- Partículas sutiles de fondo con trayectoria coseno -->
-    <HeroCosineParticles count={16} class="opacity-60" />
+    <HeroCosineParticles count={18} class="opacity-60" />
 
-    <div class="relative z-10 mx-auto max-w-6xl px-6 flex flex-col gap-12 sm:gap-16">
+    <div class="relative z-10 mx-auto max-w-6xl px-6 flex flex-col gap-10">
       <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-6" data-reveal>
         <div class="flex flex-col gap-3">
           <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-semibold bg-brand-500/10 text-brand-600 dark:text-brand-400 border border-brand-500/20 w-fit">
@@ -335,58 +335,64 @@ const basedInDisplay = `${city ?? 'Your City'}${country ? `, ${country}` : ''}`;
           </a>
         </div>
       </div>
+    </div>
 
-      <!-- Showcase en Zigzag Flotante -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 pt-4 pb-8">
-        {projectItems.map((project, index) => {
-          const url = getProjectUrl(project.id, locale);
-          const icon = project.data.icon || 'sparkles';
-          const primaryTag = project.data.tags?.[0] || 'EDTEC Lab';
-          
-          // Efecto zigzag vertical en desktop: columnas pares se desfasan
-          const isShifted = index % 2 === 1;
-          const floatDelay = ((index * 0.7) % 3.5).toFixed(1);
-          const floatDuration = (4.2 + (index % 3) * 0.8).toFixed(1);
+    <!-- Carrusel en una sola fila con desplazamiento continuo infinito -->
+    <div class="relative z-10 w-full mt-6 projects-marquee-container" data-reveal>
+      <div class="projects-marquee-track">
+        {/* Renderizamos la lista dos veces consecutivas para crear el bucle infinito 100% fluido */}
+        {[0, 1].map((copyIndex) => (
+          <div class="projects-marquee-group flex items-center gap-6 sm:gap-8 shrink-0 py-8 px-4" aria-hidden={copyIndex === 1 ? 'true' : undefined}>
+            {projectItems.map((project, index) => {
+              const url = getProjectUrl(project.id, locale);
+              const icon = project.data.icon || 'sparkles';
+              const primaryTag = project.data.tags?.[0] || 'EDTEC Lab';
+              
+              // Zigzag vertical: alternamos arriba / abajo entre tarjetas contiguas
+              const isShifted = index % 2 === 1;
+              const floatDelay = ((index * 0.7) % 3.5).toFixed(1);
+              const floatDuration = (4.2 + (index % 3) * 0.8).toFixed(1);
 
-          return (
-            <div class:list={[
-              'transition-transform duration-500',
-              isShifted ? 'lg:translate-y-8 sm:translate-y-4' : ''
-            ]}>
-              <a
-                href={url}
-                class="project-card-float group relative flex flex-col justify-between rounded-2xl border border-border/80 bg-background/90 dark:bg-card/90 backdrop-blur-md p-6 sm:p-7 shadow-sm transition-all duration-300 hover:border-brand-500/60 hover:shadow-xl hover:shadow-brand-500/10 overflow-hidden min-h-[175px]"
-                style={`animation-delay: -${floatDelay}s; animation-duration: ${floatDuration}s;`}
-                data-reveal
-                data-reveal-delay={(index % 4 || undefined)?.toString()}
-              >
-                <!-- Brillo sutil de fondo en hover -->
-                <div class="pointer-events-none absolute -right-16 -top-16 h-36 w-36 rounded-full bg-brand-500/10 blur-2xl transition-opacity duration-300 opacity-0 group-hover:opacity-100" aria-hidden="true" />
+              return (
+                <div class:list={[
+                  'shrink-0 w-[290px] sm:w-[330px] transition-transform duration-500',
+                  isShifted ? 'translate-y-4 sm:translate-y-6' : '-translate-y-2'
+                ]}>
+                  <a
+                    href={url}
+                    tabindex={copyIndex === 1 ? -1 : undefined}
+                    class="project-card-float group relative flex flex-col justify-between rounded-2xl border border-border/80 bg-background/90 dark:bg-card/90 backdrop-blur-md p-6 sm:p-7 shadow-sm transition-all duration-300 hover:border-brand-500/60 hover:shadow-xl hover:shadow-brand-500/10 overflow-hidden min-h-[175px]"
+                    style={`animation-delay: -${floatDelay}s; animation-duration: ${floatDuration}s;`}
+                  >
+                    <!-- Brillo sutil de fondo en hover -->
+                    <div class="pointer-events-none absolute -right-16 -top-16 h-36 w-36 rounded-full bg-brand-500/10 blur-2xl transition-opacity duration-300 opacity-0 group-hover:opacity-100" aria-hidden="true" />
 
-                <!-- Cabecera de la Card: Icono y Botón Flecha -->
-                <div class="flex items-center justify-between gap-4">
-                  <div class="w-12 h-12 rounded-xl bg-brand-500/10 text-brand-500 flex items-center justify-center transition-transform duration-300 group-hover:scale-110 group-hover:bg-brand-500 group-hover:text-white shadow-xs">
-                    <Icon name={icon} size="md" />
-                  </div>
+                    <!-- Cabecera de la Card: Icono y Botón Flecha -->
+                    <div class="flex items-center justify-between gap-4">
+                      <div class="w-12 h-12 rounded-xl bg-brand-500/10 text-brand-500 flex items-center justify-center transition-transform duration-300 group-hover:scale-110 group-hover:bg-brand-500 group-hover:text-white shadow-xs">
+                        <Icon name={icon} size="md" />
+                      </div>
 
-                  <span class="w-8 h-8 rounded-full border border-border flex items-center justify-center text-foreground-muted transition-all duration-300 group-hover:bg-brand-500 group-hover:text-white group-hover:border-brand-500 group-hover:rotate-45 shrink-0">
-                    <Icon name="arrow-up-right" size="xs" />
-                  </span>
+                      <span class="w-8 h-8 rounded-full border border-border flex items-center justify-center text-foreground-muted transition-all duration-300 group-hover:bg-brand-500 group-hover:text-white group-hover:border-brand-500 group-hover:rotate-45 shrink-0">
+                        <Icon name="arrow-up-right" size="xs" />
+                      </span>
+                    </div>
+
+                    <!-- Parte inferior de la Card: Tag y Título del Proyecto -->
+                    <div class="flex flex-col gap-1.5 mt-6">
+                      <span class="text-xs font-semibold uppercase tracking-wider text-brand-600 dark:text-brand-400">
+                        {primaryTag}
+                      </span>
+                      <h3 class="font-display text-lg sm:text-xl font-bold text-foreground group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors truncate">
+                        {project.data.title}
+                      </h3>
+                    </div>
+                  </a>
                 </div>
-
-                <!-- Parte inferior de la Card: Tag y Título del Proyecto -->
-                <div class="flex flex-col gap-1.5 mt-6">
-                  <span class="text-xs font-semibold uppercase tracking-wider text-brand-600 dark:text-brand-400">
-                    {primaryTag}
-                  </span>
-                  <h3 class="font-display text-xl sm:text-2xl font-bold text-foreground group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">
-                    {project.data.title}
-                  </h3>
-                </div>
-              </a>
-            </div>
-          );
-        })}
+              );
+            })}
+          </div>
+        ))}
       </div>
     </div>
   </section>
@@ -615,6 +621,47 @@ const basedInDisplay = `${city ?? 'Your City'}${country ? `, ${country}` : ''}`;
       50% {
         transform: translateY(-12px);
       }
+    }
+  }
+
+  /* Projects Infinite Marquee Carousel */
+  .projects-marquee-container {
+    overflow-x: clip;
+    overflow-y: visible;
+    mask-image: linear-gradient(to right, transparent 0%, #000 6%, #000 94%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 6%, #000 94%, transparent 100%);
+  }
+
+  .projects-marquee-track {
+    display: flex;
+    width: max-content;
+    will-change: transform;
+    animation: projects-scroll 48s linear infinite;
+  }
+
+  @media (hover: hover) {
+    .projects-marquee-container:hover .projects-marquee-track {
+      animation-play-state: paused;
+    }
+  }
+
+  @keyframes projects-scroll {
+    from {
+      transform: translate3d(0, 0, 0);
+    }
+    to {
+      transform: translate3d(-50%, 0, 0);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .projects-marquee-track {
+      animation: none !important;
+    }
+    .projects-marquee-container {
+      overflow-x: auto;
+      mask-image: none;
+      -webkit-mask-image: none;
     }
   }
 </style>
