@@ -181,8 +181,12 @@ const basedInDisplay = `${city ?? 'Your City'}${country ? `, ${country}` : ''}`;
       </span>
       <span class="text-brand-500 [-webkit-text-fill-color:var(--color-brand-500)] hidden sm:inline">
         <TypingEffect words={hero.typingWords} />
-      </span><br class="hidden sm:inline" />{' '}
-      <span class="text-brand-600 dark:text-foreground [-webkit-text-fill-color:currentColor]">{hero.titleLine3}</span>
+      </span>{hero.titleLine3 && (
+        <>
+          <br class="hidden sm:inline" />{' '}
+          <span class="text-brand-600 dark:text-foreground [-webkit-text-fill-color:currentColor]">{hero.titleLine3}</span>
+        </>
+      )}
     </h1>
 
     <p slot="description" class="!text-balance max-w-2xl mx-auto text-base sm:text-lg">
