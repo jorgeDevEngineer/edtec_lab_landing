@@ -9,13 +9,15 @@
 interface Props {
   count?: number;
   class?: string;
+  static?: boolean;
 }
 
-const { count = 22, class: className } = Astro.props;
+const { count = 22, class: className, static: isStatic = false } = Astro.props;
 
 // Generar parámetros únicos por partícula para variar posición vertical, tamaño, opacidad, velocidad y desfase.
 const particles = Array.from({ length: count }, (_, i) => {
   const top = (i * 4.3 + (i % 5) * 3) % 92 + 4; // Entre 4% y 96%
+  const left = (i * 7.9 + (i % 7) * 5.3) % 94 + 3; // Entre 3% y 97% para posición estática
   const size = ((i % 4) + 1.8) * 1.5; // Entre 2.7px y 7.2px
   const duration = 20 + ((i * 7) % 18); // Duración lenta entre 20s y 37s
   const delay = -((i * 4.7) % 25); // Desfase negativo para que el campo esté poblado inmediatamente
@@ -26,6 +28,7 @@ const particles = Array.from({ length: count }, (_, i) => {
   return {
     id: i,
     top,
+    left,
     size,
     duration,
     delay,
@@ -39,11 +42,11 @@ const particles = Array.from({ length: count }, (_, i) => {
 <div class:list={['hero-cosine-particles pointer-events-none absolute inset-0 overflow-hidden z-0', className]} aria-hidden="true">
   {particles.map((p) => (
     <div
-      class="particle-track absolute w-full"
-      style={`top: ${p.top}%;`}
+      class="particle-track absolute"
+      style={isStatic ? `top: ${p.top}%; left: ${p.left}%; width: auto;` : `top: ${p.top}%; left: 0; width: 100%;`}
     >
       <span
-        class="particle-item block rounded-full"
+        class:list={['particle-item block rounded-full', isStatic && 'particle-static']}
         style={`
           --travel-duration: ${p.duration}s;
           --travel-delay: ${p.delay}s;
@@ -70,6 +73,13 @@ const particles = Array.from({ length: count }, (_, i) => {
     will-change: transform, opacity;
     animation: moveCosineRL var(--travel-duration) linear infinite;
     animation-delay: var(--travel-delay);
+  }
+
+  .particle-item.particle-static {
+    animation: none !important;
+    opacity: var(--particle-opacity) !important;
+    transform: none !important;
+    will-change: auto !important;
   }
 
   /* Movimiento de derecha a izquierda describiendo un coseno alargado suave:

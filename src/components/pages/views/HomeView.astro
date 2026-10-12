@@ -307,8 +307,8 @@ const basedInDisplay = `${city ?? 'Your City'}${country ? `, ${country}` : ''}`;
 
   <!-- Proyectos: Carrusel Continuo Flotante en Zigzag -->
   <section id="work" class="relative z-10 py-[var(--space-section-md)] bg-background-secondary border-t border-border overflow-hidden">
-    <!-- Partículas sutiles de fondo con trayectoria coseno -->
-    <HeroCosineParticles count={18} class="opacity-60" />
+    <!-- Partículas fijas sutiles de fondo (estáticas para no competir con el movimiento de los proyectos) -->
+    <HeroCosineParticles count={18} static={true} class="opacity-60" />
 
     <div class="relative z-10 mx-auto max-w-6xl px-6 flex flex-col gap-10">
       <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-6" data-reveal>
