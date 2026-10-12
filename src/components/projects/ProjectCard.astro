@@ -55,12 +55,8 @@ const isFeatured = variant === 'featured';
   <!-- Interactive background subtle glow on hover -->
   <div class="pointer-events-none absolute -right-20 -top-20 h-48 w-48 rounded-full bg-brand-500/10 blur-3xl transition-opacity duration-500 opacity-0 group-hover:opacity-100 dark:bg-brand-500/20" aria-hidden="true" />
 
-  <div class:list={[
-    'flex flex-1 flex-col p-6 sm:p-8',
-    isFeatured ? 'md:flex-row md:items-center md:gap-8 justify-between' : ''
-  ]}>
-    {/* Left/Main Column */}
-    <div class:list={['flex flex-col flex-1', isFeatured ? 'max-w-2xl' : '']}>
+  <div class="flex flex-1 flex-col p-6 sm:p-8">
+    <div class="flex flex-col flex-1">
       <!-- Top header line: Year & Featured badge / arrow -->
       <div class="mb-4 flex items-center justify-between gap-4">
         <div class="flex items-center gap-2.5">
@@ -123,15 +119,5 @@ const isFeatured = variant === 'featured';
         </div>
       )}
     </div>
-
-    {/* Right action button on Featured card */}
-    {isFeatured && (
-      <div class="mt-6 md:mt-0 flex items-center justify-end shrink-0 pt-4 md:pt-0 border-t md:border-t-0 border-border">
-        <span class="inline-flex items-center gap-2 rounded-xl bg-brand-500 px-4 py-2.5 text-xs sm:text-sm font-semibold text-white shadow-md transition-all duration-300 group-hover:bg-brand-600 group-hover:shadow-brand-500/25 group-hover:shadow-lg">
-          Ver detalles del proyecto
-          <Icon name="arrow-right" size="xs" />
-        </span>
-      </div>
-    )}
   </div>
 </Card>
