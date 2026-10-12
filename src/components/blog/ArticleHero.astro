@@ -44,7 +44,7 @@ const locale = getLocaleFromPath(Astro.url.pathname);
 const readingTime = getReadingTime(body ?? description);
 ---
 
-<header class="article-hero relative isolate overflow-hidden pt-[var(--space-page-top-sm)] pb-[var(--space-section)]">
+<section class="article-hero relative isolate overflow-hidden pt-[var(--space-page-top-sm)] pb-[var(--space-section)]">
   <HeroGrid />
   <HeroBeam />
 
@@ -134,7 +134,7 @@ const readingTime = getReadingTime(body ?? description);
       ) : null}
     </div>
   )}
-</header>
+</section>
 
 <style>
   /* The hero grid/beam span the whole <header>, which on the blog post also
