@@ -156,7 +156,7 @@ if (commentsConfig?.enabled) {
             const stored = localStorage.getItem('theme');
             if (VALID_MODES.indexOf(stored) !== -1) return stored;
           } catch { /* private mode / disabled storage */ }
-          return 'dark';
+          return 'light';
         }
 
         function applyMode(el) {
