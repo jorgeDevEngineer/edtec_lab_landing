@@ -18,6 +18,8 @@ import ProofTile from '@/components/ui/data-display/ProofTile/ProofTile.astro';
 import { Hero } from '@/components/hero';
 import { Image } from 'astro:assets';
 import edtecTeamImg from '@/assets/about/edtec-team.jpg';
+import edtecComiteReunionImg from '@/assets/about/edtec-comite-reunion.jpg';
+import edtecCampusEquipoImg from '@/assets/about/edtec-campus-equipo.jpg';
 import comiteCiideaImg from '@/assets/about/comite-ciidea.jpg';
 import alianzasLogosImg from '@/assets/about/alianzas-logos.png';
 import { t, tData, defaultLocale } from '@/i18n';
@@ -68,6 +70,21 @@ const news = tData<{
   source: string;
   items: NewsArticle[];
 }>('pages.about.news', locale)!;
+
+const heroSlides = [
+  {
+    src: edtecTeamImg,
+    caption: 'Comité Técnico de EDTEC Lab y Jurado de la primera edición del concurso EDTEC 2026.',
+  },
+  {
+    src: edtecCampusEquipoImg,
+    caption: 'Equipo e investigadores de EDTEC Lab en el campus de la Universidad Católica Andrés Bello.',
+  },
+  {
+    src: edtecComiteReunionImg,
+    caption: 'Sesión de trabajo e integración interdisciplinaria del Comité Técnico de EDTEC Lab.',
+  },
+];
 ---
 <PageLayout
   title={t('pages.about.meta.title', locale)}
@@ -86,43 +103,70 @@ const news = tData<{
 
     <!-- Hero's default slot renders directly under the actions, inside the
          content column, which is `items-center text-center` on a centred
-         layout — so this needs no centring of its own.
-
-         Spacing is the same two-value scale the hero already runs on:
-         --space-section-md at the section edge, carried by the pb override
-         above, and --space-section-gap between the copy and the image.
-         --space-stack-lg is the block value and leaves an image this size
-         crowding the copy; a section-edge value above it would put a
-         boundary-scale gap inside a section.
-
-         The subtraction is why this is a calc rather than the token on its
-         own. Hero gives the description slot mb-[var(--space-stack-lg)],
-         because a row of buttons normally follows it. Nothing does here, so
-         that 32px stacks under the paragraph before this margin even starts,
-         and the token alone renders 80px at desktop and 64px on a phone
-         against the 48 and 32 it is meant to be. Taking --space-stack-lg back
-         off lands the total on the token at every width: 16 + 32 = 48 at
-         desktop, 0 + 32 = 32 on a phone. Delete the subtraction if the
-         paragraph ever gains buttons after it.
-
-         max-w-4xl also decides which of the two canvases renders, because
-         ProjectImageSVG switches on the image's own width rather than the
-         viewport's: 896px keeps the wide one, a phone's ~382px column takes
-         the tall one. -->
+         layout — so this needs no centring of its own. -->
     <div class="mt-[calc(var(--space-section-gap)_-_var(--space-stack-lg))] w-full max-w-4xl mx-auto">
-      <div class="relative overflow-hidden rounded-2xl border border-border shadow-2xl bg-card">
-        <Image
-          src={edtecTeamImg}
-          alt={t('pages.about.teamImageAlt', locale)}
-          widths={[640, 960, 1280]}
-          sizes="(max-width: 896px) 100vw, 896px"
-          class="w-full h-auto object-cover max-h-[520px]"
-          priority
-        />
-        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent flex items-end p-6 pointer-events-none">
-          <p class="text-white text-sm md:text-base font-medium drop-shadow-md">
-            Comunidad e Innovadores del Laboratorio de Tecnologías Emergentes para la Educación (EDTEC Lab UCAB)
-          </p>
+      <div
+        id="about-hero-carousel"
+        class="group relative overflow-hidden rounded-2xl border border-border shadow-2xl bg-card select-none"
+      >
+        <div class="relative aspect-[16/10] sm:aspect-[16/9] w-full overflow-hidden bg-zinc-900">
+          {heroSlides.map((slide, index) => (
+            <div
+              data-about-slide={index}
+              class:list={[
+                'absolute inset-0 transition-opacity duration-700 ease-in-out',
+                index === 0 ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none',
+              ]}
+            >
+              <Image
+                src={slide.src}
+                alt={t('pages.about.teamImageAlt', locale)}
+                widths={[640, 960, 1280]}
+                sizes="(max-width: 896px) 100vw, 896px"
+                class="w-full h-full object-cover object-center"
+                priority={index === 0}
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent flex items-end p-5 sm:p-7 pb-12 sm:pb-12 pointer-events-none">
+                <p class="text-white text-sm md:text-base font-medium drop-shadow-md text-left max-w-3xl">
+                  {slide.caption}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <!-- Controles Laterales (Anterior / Siguiente) -->
+        <button
+          type="button"
+          data-about-prev
+          aria-label={t('common.previous', locale)}
+          class="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-black/45 hover:bg-brand-500 text-white border border-white/20 backdrop-blur-md flex items-center justify-center transition-all shadow-lg cursor-pointer"
+        >
+          <Icon name="chevron-left" size="sm" />
+        </button>
+
+        <button
+          type="button"
+          data-about-next
+          aria-label={t('common.next', locale)}
+          class="absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-black/45 hover:bg-brand-500 text-white border border-white/20 backdrop-blur-md flex items-center justify-center transition-all shadow-lg cursor-pointer"
+        >
+          <Icon name="chevron-right" size="sm" />
+        </button>
+
+        <!-- Indicadores inferiores -->
+        <div class="absolute bottom-3.5 left-1/2 -translate-x-1/2 z-20 flex items-center gap-2 px-3 py-1.5 rounded-full bg-black/40 backdrop-blur-md border border-white/15">
+          {heroSlides.map((_, index) => (
+            <button
+              type="button"
+              data-about-dot={index}
+              aria-label={t('common.next', locale)}
+              class:list={[
+                'h-2 rounded-full transition-all duration-300 cursor-pointer',
+                index === 0 ? 'w-6 bg-brand-400' : 'w-2 bg-white/50 hover:bg-white/80',
+              ]}
+            />
+          ))}
         </div>
       </div>
     </div>
@@ -303,3 +347,84 @@ const news = tData<{
     transform: rotate(180deg);
   }
 </style>
+
+<script>
+  function initAboutHeroCarousel() {
+    const container = document.getElementById('about-hero-carousel');
+    if (!container) return;
+
+    const slides = container.querySelectorAll<HTMLElement>('[data-about-slide]');
+    const dots = container.querySelectorAll<HTMLElement>('[data-about-dot]');
+    const prevBtn = container.querySelector<HTMLElement>('[data-about-prev]');
+    const nextBtn = container.querySelector<HTMLElement>('[data-about-next]');
+
+    if (slides.length <= 1) return;
+
+    let current = 0;
+    let autoplayTimer: ReturnType<typeof setInterval> | null = null;
+
+    const showSlide = (nextIndex: number) => {
+      current = (nextIndex + slides.length) % slides.length;
+
+      slides.forEach((slide, idx) => {
+        if (idx === current) {
+          slide.classList.remove('opacity-0', 'z-0', 'pointer-events-none');
+          slide.classList.add('opacity-100', 'z-10');
+        } else {
+          slide.classList.remove('opacity-100', 'z-10');
+          slide.classList.add('opacity-0', 'z-0', 'pointer-events-none');
+        }
+      });
+
+      dots.forEach((dot, idx) => {
+        if (idx === current) {
+          dot.classList.remove('w-2', 'bg-white/50', 'hover:bg-white/80');
+          dot.classList.add('w-6', 'bg-brand-400');
+        } else {
+          dot.classList.remove('w-6', 'bg-brand-400');
+          dot.classList.add('w-2', 'bg-white/50', 'hover:bg-white/80');
+        }
+      });
+    };
+
+    const startAutoplay = () => {
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      stopAutoplay();
+      autoplayTimer = setInterval(() => {
+        showSlide(current + 1);
+      }, 6000);
+    };
+
+    const stopAutoplay = () => {
+      if (autoplayTimer) {
+        clearInterval(autoplayTimer);
+        autoplayTimer = null;
+      }
+    };
+
+    prevBtn?.addEventListener('click', () => {
+      showSlide(current - 1);
+      startAutoplay();
+    });
+
+    nextBtn?.addEventListener('click', () => {
+      showSlide(current + 1);
+      startAutoplay();
+    });
+
+    dots.forEach((dot, idx) => {
+      dot.addEventListener('click', () => {
+        showSlide(idx);
+        startAutoplay();
+      });
+    });
+
+    container.addEventListener('mouseenter', stopAutoplay);
+    container.addEventListener('mouseleave', startAutoplay);
+
+    startAutoplay();
+  }
+
+  initAboutHeroCarousel();
+  document.addEventListener('astro:after-swap', initAboutHeroCarousel);
+</script>
