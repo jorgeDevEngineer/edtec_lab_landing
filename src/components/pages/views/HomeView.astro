@@ -325,26 +325,7 @@ const basedInDisplay = `${city ?? 'Your City'}${country ? `, ${country}` : ''}`;
           </p>
         </div>
 
-        <div class="shrink-0 flex items-center gap-3">
-          <div class="flex items-center gap-2">
-            <button
-              type="button"
-              id="projects-scroll-prev"
-              aria-label={t(locale, 'common.previous')}
-              class="w-10 h-10 rounded-xl border border-border bg-background/80 dark:bg-card/80 backdrop-blur-sm flex items-center justify-center text-foreground hover:border-brand-500 hover:bg-brand-500 hover:text-white transition-all shadow-xs cursor-pointer"
-            >
-              <Icon name="chevron-left" size="sm" />
-            </button>
-            <button
-              type="button"
-              id="projects-scroll-next"
-              aria-label={t(locale, 'common.next')}
-              class="w-10 h-10 rounded-xl border border-border bg-background/80 dark:bg-card/80 backdrop-blur-sm flex items-center justify-center text-foreground hover:border-brand-500 hover:bg-brand-500 hover:text-white transition-all shadow-xs cursor-pointer"
-            >
-              <Icon name="chevron-right" size="sm" />
-            </button>
-          </div>
-
+        <div class="shrink-0">
           <a
             href={projectsUrl}
             class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-brand-500 text-white font-semibold text-sm hover:bg-brand-600 transition-all shadow-md hover:shadow-lg hover:shadow-brand-500/20"
@@ -363,7 +344,7 @@ const basedInDisplay = `${city ?? 'Your City'}${country ? `, ${country}` : ''}`;
         type="button"
         data-projects-prev
         aria-label={t(locale, 'common.previous')}
-        class="hidden md:flex absolute left-4 lg:left-8 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full border border-border/90 bg-background/95 dark:bg-card/95 backdrop-blur-md items-center justify-center text-foreground shadow-lg hover:border-brand-500 hover:bg-brand-500 hover:text-white transition-all duration-200 cursor-pointer"
+        class="flex absolute left-2 sm:left-4 lg:left-8 top-1/2 -translate-y-1/2 z-20 w-10 h-10 sm:w-11 sm:h-11 rounded-full border border-border/90 bg-background/95 dark:bg-card/95 backdrop-blur-md items-center justify-center text-foreground shadow-lg hover:border-brand-500 hover:bg-brand-500 hover:text-white transition-all duration-200 cursor-pointer"
       >
         <Icon name="chevron-left" size="md" />
       </button>
@@ -372,7 +353,7 @@ const basedInDisplay = `${city ?? 'Your City'}${country ? `, ${country}` : ''}`;
         type="button"
         data-projects-next
         aria-label={t(locale, 'common.next')}
-        class="hidden md:flex absolute right-4 lg:right-8 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full border border-border/90 bg-background/95 dark:bg-card/95 backdrop-blur-md items-center justify-center text-foreground shadow-lg hover:border-brand-500 hover:bg-brand-500 hover:text-white transition-all duration-200 cursor-pointer"
+        class="flex absolute right-2 sm:right-4 lg:right-8 top-1/2 -translate-y-1/2 z-20 w-10 h-10 sm:w-11 sm:h-11 rounded-full border border-border/90 bg-background/95 dark:bg-card/95 backdrop-blur-md items-center justify-center text-foreground shadow-lg hover:border-brand-500 hover:bg-brand-500 hover:text-white transition-all duration-200 cursor-pointer"
       >
         <Icon name="chevron-right" size="md" />
       </button>
@@ -670,7 +651,6 @@ const basedInDisplay = `${city ?? 'Your City'}${country ? `, ${country}` : ''}`;
     overflow-y: visible;
     scrollbar-width: none;
     -ms-overflow-style: none;
-    scroll-behavior: smooth;
     mask-image: linear-gradient(to right, transparent 0%, #000 6%, #000 94%, transparent 100%);
     -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 6%, #000 94%, transparent 100%);
   }
@@ -682,39 +662,6 @@ const basedInDisplay = `${city ?? 'Your City'}${country ? `, ${country}` : ''}`;
   .projects-marquee-track {
     display: flex;
     width: max-content;
-    will-change: transform;
-    animation: projects-scroll 48s linear infinite;
-  }
-
-  .projects-marquee-track.is-manual {
-    animation: none !important;
-    transform: none !important;
-  }
-
-  @media (hover: hover) {
-    .projects-marquee-container:hover .projects-marquee-track {
-      animation-play-state: paused;
-    }
-  }
-
-  @keyframes projects-scroll {
-    from {
-      transform: translate3d(0, 0, 0);
-    }
-    to {
-      transform: translate3d(-50%, 0, 0);
-    }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .projects-marquee-track {
-      animation: none !important;
-    }
-    .projects-marquee-container {
-      overflow-x: auto;
-      mask-image: none;
-      -webkit-mask-image: none;
-    }
   }
 </style>
 
@@ -723,48 +670,87 @@ const basedInDisplay = `${city ?? 'Your City'}${country ? `, ${country}` : ''}`;
     const viewport = document.getElementById('projects-marquee-viewport');
     if (!viewport) return;
 
-    const track = viewport.querySelector('.projects-marquee-track') as HTMLElement | null;
-    const prevBtns = document.querySelectorAll('#projects-scroll-prev, [data-projects-prev]');
-    const nextBtns = document.querySelectorAll('#projects-scroll-next, [data-projects-next]');
+    const wrapper = viewport.closest('.group\\/carousel') || viewport.parentElement;
+    const prevBtn = wrapper?.querySelector<HTMLElement>('[data-projects-prev]');
+    const nextBtn = wrapper?.querySelector<HTMLElement>('[data-projects-next]');
 
-    const syncManualScrollMode = () => {
-      if (!track || track.classList.contains('is-manual')) return;
-      const style = window.getComputedStyle(track);
-      const matrix = new DOMMatrixReadOnly(style.transform);
-      const currentOffset = Math.abs(matrix.m41);
-      track.classList.add('is-manual');
-      if (currentOffset > 0) {
-        viewport.scrollLeft = currentOffset;
+    let isHovered = false;
+    let isStepping = false;
+    let stepTimeout: ReturnType<typeof setTimeout> | null = null;
+    let rafId: number | null = null;
+    let accum = viewport.scrollLeft;
+
+    const normalizeScroll = () => {
+      const halfWidth = viewport.scrollWidth / 2;
+      if (halfWidth <= 0) return;
+      if (viewport.scrollLeft >= halfWidth) {
+        viewport.scrollLeft -= halfWidth;
+        accum = viewport.scrollLeft;
+      } else if (viewport.scrollLeft <= 0) {
+        viewport.scrollLeft += halfWidth;
+        accum = viewport.scrollLeft;
       }
     };
 
-    const scrollStep = 350;
-
-    prevBtns.forEach((btn) => {
-      btn.addEventListener('click', () => {
-        syncManualScrollMode();
+    const tick = () => {
+      if (!isHovered && !isStepping) {
         const halfWidth = viewport.scrollWidth / 2;
-        if (viewport.scrollLeft <= 10 && halfWidth > 0) {
-          viewport.style.scrollBehavior = 'auto';
+        if (halfWidth > 0) {
+          accum += 0.65;
+          if (accum >= halfWidth) {
+            accum -= halfWidth;
+          }
+          viewport.scrollLeft = accum;
+        }
+      } else {
+        accum = viewport.scrollLeft;
+      }
+      rafId = requestAnimationFrame(tick);
+    };
+
+    const triggerStep = (direction: 1 | -1) => {
+      const halfWidth = viewport.scrollWidth / 2;
+      if (halfWidth > 0) {
+        if (direction === -1 && viewport.scrollLeft <= 360) {
           viewport.scrollLeft += halfWidth;
-          viewport.style.scrollBehavior = 'smooth';
+        } else if (direction === 1 && viewport.scrollLeft >= halfWidth) {
+          viewport.scrollLeft -= halfWidth;
         }
-        viewport.scrollBy({ left: -scrollStep, behavior: 'smooth' });
-      });
+      }
+
+      isStepping = true;
+      if (stepTimeout) clearTimeout(stepTimeout);
+
+      viewport.scrollBy({ left: direction * 340, behavior: 'smooth' });
+
+      stepTimeout = setTimeout(() => {
+        normalizeScroll();
+        accum = viewport.scrollLeft;
+        isStepping = false;
+      }, 520);
+    };
+
+    prevBtn?.addEventListener('click', () => {
+      triggerStep(-1);
+      prevBtn.blur();
     });
 
-    nextBtns.forEach((btn) => {
-      btn.addEventListener('click', () => {
-        syncManualScrollMode();
-        const halfWidth = viewport.scrollWidth / 2;
-        if (viewport.scrollLeft >= halfWidth && halfWidth > 0) {
-          viewport.style.scrollBehavior = 'auto';
-          viewport.scrollLeft -= halfWidth;
-          viewport.style.scrollBehavior = 'smooth';
-        }
-        viewport.scrollBy({ left: scrollStep, behavior: 'smooth' });
-      });
+    nextBtn?.addEventListener('click', () => {
+      triggerStep(1);
+      nextBtn.blur();
     });
+
+    wrapper?.addEventListener('mouseenter', () => {
+      isHovered = true;
+    });
+
+    wrapper?.addEventListener('mouseleave', () => {
+      isHovered = false;
+      accum = viewport.scrollLeft;
+    });
+
+    if (rafId) cancelAnimationFrame(rafId);
+    rafId = requestAnimationFrame(tick);
   }
 
   initProjectsCarouselArrows();
