@@ -325,7 +325,26 @@ const basedInDisplay = `${city ?? 'Your City'}${country ? `, ${country}` : ''}`;
           </p>
         </div>
 
-        <div class="shrink-0">
+        <div class="shrink-0 flex items-center gap-3">
+          <div class="flex items-center gap-2">
+            <button
+              type="button"
+              id="projects-scroll-prev"
+              aria-label={t(locale, 'common.previous')}
+              class="w-10 h-10 rounded-xl border border-border bg-background/80 dark:bg-card/80 backdrop-blur-sm flex items-center justify-center text-foreground hover:border-brand-500 hover:bg-brand-500 hover:text-white transition-all shadow-xs cursor-pointer"
+            >
+              <Icon name="chevron-left" size="sm" />
+            </button>
+            <button
+              type="button"
+              id="projects-scroll-next"
+              aria-label={t(locale, 'common.next')}
+              class="w-10 h-10 rounded-xl border border-border bg-background/80 dark:bg-card/80 backdrop-blur-sm flex items-center justify-center text-foreground hover:border-brand-500 hover:bg-brand-500 hover:text-white transition-all shadow-xs cursor-pointer"
+            >
+              <Icon name="chevron-right" size="sm" />
+            </button>
+          </div>
+
           <a
             href={projectsUrl}
             class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-brand-500 text-white font-semibold text-sm hover:bg-brand-600 transition-all shadow-md hover:shadow-lg hover:shadow-brand-500/20"
@@ -337,62 +356,83 @@ const basedInDisplay = `${city ?? 'Your City'}${country ? `, ${country}` : ''}`;
       </div>
     </div>
 
-    <!-- Carrusel en una sola fila con desplazamiento continuo infinito -->
-    <div class="relative z-10 w-full mt-6 projects-marquee-container" data-reveal>
-      <div class="projects-marquee-track">
-        {/* Renderizamos la lista dos veces consecutivas para crear el bucle infinito 100% fluido */}
-        {[0, 1].map((copyIndex) => (
-          <div class="projects-marquee-group flex items-center gap-6 sm:gap-8 shrink-0 py-8 px-4" aria-hidden={copyIndex === 1 ? 'true' : undefined}>
-            {projectItems.map((project, index) => {
-              const url = getProjectUrl(project.id, locale);
-              const icon = project.data.icon || 'sparkles';
-              const primaryTag = project.data.tags?.[0] || 'EDTEC Lab';
-              
-              // Zigzag vertical: alternamos arriba / abajo entre tarjetas contiguas
-              const isShifted = index % 2 === 1;
-              const floatDelay = ((index * 0.7) % 3.5).toFixed(1);
-              const floatDuration = (4.2 + (index % 3) * 0.8).toFixed(1);
+    <!-- Carrusel en una sola fila con desplazamiento continuo infinito y flechas interactivas -->
+    <div class="relative z-10 w-full mt-6 group/carousel" data-reveal>
+      <!-- Flechas laterales flotantes sobre el carrusel -->
+      <button
+        type="button"
+        data-projects-prev
+        aria-label={t(locale, 'common.previous')}
+        class="hidden md:flex absolute left-4 lg:left-8 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full border border-border/90 bg-background/95 dark:bg-card/95 backdrop-blur-md items-center justify-center text-foreground shadow-lg hover:border-brand-500 hover:bg-brand-500 hover:text-white transition-all duration-200 cursor-pointer"
+      >
+        <Icon name="chevron-left" size="md" />
+      </button>
 
-              return (
-                <div class:list={[
-                  'shrink-0 w-[290px] sm:w-[330px] transition-transform duration-500',
-                  isShifted ? 'translate-y-4 sm:translate-y-6' : '-translate-y-2'
-                ]}>
-                  <a
-                    href={url}
-                    tabindex={copyIndex === 1 ? -1 : undefined}
-                    class="project-card-float group relative flex flex-col justify-between rounded-2xl border border-border/80 bg-background/90 dark:bg-card/90 backdrop-blur-md p-6 sm:p-7 shadow-sm transition-all duration-300 hover:border-brand-500/60 hover:shadow-xl hover:shadow-brand-500/10 overflow-hidden min-h-[175px]"
-                    style={`animation-delay: -${floatDelay}s; animation-duration: ${floatDuration}s;`}
-                  >
-                    <!-- Brillo sutil de fondo en hover -->
-                    <div class="pointer-events-none absolute -right-16 -top-16 h-36 w-36 rounded-full bg-brand-500/10 blur-2xl transition-opacity duration-300 opacity-0 group-hover:opacity-100" aria-hidden="true" />
+      <button
+        type="button"
+        data-projects-next
+        aria-label={t(locale, 'common.next')}
+        class="hidden md:flex absolute right-4 lg:right-8 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full border border-border/90 bg-background/95 dark:bg-card/95 backdrop-blur-md items-center justify-center text-foreground shadow-lg hover:border-brand-500 hover:bg-brand-500 hover:text-white transition-all duration-200 cursor-pointer"
+      >
+        <Icon name="chevron-right" size="md" />
+      </button>
 
-                    <!-- Cabecera de la Card: Icono y Botón Flecha -->
-                    <div class="flex items-center justify-between gap-4">
-                      <div class="w-12 h-12 rounded-xl bg-brand-500/10 text-brand-500 flex items-center justify-center transition-transform duration-300 group-hover:scale-110 group-hover:bg-brand-500 group-hover:text-white shadow-xs">
-                        <Icon name={icon} size="md" />
+      <div id="projects-marquee-viewport" class="projects-marquee-container">
+        <div class="projects-marquee-track">
+          {/* Renderizamos la lista dos veces consecutivas para crear el bucle infinito 100% fluido */}
+          {[0, 1].map((copyIndex) => (
+            <div class="projects-marquee-group flex items-center gap-6 sm:gap-8 shrink-0 py-8 px-4" aria-hidden={copyIndex === 1 ? 'true' : undefined}>
+              {projectItems.map((project, index) => {
+                const url = getProjectUrl(project.id, locale);
+                const icon = project.data.icon || 'sparkles';
+                const primaryTag = project.data.tags?.[0] || 'EDTEC Lab';
+                
+                // Zigzag vertical: alternamos arriba / abajo entre tarjetas contiguas
+                const isShifted = index % 2 === 1;
+                const floatDelay = ((index * 0.7) % 3.5).toFixed(1);
+                const floatDuration = (4.2 + (index % 3) * 0.8).toFixed(1);
+
+                return (
+                  <div class:list={[
+                    'shrink-0 w-[290px] sm:w-[330px] transition-transform duration-500',
+                    isShifted ? 'translate-y-4 sm:translate-y-6' : '-translate-y-2'
+                  ]}>
+                    <a
+                      href={url}
+                      tabindex={copyIndex === 1 ? -1 : undefined}
+                      class="project-card-float group relative flex flex-col justify-between rounded-2xl border border-border/80 bg-background/90 dark:bg-card/90 backdrop-blur-md p-6 sm:p-7 shadow-sm transition-all duration-300 hover:border-brand-500/60 hover:shadow-xl hover:shadow-brand-500/10 overflow-hidden min-h-[175px]"
+                      style={`animation-delay: -${floatDelay}s; animation-duration: ${floatDuration}s;`}
+                    >
+                      <!-- Brillo sutil de fondo en hover -->
+                      <div class="pointer-events-none absolute -right-16 -top-16 h-36 w-36 rounded-full bg-brand-500/10 blur-2xl transition-opacity duration-300 opacity-0 group-hover:opacity-100" aria-hidden="true" />
+
+                      <!-- Cabecera de la Card: Icono y Botón Flecha -->
+                      <div class="flex items-center justify-between gap-4">
+                        <div class="w-12 h-12 rounded-xl bg-brand-500/10 text-brand-500 flex items-center justify-center transition-transform duration-300 group-hover:scale-110 group-hover:bg-brand-500 group-hover:text-white shadow-xs">
+                          <Icon name={icon} size="md" />
+                        </div>
+
+                        <span class="w-8 h-8 rounded-full border border-border flex items-center justify-center text-foreground-muted transition-all duration-300 group-hover:bg-brand-500 group-hover:text-white group-hover:border-brand-500 group-hover:rotate-45 shrink-0">
+                          <Icon name="arrow-up-right" size="xs" />
+                        </span>
                       </div>
 
-                      <span class="w-8 h-8 rounded-full border border-border flex items-center justify-center text-foreground-muted transition-all duration-300 group-hover:bg-brand-500 group-hover:text-white group-hover:border-brand-500 group-hover:rotate-45 shrink-0">
-                        <Icon name="arrow-up-right" size="xs" />
-                      </span>
-                    </div>
-
-                    <!-- Parte inferior de la Card: Tag y Título del Proyecto -->
-                    <div class="flex flex-col gap-1.5 mt-6">
-                      <span class="text-xs font-semibold uppercase tracking-wider text-brand-600 dark:text-brand-400">
-                        {primaryTag}
-                      </span>
-                      <h3 class="font-display text-lg sm:text-xl font-bold text-foreground group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors truncate">
-                        {project.data.title}
-                      </h3>
-                    </div>
-                  </a>
-                </div>
-              );
-            })}
-          </div>
-        ))}
+                      <!-- Parte inferior de la Card: Tag y Título del Proyecto -->
+                      <div class="flex flex-col gap-1.5 mt-6">
+                        <span class="text-xs font-semibold uppercase tracking-wider text-brand-600 dark:text-brand-400">
+                          {primaryTag}
+                        </span>
+                        <h3 class="font-display text-lg sm:text-xl font-bold text-foreground group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors truncate">
+                          {project.data.title}
+                        </h3>
+                      </div>
+                    </a>
+                  </div>
+                );
+              })}
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   </section>
@@ -426,7 +466,7 @@ const basedInDisplay = `${city ?? 'Your City'}${country ? `, ${country}` : ''}`;
           </div>
           <h3 class="font-display text-xl font-bold text-foreground">Unidades Aliadas</h3>
           <p class="text-foreground-muted leading-relaxed">
-            Adicionalmente, según la naturaleza de cada proyecto, se integran unidades aliadas como el Centro de Innovación y Emprendimiento, el Centro de Investigación y Desarrollo de Ingeniería, el Centro de Estudios en Línea, la Dirección de Transferencia, las Academias, entre otras.
+            Adicionalmente, según la naturaleza de cada proyecto, se integran unidades aliadas como el Centro de Innovación y Emprendimiento, el Centro de Investigación y Desarrollo de Ingeniería, el Centro de Estudios en Línea, la Dirección de Tecnología e Información (DTI), la Dirección de Transferencia, las Academias, entre otras.
           </p>
         </div>
       </div>
@@ -626,10 +666,17 @@ const basedInDisplay = `${city ?? 'Your City'}${country ? `, ${country}` : ''}`;
 
   /* Projects Infinite Marquee Carousel */
   .projects-marquee-container {
-    overflow-x: clip;
+    overflow-x: auto;
     overflow-y: visible;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    scroll-behavior: smooth;
     mask-image: linear-gradient(to right, transparent 0%, #000 6%, #000 94%, transparent 100%);
     -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 6%, #000 94%, transparent 100%);
+  }
+
+  .projects-marquee-container::-webkit-scrollbar {
+    display: none;
   }
 
   .projects-marquee-track {
@@ -637,6 +684,11 @@ const basedInDisplay = `${city ?? 'Your City'}${country ? `, ${country}` : ''}`;
     width: max-content;
     will-change: transform;
     animation: projects-scroll 48s linear infinite;
+  }
+
+  .projects-marquee-track.is-manual {
+    animation: none !important;
+    transform: none !important;
   }
 
   @media (hover: hover) {
@@ -665,5 +717,58 @@ const basedInDisplay = `${city ?? 'Your City'}${country ? `, ${country}` : ''}`;
     }
   }
 </style>
+
+<script>
+  function initProjectsCarouselArrows() {
+    const viewport = document.getElementById('projects-marquee-viewport');
+    if (!viewport) return;
+
+    const track = viewport.querySelector('.projects-marquee-track') as HTMLElement | null;
+    const prevBtns = document.querySelectorAll('#projects-scroll-prev, [data-projects-prev]');
+    const nextBtns = document.querySelectorAll('#projects-scroll-next, [data-projects-next]');
+
+    const syncManualScrollMode = () => {
+      if (!track || track.classList.contains('is-manual')) return;
+      const style = window.getComputedStyle(track);
+      const matrix = new DOMMatrixReadOnly(style.transform);
+      const currentOffset = Math.abs(matrix.m41);
+      track.classList.add('is-manual');
+      if (currentOffset > 0) {
+        viewport.scrollLeft = currentOffset;
+      }
+    };
+
+    const scrollStep = 350;
+
+    prevBtns.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        syncManualScrollMode();
+        const halfWidth = viewport.scrollWidth / 2;
+        if (viewport.scrollLeft <= 10 && halfWidth > 0) {
+          viewport.style.scrollBehavior = 'auto';
+          viewport.scrollLeft += halfWidth;
+          viewport.style.scrollBehavior = 'smooth';
+        }
+        viewport.scrollBy({ left: -scrollStep, behavior: 'smooth' });
+      });
+    });
+
+    nextBtns.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        syncManualScrollMode();
+        const halfWidth = viewport.scrollWidth / 2;
+        if (viewport.scrollLeft >= halfWidth && halfWidth > 0) {
+          viewport.style.scrollBehavior = 'auto';
+          viewport.scrollLeft -= halfWidth;
+          viewport.style.scrollBehavior = 'smooth';
+        }
+        viewport.scrollBy({ left: scrollStep, behavior: 'smooth' });
+      });
+    });
+  }
+
+  initProjectsCarouselArrows();
+  document.addEventListener('astro:after-swap', initProjectsCarouselArrows);
+</script>
 
 </LandingLayout>
