@@ -360,7 +360,7 @@ const siteConfig: SiteConfig = {
   },
   projects: {
     perPage: 12,
-    tagCloudLimit: 10,
+    tagCloudLimit: 25,
   },
   i18n: i18nConfig,
   branding: {
