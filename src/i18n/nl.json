@@ -289,6 +289,11 @@
             "icon": "layers",
             "title": "Faculteit Ingenieurswetenschappen",
             "description": "Inbreng van toptalent in softwareontwikkeling, virtual reality, simulatie, kunstmatige intelligentie en hardware."
+          },
+          {
+            "icon": "globe",
+            "title": "CEL",
+            "description": "Centrum voor Online Studies. Strategisch beheer en productie van online studies op basis van ICT, ter verrijking van het onderwijsaanbod."
           }
         ]
       },

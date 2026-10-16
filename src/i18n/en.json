@@ -289,6 +289,11 @@
             "icon": "layers",
             "title": "Facultad de Ingeniería",
             "description": "Aporte de talento de vanguardia en desarrollo de software, realidad virtual, simulación, inteligencia artificial y hardware."
+          },
+          {
+            "icon": "globe",
+            "title": "CEL",
+            "description": "Centro de Estudios en Línea. Gestión y producción estratégica de estudios en línea basados en TIC, enriqueciendo la oferta formativa presencial y virtual de las unidades académicas."
           }
         ]
       },
