@@ -1,0 +1,69 @@
+---
+title: "Combinare"
+locale: en
+description: "Aplicación gamificada con tutor de Inteligencia Artificial (Ottis) basada en el modelo RDE para transformar el aprendizaje de la combinatoria en Matemáticas Discretas."
+icon: "sigma"
+image: "../../../assets/projects/combinare-cover.jpg"
+imageAlt: "Equipo del proyecto Combinare — Escuela de Ingeniería Informática UCAB Guayana"
+gallery:
+  - src: "../../../assets/projects/combinare-cover.jpg"
+    alt: "Combinare — Equipo desarrollador y tutores académicos de la Escuela de Ingeniería Informática (UCAB Guayana)"
+tags: ["Gamificación", "Inteligencia Artificial", "Pensamiento Analítico", "Aprendizaje Autónomo", "Evaluación Formativa", "Competencias Profesionales", "CompetenciasUCAB", "Código de Ética"]
+featured: true
+order: 6
+year: 2026
+role: "Daniel Perdomo, Jesús Rodríguez, Yoel Gutiérrez, Jesús Lárez"
+services: ["Gamificación (Modelo RDE)", "Tutor IA (Google Gemini)", "React & NestJS", "Matemáticas Discretas"]
+meta: ["Concurso EDTEC Lab 2026", "Combinare", "Ingeniería Informática", "UCAB Guayana", "Matemáticas Discretas"]
+placeholder: false
+---
+
+## Resumen de la Propuesta
+
+**Combinare** es una plataforma educativa interactiva basada en la gamificación y asistida por Inteligencia Artificial, concebida para transformar la enseñanza y el aprendizaje de la combinatoria en la asignatura **Matemáticas Discretas** de la carrera de Ingeniería en Informática de la Universidad Católica Andrés Bello (sede Guayana).
+
+Fundamentada en el **modelo RDE (Reglas, Dinámicas y Estética)**, la herramienta trasciende la digitalización de ejercicios estáticos al enmarcar los problemas de principios de conteo, permutaciones, combinaciones y teorema del binomio dentro de escenarios interactivos situados, acompañados por el tutor inteligente **Ottis** (impulsado por Google Gemini API).
+
+---
+
+## Equipo del Proyecto y Mentores
+
+- **Integrantes del Equipo:** Daniel Perdomo, Jesús Rodríguez, Yoel Gutiérrez y Jesús Lárez.
+- **Mentores:** Eduardo Cantera Artíguez y Roxana Acevedo Peña.
+- **Unidad Vinculada:** Facultad de Ingeniería — Escuela de Ingeniería Informática (UCAB Guayana).
+
+---
+
+## El Desafío y la Motivación Académica
+
+En la carrera de Ingeniería en Informática de la UCAB, la cátedra de **Matemáticas Discretas** constituye un pilar esencial para el desarrollo del pensamiento matemático y la comprensión de algoritmos complejos. Sin embargo, se detectó una brecha importante entre los contenidos teóricos impartidos y la solvencia con la que los estudiantes integran estos conceptos en la práctica dirigida.
+
+Un análisis estadístico del rendimiento académico entre los semestres **2024-15 y 2026-15** (sobre una muestra de 122 estudiantes evaluados) reveló que el **56,56 %** no logró alcanzar la calificación mínima aprobatoria en el bloque temático de combinatoria, registrándose un promedio de **8,2 puntos sobre 20**. Esta dificultad persistente, sumada a la rigidez de los softwares educativos convencionales, motivó la creación de una solución interactiva, situada y motivadora.
+
+---
+
+## La Solución: Modelo RDE y Tutor IA "Ottis"
+
+Combinare articula el aprendizaje mediante tres dimensiones integradas:
+
+1. **Modelo RDE (Reglas, Dinámicas y Estética):** Articula las reglas como parámetros matemáticos del sistema, las dinámicas como las interacciones de progresión por niveles y la estética como la experiencia emocional y motivadora del alumno.
+2. **Escenarios Interactivos de Combinatoria:** Exploración situada y progresiva de los principios de conteo, permutaciones, combinaciones y el teorema del binomio, donde el estudiante evalúa distintas opciones de resolución para avanzar de nivel.
+3. **Tutor Inteligente "Ottis" con Streaming SSE:** Asistente conversacional pedagógico integrado con **Google Gemini API** y memoria de historial persistente en base de datos, diseñado para guiar el razonamiento del estudiante en tiempo real.
+4. **Progreso, Logros y Leaderboard:** Seguimiento continuo del avance individual y grupal, sistema de insignias/logros y tabla de clasificación para estimular la superación académica.
+5. **Panel Docente y Analíticas:** Módulos de administración exclusivos para los profesores de la cátedra que permiten gestionar el banco de ejercicios, administrar grupos y supervisar estadísticas detalladas del desempeño estudiantil.
+
+---
+
+## Competencias que Permite Desarrollar
+
+- **Pensamiento Matemático y Analítico:** Fortalecimiento del rigor lógico y análisis de problemas auténticos más allá de la resolución mecánica.
+- **Visualización Mental ante Problemas Abstractos:** Capacidad de modelar y evaluar múltiples escenarios combinatorios aplicables al diseño de algoritmos y procesos informáticos equilibrados.
+- **Razonamiento Práctico y Toma de Decisiones Estratégicas:** Evaluación crítica de alternativas de resolución bajo retroalimentación inmediata.
+
+---
+
+## Arquitectura Tecnológica, Seguridad y Sostenibilidad
+
+- **Stack Tecnológico Moderno:** Frontend SPA construido en **React + TypeScript + Vite** (desplegado en Vercel) y backend modular en **NestJS + Node.js 22** (desplegado en contenedores Docker en Railway), conectado mediante **Prisma ORM** a **PostgreSQL 16** en Supabase.
+- **Seguridad y Control de Acceso Institucional (RBAC):** Autenticación delegada a **Firebase Authentication con Google Sign-In**, verificada en el servidor mediante tokens JWT (`FirebaseAuthGuard` y `RolesGuard`). El acceso está restringido exclusivamente a correos institucionales UCAB (`@est.ucab.edu.ve` para estudiantes y `@ucab.edu.ve` para docentes), protegiendo sesiones de chat, grupos y progreso contra accesos cruzados.
+- **Sostenibilidad y Evolución (Roadmap RAG):** Arquitectura de monolito modular con migraciones automáticas, *seeds* curriculares reproducibles semestre a semestre e integración continua con GitHub Actions. El *roadmap* contempla una fase de **RAG con `pgvector`** para búsqueda semántica sobre los materiales PDF de los profesores de la cátedra.
