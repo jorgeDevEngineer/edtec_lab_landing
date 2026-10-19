@@ -26,7 +26,7 @@ Un proyecto se considera **100% completado** cuando cumple con sus criterios de 
 | 7 | **Combinare** | ✔ | ✔ | ❌ | ✔ | ❌ | 3 / 5 |
 | 8 | **Solid Sandbox** | ✔ | ✔ | ❌ | ✔ | ❌ | 3 / 5 |
 | 9 | **Nova Academy** | ✔ | ✔ | ❌ | ❌ | ❌ | 2 / 5 |
-| 10 | **PredixIA** | ✔ | ✔ | ❌ | ❌ | ❌ | 2 / 5 |
+| 10 | **PredixIA** | ✔ | ✔ | ✔ | ❌ | ❌ | 3 / 5 |
 | 11 | **NEO** | ❌ | ❌ | ✔ | ❌ | ❌ | 1 / 5 |
 
 ---
@@ -116,8 +116,8 @@ Para los **Agentes**, los criterios de completitud son únicamente:
 
 ### 10. PredixIA (`src/content/projects/en/predixia.mdx`)
 - ✔ **Publicado en web**
-- ✔ **Descripción completa**
-- ❌ **Logo**
+- ✔ **Descripción completa** *(Información técnica de `predixia.ai` + reseña de El Ucabista)*
+- ✔ **Logo** (`predixia-logo.jpg` — centrado en 16:9)
 - ❌ **Foto del equipo**
 - ❌ **Revisión por owner del proyecto**
 
