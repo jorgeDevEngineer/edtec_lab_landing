@@ -107,6 +107,8 @@
     "viewProject": "Bekijk project",
     "viewSource": "Bekijk broncode",
     "noProjectsFound": "Geen projecten gevonden.",
+    "searchPlaceholder": "Zoek project op naam...",
+    "searchAriaLabel": "Zoek project op naam",
     "carouselChooseSlide": "Kies dia",
     "carouselNextSlide": "Volgende dia",
     "carouselPreviousSlide": "Vorige dia",

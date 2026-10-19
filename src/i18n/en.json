@@ -107,6 +107,8 @@
     "viewProject": "Ver proyecto",
     "viewSource": "Ver código",
     "noProjectsFound": "No se encontraron proyectos.",
+    "searchPlaceholder": "Buscar proyecto por nombre...",
+    "searchAriaLabel": "Buscar proyecto por nombre",
     "carouselChooseSlide": "Elegir diapositiva",
     "carouselNextSlide": "Siguiente diapositiva",
     "carouselPreviousSlide": "Diapositiva anterior",

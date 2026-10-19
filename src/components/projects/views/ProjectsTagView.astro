@@ -10,6 +10,7 @@
 import type { CollectionEntry } from 'astro:content';
 import PageLayout from '@/layouts/PageLayout.astro';
 import ProjectCard from '@/components/projects/ProjectCard.astro';
+import ProjectSearchBar from '@/components/projects/ProjectSearchBar.astro';
 import ProjectTagList from '@/components/projects/ProjectTagList.astro';
 import Badge from '@/components/ui/data-display/Badge/Badge.astro';
 import Icon from '@/components/ui/primitives/Icon/Icon.astro';
@@ -59,7 +60,7 @@ const countKey = projects.length === 1 ? 'projects.tagCountOne' : 'projects.tagC
 
   <section class="bg-background-secondary pt-6 pb-12 border-t border-border">
     <div class="mx-auto max-w-6xl px-6 flex flex-col gap-6">
-      <div class="flex flex-col items-center gap-2" data-reveal>
+      <div class="flex flex-col items-center gap-4" data-reveal>
         <a
           href={projectsHref}
           class="group inline-flex items-center gap-2 rounded-lg border border-brand-500/40 bg-transparent px-3 py-1.5 text-xs font-medium text-brand-700 dark:text-brand-400 hover:border-brand-500/80 hover:bg-brand-500/10 transition-colors"
@@ -68,17 +69,27 @@ const countKey = projects.length === 1 ? 'projects.tagCountOne' : 'projects.tagC
           {t('projects.allProjects', locale)}
         </a>
 
+        <ProjectSearchBar locale={locale} />
+
         {visibleTags.length > 0 && (
           <ProjectTagList tags={visibleTags} active={tag} locale={locale} class="justify-center" />
         )}
       </div>
 
       {projects.length > 0 ? (
-        <div class="grid gap-6 md:grid-cols-2">
-          {projects.map((project, i) => (
-            <ProjectCard project={project} index={i} locale={locale} />
-          ))}
-        </div>
+        <>
+          <div class="grid gap-6 md:grid-cols-2">
+            {projects.map((project, i) => (
+              <ProjectCard project={project} index={i} locale={locale} />
+            ))}
+          </div>
+          <p
+            class="hidden py-10 text-center text-foreground-muted text-base"
+            data-project-search-empty
+          >
+            {t('projects.noProjectsFound', locale)}
+          </p>
+        </>
       ) : (
         <div class="py-16 text-center">
           <div class="bg-background mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full">

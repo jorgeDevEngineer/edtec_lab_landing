@@ -49,6 +49,8 @@ const isFeatured = variant === 'featured';
     'group relative flex flex-col overflow-hidden transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-2xl hover:border-brand-500/80',
     isFeatured ? 'md:col-span-2' : ''
   ]}
+  data-project-card
+  data-project-title={data.title}
   data-reveal={reveal || undefined}
   data-reveal-delay={reveal ? index % 2 || undefined : undefined}
 >

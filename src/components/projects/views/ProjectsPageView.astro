@@ -14,6 +14,7 @@ import Button from '@/components/ui/form/Button/Button.astro';
 import { Hero } from '@/components/hero';
 import CtaBand from '@/components/patterns/CtaBand.astro';
 import ProjectCard from '@/components/projects/ProjectCard.astro';
+import ProjectSearchBar from '@/components/projects/ProjectSearchBar.astro';
 import ProjectTagList from '@/components/projects/ProjectTagList.astro';
 import Pagination from '@/components/blog/Pagination.astro';
 import { t, defaultLocale, localizedPath } from '@/i18n';
@@ -69,7 +70,7 @@ const aboutUrl = localizedPath('/about', locale);
 
   <section class="bg-background-secondary pt-6 pb-12 border-t border-border">
     <div class="mx-auto max-w-6xl px-6 flex flex-col gap-6">
-      <div class="flex flex-col items-center gap-2" data-reveal>
+      <div class="flex flex-col items-center gap-4" data-reveal>
         <a
           href={projectsHref}
           class="group inline-flex items-center gap-2 rounded-lg border border-brand-500/40 bg-transparent px-3 py-1.5 text-xs font-medium text-brand-700 dark:text-brand-400 hover:border-brand-500/80 hover:bg-brand-500/10 transition-colors"
@@ -77,6 +78,8 @@ const aboutUrl = localizedPath('/about', locale);
           <Icon name="arrow-left" size="sm" />
           {t('projects.allProjects', locale)}
         </a>
+
+        <ProjectSearchBar locale={locale} />
 
         {topTags.length > 0 && (
           <ProjectTagList tags={topTags} locale={locale} class="justify-center" />
@@ -89,11 +92,20 @@ const aboutUrl = localizedPath('/about', locale);
         ))}
       </div>
 
-      <Pagination
-        currentPage={page}
-        totalPages={totalPages}
-        href={(p) => getProjectsPageUrl(p, locale)}
-      />
+      <p
+        class="hidden py-10 text-center text-foreground-muted text-base"
+        data-project-search-empty
+      >
+        {t('projects.noProjectsFound', locale)}
+      </p>
+
+      <div data-project-pagination>
+        <Pagination
+          currentPage={page}
+          totalPages={totalPages}
+          href={(p) => getProjectsPageUrl(p, locale)}
+        />
+      </div>
     </div>
   </section>
 

@@ -15,6 +15,7 @@ import Button from '@/components/ui/form/Button/Button.astro';
 import { Hero } from '@/components/hero';
 import CtaBand from '@/components/patterns/CtaBand.astro';
 import ProjectCard from '@/components/projects/ProjectCard.astro';
+import ProjectSearchBar from '@/components/projects/ProjectSearchBar.astro';
 import ProjectTagList from '@/components/projects/ProjectTagList.astro';
 import Pagination from '@/components/blog/Pagination.astro';
 import { t, defaultLocale, localizedPath } from '@/i18n';
@@ -63,11 +64,12 @@ const aboutUrl = localizedPath('/about', locale);
     <section class="pt-6 pb-12 bg-background-secondary border-t border-border">
       <div class="mx-auto max-w-6xl px-6 flex flex-col gap-6">
 
-        {topTags.length > 0 && (
-          <div class="flex flex-col items-center gap-2" data-reveal>
+        <div class="flex flex-col items-center gap-4" data-reveal>
+          <ProjectSearchBar locale={locale} />
+          {topTags.length > 0 && (
             <ProjectTagList tags={topTags} locale={locale} class="justify-center" />
-          </div>
-        )}
+          )}
+        </div>
 
         <div class="grid gap-6 md:grid-cols-2">
           {pageProjects.map((project, i) => (
@@ -80,11 +82,20 @@ const aboutUrl = localizedPath('/about', locale);
           ))}
         </div>
 
-        <Pagination
-          currentPage={1}
-          totalPages={totalPages}
-          href={(p) => getProjectsPageUrl(p, locale)}
-        />
+        <p
+          class="hidden py-10 text-center text-foreground-muted text-base"
+          data-project-search-empty
+        >
+          {t('projects.noProjectsFound', locale)}
+        </p>
+
+        <div data-project-pagination>
+          <Pagination
+            currentPage={1}
+            totalPages={totalPages}
+            href={(p) => getProjectsPageUrl(p, locale)}
+          />
+        </div>
       </div>
     </section>
   )}

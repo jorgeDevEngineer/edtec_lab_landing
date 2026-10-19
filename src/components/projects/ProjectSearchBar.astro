@@ -1,0 +1,87 @@
+---
+/**
+ * ProjectSearchBar — client-side live filter by project name for project listings.
+ */
+import Input from '@/components/ui/form/Input/Input.astro';
+import { t, defaultLocale } from '@/i18n';
+
+interface Props {
+  locale?: string;
+}
+
+const { locale = defaultLocale } = Astro.props;
+---
+
+<div class="w-full max-w-md mx-auto" data-project-search-wrap>
+  <Input
+    type="search"
+    size="md"
+    leadingIcon="search"
+    placeholder={t('projects.searchPlaceholder', locale)}
+    aria-label={t('projects.searchAriaLabel', locale)}
+    autocomplete="off"
+    data-project-search-input
+  />
+</div>
+
+<script>
+  function normalizeText(value: string): string {
+    return value
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .toLowerCase()
+      .trim();
+  }
+
+  function initProjectSearch() {
+    const inputs = document.querySelectorAll<HTMLInputElement>(
+      '[data-project-search-input]:not([data-search-initialized])'
+    );
+
+    inputs.forEach((input) => {
+      input.setAttribute('data-search-initialized', 'true');
+
+      const section = input.closest('section') ?? document;
+      const cards = Array.from(
+        section.querySelectorAll<HTMLElement>('[data-project-card]')
+      );
+      const emptyState = section.querySelector<HTMLElement>('[data-project-search-empty]');
+      const pagination = section.querySelector<HTMLElement>('[data-project-pagination]');
+
+      const applyFilter = () => {
+        const query = normalizeText(input.value);
+        let visibleCount = 0;
+
+        cards.forEach((card) => {
+          const title = normalizeText(card.dataset.projectTitle ?? '');
+          const matches = query === '' || title.includes(query);
+
+          if (matches) {
+            card.classList.remove('hidden');
+            visibleCount++;
+          } else {
+            card.classList.add('hidden');
+          }
+        });
+
+        if (emptyState) {
+          emptyState.classList.toggle('hidden', visibleCount > 0);
+        }
+
+        if (pagination) {
+          pagination.classList.toggle('hidden', query !== '');
+        }
+      };
+
+      input.addEventListener('input', applyFilter);
+      input.addEventListener('search', applyFilter);
+
+      if (input.value) {
+        applyFilter();
+      }
+    });
+  }
+
+  initProjectSearch();
+  document.addEventListener('astro:after-swap', initProjectSearch);
+</script>
