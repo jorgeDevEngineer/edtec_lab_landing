@@ -3,11 +3,17 @@
  * ProjectAgentsSection — interactive floating cloud ("Constellation") of
  * specialized academic AI agents.
  *
- * All agent spotlight panels share a single CSS grid cell (`grid-area: 1 / 1`)
- * so switching between agents (whether one has 4 bullet points or a short
- * paragraph) cross-fades in place with zero layout shift or scroll jumping.
+ * Layout:
+ * - Desktop (`lg+`): Two-column split layout. The floating constellation cloud
+ *   lives on the left and the spotlight detail panel sits immediately to the
+ *   right so visitors can read every agent's description without scrolling.
+ * - Mobile / Tablet (`< lg`): Compact horizontal/wrapped pill cloud on top with
+ *   the spotlight detail card directly underneath, fitting comfortably on
+ *   small screens without horizontal overflow or layout shifts.
+ * - All 5 agent spotlight panels share a single CSS grid cell (`col-start-1
+ *   row-start-1`) so switching agents cross-fades in place with zero height
+ *   change or scroll jumping.
  */
-import Badge from '@/components/ui/data-display/Badge/Badge.astro';
 import Icon from '@/components/ui/primitives/Icon/Icon.astro';
 import { t, tData, defaultLocale } from '@/i18n';
 
@@ -22,25 +28,26 @@ interface AgentItem {
 
 interface Props {
   locale?: string;
+  showHeader?: boolean;
 }
 
-const { locale = defaultLocale } = Astro.props;
+const { locale = defaultLocale, showHeader = false } = Astro.props;
 
 const agents = tData<AgentItem[]>('projects.agents.items', locale) ?? [];
 const authorLabel = t('projects.agents.authorLabel', locale);
 
 const cloudOffsets = [
-  'lg:-translate-y-4',
-  'lg:translate-y-5',
-  'lg:-translate-y-6',
-  'lg:translate-y-4',
-  'lg:-translate-y-2',
+  'lg:-translate-x-2 lg:-translate-y-1',
+  'lg:translate-x-3 lg:translate-y-2',
+  'lg:translate-x-1 lg:-translate-y-1',
+  'lg:-translate-x-3 lg:translate-y-1',
+  'lg:translate-x-2 lg:translate-y-0',
 ];
 ---
 
 {agents.length > 0 && (
   <section
-    class="agents-cloud-section relative overflow-hidden py-20 bg-background border-t border-border"
+    class="agents-cloud-section relative overflow-hidden py-8 sm:py-12 lg:py-14 bg-background-secondary border-t border-border"
     data-agents-section
   >
     <!-- Ambient atmospheric cloud backdrop -->
@@ -49,166 +56,160 @@ const cloudOffsets = [
       aria-hidden="true"
     >
       <div class="
-        absolute left-1/2 top-1/3 -translate-x-1/2 -translate-y-1/2
-        h-[26rem] w-[54rem] rounded-full
+        absolute left-1/4 top-1/2 -translate-x-1/2 -translate-y-1/2
+        h-[24rem] w-[38rem] rounded-full
         bg-gradient-to-r from-brand-500/10 via-brand-400/15 to-brand-500/10
         blur-3xl dark:from-brand-500/15 dark:via-brand-400/20 dark:to-brand-500/15
       " />
-      <!-- Subtle orbital rings -->
-      <div class="
-        hidden md:block absolute left-1/2 top-[44%] -translate-x-1/2 -translate-y-1/2
-        w-[46rem] h-[16rem] rounded-[100%]
-        border border-dashed border-brand-500/20 dark:border-brand-400/20
-      " />
-      <div class="
-        hidden lg:block absolute left-1/2 top-[44%] -translate-x-1/2 -translate-y-1/2
-        w-[62rem] h-[21rem] rounded-[100%]
-        border border-brand-500/10 dark:border-brand-400/10
-      " />
     </div>
 
-    <div class="relative z-10 mx-auto max-w-6xl px-6">
-      <!-- Section Header -->
-      <div class="mx-auto max-w-2xl text-center mb-10" data-reveal>
-        <div class="mb-3 flex justify-center">
-          <Badge variant="brand" pill>
-            <Icon name="sparkles" size="xs" />
-            {t('projects.agents.badge', locale)}
-          </Badge>
+    <div class="relative z-10 mx-auto max-w-6xl px-4 sm:px-6">
+      {showHeader && (
+        <div class="mx-auto max-w-2xl text-center mb-8" data-reveal>
+          <h2 class="font-display text-3xl sm:text-4xl font-bold tracking-tight text-foreground mb-3">
+            {t('projects.agents.title', locale)}
+          </h2>
+          <p class="text-sm sm:text-base text-foreground-muted leading-relaxed">
+            {t('projects.agents.lead', locale)}
+          </p>
+        </div>
+      )}
+
+      <!-- Side-by-side on desktop (constellation left, description right), stacked cleanly on mobile -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-center">
+        <!-- Left column: Floating Cloud Constellation -->
+        <div
+          class="lg:col-span-5 relative py-2 sm:py-4 lg:py-6"
+          role="tablist"
+          aria-label={t('projects.agents.title', locale)}
+          data-agents-cloud
+        >
+          <!-- Subtle orbital ring behind the cloud on desktop -->
+          <div
+            class="pointer-events-none hidden lg:block absolute inset-2 rounded-[100%] border border-dashed border-brand-500/20 dark:border-brand-400/20"
+            aria-hidden="true"
+          />
+
+          <div class="relative z-10 flex flex-wrap items-center justify-center gap-2.5 sm:gap-3.5 lg:gap-4">
+            {agents.map((agent, index) => (
+              <div
+                class:list={[
+                  'agent-node-wrap transition-transform duration-500',
+                  cloudOffsets[index % cloudOffsets.length],
+                ]}
+                data-project-card
+                data-project-title={agent.name}
+                data-agent-node={index}
+              >
+                <button
+                  type="button"
+                  role="tab"
+                  aria-selected={index === 0 ? 'true' : 'false'}
+                  aria-controls={`agent-panel-${index}`}
+                  id={`agent-tab-${index}`}
+                  data-agent-trigger={index}
+                  data-active={index === 0 ? 'true' : 'false'}
+                  style={`--float-delay: ${index * -1.3}s;`}
+                  class="
+                    agent-cloud-pill group relative flex items-center gap-2.5 sm:gap-3
+                    rounded-full px-3.5 py-2.5 sm:px-5 sm:py-3
+                    bg-card/95 backdrop-blur-md
+                    border border-brand-500/30
+                    shadow-sm hover:shadow-lg
+                    transition-all duration-300 cursor-pointer
+                    hover:-translate-y-0.5 hover:border-brand-500
+                    data-[active=true]:border-brand-500
+                    data-[active=true]:bg-brand-500/10
+                    data-[active=true]:dark:bg-brand-500/20
+                    data-[active=true]:shadow-lg
+                    data-[active=true]:scale-[1.03]
+                    focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500
+                  "
+                >
+                  <span class="
+                    flex h-8 w-8 sm:h-10 sm:w-10 shrink-0 items-center justify-center rounded-full
+                    bg-gradient-to-br from-brand-500/20 to-brand-500/5
+                    text-brand-500 border border-brand-500/25
+                    transition-all duration-300
+                    group-hover:scale-105
+                    group-data-[active=true]:bg-brand-500
+                    group-data-[active=true]:text-white
+                    group-data-[active=true]:border-brand-500
+                  ">
+                    <Icon name={agent.icon} size="sm" />
+                  </span>
+
+                  <div class="text-left pr-1">
+                    <span class="block font-display text-sm sm:text-base font-bold text-foreground leading-tight">
+                      {agent.name}
+                    </span>
+                    <span class="block text-[11px] sm:text-xs text-foreground-muted mt-0.5 line-clamp-1">
+                      {agent.author}
+                    </span>
+                  </div>
+                </button>
+              </div>
+            ))}
+          </div>
         </div>
 
-        <h2 class="font-display text-3xl sm:text-4xl font-bold tracking-tight text-foreground mb-3">
-          {t('projects.agents.title', locale)}
-        </h2>
-
-        <p class="text-sm sm:text-base text-foreground-muted leading-relaxed">
-          {t('projects.agents.lead', locale)}
-        </p>
-      </div>
-
-      <!-- Floating Cloud Canvas -->
-      <div
-        class="relative mx-auto max-w-5xl py-6 lg:py-10"
-        role="tablist"
-        aria-label={t('projects.agents.title', locale)}
-        data-agents-cloud
-      >
-        <div class="flex flex-wrap items-center justify-center gap-4 sm:gap-6 lg:gap-7">
+        <!-- Right column: Fixed-height stacked Spotlight Stage (zero layout shift, smooth fade/pop) -->
+        <div
+          class="lg:col-span-7 agent-stage-stack relative grid items-center"
+          data-agents-stage
+        >
           {agents.map((agent, index) => (
             <div
-              class:list={[
-                'agent-node-wrap transition-transform duration-500',
-                cloudOffsets[index % cloudOffsets.length],
-              ]}
-              data-project-card
-              data-project-title={agent.name}
-              data-agent-node={index}
+              id={`agent-panel-${index}`}
+              role="tabpanel"
+              aria-labelledby={`agent-tab-${index}`}
+              aria-hidden={index === 0 ? 'false' : 'true'}
+              data-agent-panel={index}
+              data-active={index === 0 ? 'true' : 'false'}
+              class="
+                agent-spotlight col-start-1 row-start-1
+                rounded-2xl sm:rounded-3xl border border-brand-500/30 bg-card/95 backdrop-blur-xl
+                p-5 sm:p-7 lg:p-8 shadow-xl
+              "
             >
-              <button
-                type="button"
-                role="tab"
-                aria-selected={index === 0 ? 'true' : 'false'}
-                aria-controls={`agent-panel-${index}`}
-                id={`agent-tab-${index}`}
-                data-agent-trigger={index}
-                data-active={index === 0 ? 'true' : 'false'}
-                style={`--float-delay: ${index * -1.3}s;`}
-                class="
-                  agent-cloud-pill group relative flex items-center gap-3.5
-                  rounded-full px-5 py-3.5 sm:px-6 sm:py-4
-                  bg-card/90 backdrop-blur-md
-                  border border-brand-500/30
-                  shadow-md hover:shadow-xl
-                  transition-all duration-300 cursor-pointer
-                  hover:-translate-y-1 hover:border-brand-500
-                  data-[active=true]:border-brand-500
-                  data-[active=true]:bg-brand-500/10
-                  data-[active=true]:dark:bg-brand-500/20
-                  data-[active=true]:shadow-xl
-                  data-[active=true]:scale-105
-                  focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500
-                "
-              >
-                <span class="
-                  flex h-11 w-11 shrink-0 items-center justify-center rounded-full
-                  bg-gradient-to-br from-brand-500/20 to-brand-500/5
-                  text-brand-500 border border-brand-500/25
-                  transition-all duration-300
-                  group-hover:scale-110
-                  group-data-[active=true]:bg-brand-500
-                  group-data-[active=true]:text-white
-                  group-data-[active=true]:border-brand-500
-                ">
-                  <Icon name={agent.icon} size="md" />
-                </span>
-
-                <div class="text-left pr-1">
-                  <span class="block font-display text-base sm:text-lg font-bold text-foreground leading-tight">
-                    {agent.name}
-                  </span>
-                  <span class="block text-xs text-foreground-muted mt-0.5">
-                    {agent.author}
-                  </span>
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 mb-4 border-b border-border">
+                <div class="flex items-center gap-3.5">
+                  <div class="flex h-11 w-11 sm:h-13 sm:w-13 shrink-0 items-center justify-center rounded-2xl bg-brand-500/15 text-brand-500 border border-brand-500/30">
+                    <Icon name={agent.icon} size="md" />
+                  </div>
+                  <div>
+                    <div class="flex flex-wrap items-center gap-2">
+                      <h2 class="font-display text-xl sm:text-2xl font-bold text-foreground">
+                        {agent.name}
+                      </h2>
+                      <span class="inline-flex items-center rounded-full bg-brand-500/10 px-2.5 py-0.5 text-xs font-medium text-brand-700 dark:text-brand-300 border border-brand-500/20">
+                        {agent.domain}
+                      </span>
+                    </div>
+                    <p class="mt-0.5 text-xs sm:text-sm text-foreground-muted">
+                      {authorLabel}: <strong class="font-semibold text-foreground">{agent.author}</strong>
+                    </p>
+                  </div>
                 </div>
-              </button>
+              </div>
+
+              <p class="text-sm sm:text-base text-foreground leading-relaxed">
+                {agent.purpose}
+              </p>
+
+              {agent.bullets && agent.bullets.length > 0 && (
+                <ul class="mt-4 grid gap-2.5 sm:grid-cols-2">
+                  {agent.bullets.map((bullet) => (
+                    <li class="flex items-start gap-2 rounded-xl border border-brand-500/20 bg-background-secondary/70 p-3 text-xs sm:text-sm text-foreground">
+                      <Icon name="check-circle-2" size="sm" class="mt-0.5 text-brand-500 shrink-0" />
+                      <span class="leading-snug">{bullet}</span>
+                    </li>
+                  ))}
+                </ul>
+              )}
             </div>
           ))}
         </div>
-      </div>
-
-      <!-- Fixed-height stacked Spotlight Stage (zero layout shift, smooth fade/pop) -->
-      <div class="agent-stage-stack relative mx-auto mt-4 max-w-3xl grid items-start" data-agents-stage>
-        {agents.map((agent, index) => (
-          <div
-            id={`agent-panel-${index}`}
-            role="tabpanel"
-            aria-labelledby={`agent-tab-${index}`}
-            aria-hidden={index === 0 ? 'false' : 'true'}
-            data-agent-panel={index}
-            data-active={index === 0 ? 'true' : 'false'}
-            class="
-              agent-spotlight col-start-1 row-start-1
-              rounded-3xl border border-brand-500/30 bg-card/95 backdrop-blur-xl
-              p-7 sm:p-9 shadow-2xl
-            "
-          >
-            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-5 mb-5 border-b border-border">
-              <div class="flex items-center gap-4">
-                <div class="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-brand-500/15 text-brand-500 border border-brand-500/30">
-                  <Icon name={agent.icon} size="lg" />
-                </div>
-                <div>
-                  <div class="flex flex-wrap items-center gap-2.5">
-                    <h3 class="font-display text-2xl sm:text-3xl font-bold text-foreground">
-                      {agent.name}
-                    </h3>
-                    <span class="inline-flex items-center rounded-full bg-brand-500/10 px-3 py-0.5 text-xs font-medium text-brand-700 dark:text-brand-300 border border-brand-500/20">
-                      {agent.domain}
-                    </span>
-                  </div>
-                  <p class="mt-1 text-sm text-foreground-muted">
-                    {authorLabel}: <strong class="font-semibold text-foreground">{agent.author}</strong>
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <p class="text-base sm:text-lg text-foreground leading-relaxed">
-              {agent.purpose}
-            </p>
-
-            {agent.bullets && agent.bullets.length > 0 && (
-              <ul class="mt-5 grid gap-3 sm:grid-cols-2">
-                {agent.bullets.map((bullet) => (
-                  <li class="flex items-start gap-2.5 rounded-2xl border border-brand-500/20 bg-background-secondary/70 p-3.5 text-sm text-foreground">
-                    <Icon name="check-circle-2" size="sm" class="mt-0.5 text-brand-500 shrink-0" />
-                    <span class="leading-snug">{bullet}</span>
-                  </li>
-                ))}
-              </ul>
-            )}
-          </div>
-        ))}
       </div>
     </div>
   </section>
@@ -220,7 +221,7 @@ const cloudOffsets = [
       transform: translateY(0px);
     }
     50% {
-      transform: translateY(-7px);
+      transform: translateY(-6px);
     }
   }
 

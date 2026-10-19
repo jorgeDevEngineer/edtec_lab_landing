@@ -86,15 +86,17 @@ export interface ResolvedNavItem {
 export const navItems: NavItem[] = [
   { label: 'Inicio', href: '/', order: 0, labelKey: 'nav.items.home' },
   { label: 'Proyectos', href: '/projects', order: 1, labelKey: 'nav.items.projects' },
-  { label: 'Nosotros', href: '/about', order: 2, labelKey: 'nav.items.about' },
-  { label: 'Contacto', href: '/contact', order: 3, labelKey: 'nav.items.contact' },
+  { label: 'Agentes', href: '/agents', order: 2, labelKey: 'nav.items.agents' },
+  { label: 'Nosotros', href: '/about', order: 3, labelKey: 'nav.items.about' },
+  { label: 'Contacto', href: '/contact', order: 4, labelKey: 'nav.items.contact' },
 ];
 
 export const footerNavItems: NavItem[] = [
   { label: 'Inicio', href: '/', order: 0, labelKey: 'nav.items.home' },
   { label: 'Proyectos', href: '/projects', order: 1, labelKey: 'nav.items.projects' },
-  { label: 'Nosotros', href: '/about', order: 2, labelKey: 'nav.items.about' },
-  { label: 'Contacto', href: '/contact', order: 3, labelKey: 'nav.items.contact' },
+  { label: 'Agentes', href: '/agents', order: 2, labelKey: 'nav.items.agents' },
+  { label: 'Nosotros', href: '/about', order: 3, labelKey: 'nav.items.about' },
+  { label: 'Contacto', href: '/contact', order: 4, labelKey: 'nav.items.contact' },
 ];
 
 export const legalLinks: LegalLink[] = [];

@@ -1,0 +1,9 @@
+---
+import AgentsView from '@/components/pages/views/AgentsView.astro';
+import { defaultLocale } from '@/i18n';
+
+// The Agents page for the default locale. Additional locales are served by
+// `src/pages/[locale]/agents.astro`, which renders the same view.
+---
+
+<AgentsView locale={defaultLocale} />

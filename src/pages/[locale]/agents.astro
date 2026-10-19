@@ -1,0 +1,14 @@
+---
+import AgentsView from '@/components/pages/views/AgentsView.astro';
+import { getSecondaryLocales } from '@/i18n';
+
+// Locale-prefixed Agents page (`/<locale>/agents`). One page per non-default
+// locale.
+export function getStaticPaths() {
+  return getSecondaryLocales().map((locale) => ({ params: { locale } }));
+}
+
+const { locale } = Astro.params;
+---
+
+<AgentsView locale={locale} />
