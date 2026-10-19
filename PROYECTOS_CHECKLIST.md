@@ -20,7 +20,7 @@ Un proyecto se considera **100% completado** cuando cumple con los 4 criterios d
 | 2 | **Sinfonía UCAB 15: CampusVivo** | ✔ | ✔ | ✔ | ❌ | 3 / 4 |
 | 3 | **El laberinto del tiempo** *(Fray Tempus)* | ✔ | ✔ | ✔ | ❌ | 3 / 4 |
 | 4 | **Diálogo`s** | ✔ | ✔ | ❌ | ❌ | 2 / 4 |
-| 5 | **EDU Quest Jumper** | ✔ | ❌ | ✔ | ❌ | 2 / 4 |
+| 5 | **EDU Quest Jumper** | ✔ | ✔ | ✔ | ❌ | 3 / 4 |
 | 6 | **Simulador Virtual de Inmersión (NexU)** | ✔ | ❌ | ✔ | ❌ | 2 / 4 |
 | 7 | **Combinare** | ✔ | ❌ | ✔ | ❌ | 2 / 4 |
 | 8 | **Solid Sandbox** | ✔ | ❌ | ✔ | ❌ | 2 / 4 |
@@ -58,7 +58,7 @@ Un proyecto se considera **100% completado** cuando cumple con los 4 criterios d
 
 ### 5. EDU Quest Jumper (`src/content/projects/en/eduquest-jumper.mdx`)
 - ✔ **Descripción completa**
-- ❌ **Logo**
+- ✔ **Logo** (`eduquest-jumper-logo.jpg` — centrado en 16:9)
 - ✔ **Foto del equipo** (`eduquest-jumper-cover.jpg`)
 - ❌ **Revisión por owner del proyecto**
 
