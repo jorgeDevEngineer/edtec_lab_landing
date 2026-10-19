@@ -22,7 +22,7 @@ Un proyecto se considera **100% completado** cuando cumple con sus criterios de 
 | 3 | **El laberinto del tiempo** *(Fray Tempus)* | ✔ | ✔ | ✔ | ✔ | ❌ | 4 / 5 |
 | 4 | **Diálogo`s** | ✔ | ✔ | ✔ | ❌ | ❌ | 3 / 5 |
 | 5 | **EDU Quest Jumper** | ✔ | ✔ | ✔ | ✔ | ❌ | 4 / 5 |
-| 6 | **Simulador Virtual de Inmersión (NexU)** | ✔ | ✔ | ❌ | ✔ | ❌ | 3 / 5 |
+| 6 | **Simulador Virtual de Inmersión (NexU)** | ✔ | ✔ | ✔ | ✔ | ❌ | 4 / 5 |
 | 7 | **Combinare** | ✔ | ✔ | ✔ | ✔ | ❌ | 4 / 5 |
 | 8 | **Solid Sandbox** | ✔ | ✔ | ✔ | ✔ | ❌ | 4 / 5 |
 | 9 | **Nova Academy** | ✔ | ✔ | ✔ | ❌ | ❌ | 3 / 5 |
@@ -89,7 +89,7 @@ Para los **Agentes**, los criterios de completitud son únicamente:
 ### 6. Simulador Virtual de Inmersión Interdisciplinaria — NexU (`src/content/projects/en/simulador-virtual-inmersion.mdx`)
 - ✔ **Publicado en web**
 - ✔ **Descripción completa**
-- ❌ **Logo**
+- ✔ **Logo** (`nexu-logo.jpg` — centrado en 16:9)
 - ✔ **Foto del equipo** (`nexu-cover.jpg`)
 - ❌ **Revisión por owner del proyecto**
 
