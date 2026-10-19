@@ -1,8 +1,12 @@
 ---
 /**
- * ProjectAgentsSection — showcases specialized academic AI agents with a
- * distinctive "AI Console / Neural Roster" aesthetic so they stand out from
- * full-scale project cards while participating in the live name search filter.
+ * ProjectAgentsSection — interactive floating cloud ("Constellation") of
+ * specialized academic AI agents.
+ *
+ * Instead of another boxy card grid, the five agents float at organic heights
+ * inside a spacious cloud canvas with subtle orbital rings and connecting
+ * paths. Clicking or focusing any floating agent pill smoothly updates the
+ * central spotlight stage below with that agent's full purpose and pillars.
  */
 import Badge from '@/components/ui/data-display/Badge/Badge.astro';
 import Icon from '@/components/ui/primitives/Icon/Icon.astro';
@@ -25,26 +29,53 @@ const { locale = defaultLocale } = Astro.props;
 
 const agents = tData<AgentItem[]>('projects.agents.items', locale) ?? [];
 const authorLabel = t('projects.agents.authorLabel', locale);
-const statusBadge = t('projects.agents.statusBadge', locale);
+
+// Organic vertical offsets and gentle float timing so the pills feel like a
+// living cloud rather than a rigid row.
+const cloudOffsets = [
+  'lg:-translate-y-4',
+  'lg:translate-y-5',
+  'lg:-translate-y-6',
+  'lg:translate-y-4',
+  'lg:-translate-y-2',
+];
 ---
 
 {agents.length > 0 && (
   <section
-    class="relative overflow-hidden py-16 bg-background border-t border-border"
+    class="agents-cloud-section relative overflow-hidden py-20 bg-background border-t border-border"
     data-agents-section
   >
-    <!-- Subtle ambient background glow -->
+    <!-- Ambient atmospheric cloud backdrop -->
     <div
-      class="pointer-events-none absolute left-1/2 top-0 -translate-x-1/2 h-72 w-[42rem] rounded-full bg-brand-500/5 blur-3xl dark:bg-brand-500/10"
+      class="pointer-events-none absolute inset-0 overflow-hidden"
       aria-hidden="true"
-    />
+    >
+      <div class="
+        absolute left-1/2 top-1/3 -translate-x-1/2 -translate-y-1/2
+        h-[26rem] w-[54rem] rounded-full
+        bg-gradient-to-r from-brand-500/10 via-brand-400/15 to-brand-500/10
+        blur-3xl dark:from-brand-500/15 dark:via-brand-400/20 dark:to-brand-500/15
+      " />
+      <!-- Subtle orbital rings -->
+      <div class="
+        hidden md:block absolute left-1/2 top-[44%] -translate-x-1/2 -translate-y-1/2
+        w-[46rem] h-[16rem] rounded-[100%]
+        border border-dashed border-brand-500/20 dark:border-brand-400/20
+      " />
+      <div class="
+        hidden lg:block absolute left-1/2 top-[44%] -translate-x-1/2 -translate-y-1/2
+        w-[62rem] h-[21rem] rounded-[100%]
+        border border-brand-500/10 dark:border-brand-400/10
+      " />
+    </div>
 
     <div class="relative z-10 mx-auto max-w-6xl px-6">
       <!-- Section Header -->
-      <div class="mx-auto max-w-2xl text-center mb-12" data-reveal>
+      <div class="mx-auto max-w-2xl text-center mb-10" data-reveal>
         <div class="mb-3 flex justify-center">
           <Badge variant="brand" pill>
-            <Icon name="bot" size="xs" />
+            <Icon name="sparkles" size="xs" />
             {t('projects.agents.badge', locale)}
           </Badge>
         </div>
@@ -58,92 +89,215 @@ const statusBadge = t('projects.agents.statusBadge', locale);
         </p>
       </div>
 
-      <!-- Agents Bento / Console Grid -->
-      <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-6">
-        {agents.map((agent, index) => {
-          const isWide = (agent.bullets && agent.bullets.length > 0) || index === 0;
-          return (
-            <article
+      <!-- Floating Cloud Canvas -->
+      <div
+        class="relative mx-auto max-w-5xl py-6 lg:py-10"
+        role="tablist"
+        aria-label={t('projects.agents.title', locale)}
+        data-agents-cloud
+      >
+        <div class="flex flex-wrap items-center justify-center gap-4 sm:gap-6 lg:gap-7">
+          {agents.map((agent, index) => (
+            <div
               class:list={[
-                'agent-card group relative flex flex-col rounded-2xl border border-brand-500/25 bg-background-secondary/70 p-6 sm:p-7 transition-all duration-300 hover:-translate-y-1 hover:border-brand-500/70 hover:shadow-xl',
-                isWide ? 'md:col-span-2 lg:col-span-6' : 'lg:col-span-3'
+                'agent-node-wrap transition-transform duration-500',
+                cloudOffsets[index % cloudOffsets.length],
               ]}
               data-project-card
               data-project-title={agent.name}
-              data-reveal
-              data-reveal-delay={index % 2 || undefined}
+              data-agent-node={index}
             >
-              <!-- Top accent line -->
-              <div
-                class="pointer-events-none absolute inset-x-0 top-0 h-1 rounded-t-2xl bg-gradient-to-r from-brand-500/40 via-brand-500 to-brand-400/40 opacity-75 transition-opacity duration-300 group-hover:opacity-100"
-                aria-hidden="true"
-              />
+              <button
+                type="button"
+                role="tab"
+                aria-selected={index === 0 ? 'true' : 'false'}
+                aria-controls={`agent-panel-${index}`}
+                id={`agent-tab-${index}`}
+                data-agent-trigger={index}
+                data-active={index === 0 ? 'true' : 'false'}
+                style={`--float-delay: ${index * -1.3}s;`}
+                class="
+                  agent-cloud-pill group relative flex items-center gap-3.5
+                  rounded-full px-5 py-3.5 sm:px-6 sm:py-4
+                  bg-card/90 backdrop-blur-md
+                  border border-brand-500/30
+                  shadow-md hover:shadow-xl
+                  transition-all duration-300 cursor-pointer
+                  hover:-translate-y-1 hover:border-brand-500
+                  data-[active=true]:border-brand-500
+                  data-[active=true]:bg-brand-500/10
+                  data-[active=true]:dark:bg-brand-500/20
+                  data-[active=true]:shadow-xl
+                  data-[active=true]:scale-105
+                  focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500
+                "
+              >
+                <span class="
+                  flex h-11 w-11 shrink-0 items-center justify-center rounded-full
+                  bg-gradient-to-br from-brand-500/20 to-brand-500/5
+                  text-brand-500 border border-brand-500/25
+                  transition-all duration-300
+                  group-hover:scale-110
+                  group-data-[active=true]:bg-brand-500
+                  group-data-[active=true]:text-white
+                  group-data-[active=true]:border-brand-500
+                ">
+                  <Icon name={agent.icon} size="md" />
+                </span>
 
-              <!-- Terminal / Agent Header Bar -->
-              <div class="flex flex-wrap items-center justify-between gap-2 pb-4 mb-4 border-b border-border/70">
-                <div class="flex items-center gap-2">
-                  <span class="relative flex h-2.5 w-2.5">
-                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                    <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+                <div class="text-left pr-1">
+                  <span class="block font-display text-base sm:text-lg font-bold text-foreground leading-tight">
+                    {agent.name}
                   </span>
-                  <span class="font-mono text-[11px] font-semibold uppercase tracking-wider text-brand-600 dark:text-brand-400">
-                    {statusBadge} // {String(index + 1).padStart(2, '0')}
+                  <span class="block text-xs text-foreground-muted mt-0.5">
+                    {agent.author}
                   </span>
                 </div>
+              </button>
+            </div>
+          ))}
+        </div>
+      </div>
 
-                <span class="inline-flex items-center gap-1.5 rounded-md bg-brand-500/10 px-2.5 py-0.5 text-xs font-medium text-brand-700 dark:text-brand-300 border border-brand-500/20">
-                  {agent.domain}
-                </span>
-              </div>
-
-              <!-- Agent Identity + Author -->
-              <div class="flex items-start gap-4 mb-4">
-                <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 text-brand-500 border border-brand-500/30 shadow-sm transition-transform duration-300 group-hover:scale-105">
+      <!-- Central Spotlight Stage (displays the selected floating agent) -->
+      <div class="relative mx-auto mt-4 max-w-3xl" data-agents-stage>
+        {agents.map((agent, index) => (
+          <div
+            id={`agent-panel-${index}`}
+            role="tabpanel"
+            aria-labelledby={`agent-tab-${index}`}
+            data-agent-panel={index}
+            class:list={[
+              'agent-spotlight rounded-3xl border border-brand-500/30 bg-card/95 backdrop-blur-xl p-7 sm:p-9 shadow-2xl transition-all duration-300',
+              index === 0 ? 'block' : 'hidden',
+            ]}
+          >
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-5 mb-5 border-b border-border">
+              <div class="flex items-center gap-4">
+                <div class="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-brand-500/15 text-brand-500 border border-brand-500/30">
                   <Icon name={agent.icon} size="lg" />
                 </div>
-
-                <div class="min-w-0 flex-1">
-                  <h3 class="font-display text-xl sm:text-2xl font-bold text-foreground tracking-tight group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">
-                    {agent.name}
-                  </h3>
-                  <p class="mt-1 flex items-center gap-1.5 text-xs sm:text-sm font-medium text-foreground-muted">
-                    <Icon name="user-check" size="xs" class="text-brand-500" />
-                    <span>{authorLabel}: <strong class="font-semibold text-foreground">{agent.author}</strong></span>
+                <div>
+                  <div class="flex flex-wrap items-center gap-2.5">
+                    <h3 class="font-display text-2xl sm:text-3xl font-bold text-foreground">
+                      {agent.name}
+                    </h3>
+                    <span class="inline-flex items-center rounded-full bg-brand-500/10 px-3 py-0.5 text-xs font-medium text-brand-700 dark:text-brand-300 border border-brand-500/20">
+                      {agent.domain}
+                    </span>
+                  </div>
+                  <p class="mt-1 text-sm text-foreground-muted">
+                    {authorLabel}: <strong class="font-semibold text-foreground">{agent.author}</strong>
                   </p>
                 </div>
               </div>
+            </div>
 
-              <!-- Agent Purpose & Structured Pillars -->
-              <div class="flex-1 rounded-xl bg-background/80 border border-border/60 p-4 sm:p-5">
-                <p class="text-sm text-foreground-muted leading-relaxed">
-                  {agent.purpose}
-                </p>
+            <p class="text-base sm:text-lg text-foreground leading-relaxed">
+              {agent.purpose}
+            </p>
 
-                {agent.bullets && agent.bullets.length > 0 && (
-                  <ol class="mt-4 grid gap-2.5 sm:grid-cols-2">
-                    {agent.bullets.map((bullet, bIdx) => (
-                      <li class="flex items-start gap-2.5 rounded-lg border border-brand-500/20 bg-brand-500/[0.04] p-3 text-xs sm:text-sm text-foreground">
-                        <span class="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-brand-500/15 font-mono text-[11px] font-bold text-brand-600 dark:text-brand-400">
-                          {bIdx + 1}
-                        </span>
-                        <span class="leading-snug">{bullet}</span>
-                      </li>
-                    ))}
-                  </ol>
-                )}
-              </div>
-            </article>
-          );
-        })}
+            {agent.bullets && agent.bullets.length > 0 && (
+              <ul class="mt-5 grid gap-3 sm:grid-cols-2">
+                {agent.bullets.map((bullet) => (
+                  <li class="flex items-start gap-2.5 rounded-2xl border border-brand-500/20 bg-background-secondary/70 p-3.5 text-sm text-foreground">
+                    <Icon name="check-circle-2" size="sm" class="mt-0.5 text-brand-500 shrink-0" />
+                    <span class="leading-snug">{bullet}</span>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
+        ))}
       </div>
     </div>
   </section>
 )}
 
 <style>
+  @keyframes agent-float {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-7px);
+    }
+  }
+
+  .agent-cloud-pill {
+    animation: agent-float 5.5s ease-in-out infinite;
+    animation-delay: var(--float-delay, 0s);
+  }
+
+  .agent-cloud-pill:hover,
+  .agent-cloud-pill[data-active="true"] {
+    animation-play-state: paused;
+  }
+
   @media (prefers-reduced-motion: reduce) {
-    .agent-card .animate-ping {
+    .agent-cloud-pill {
       animation: none;
     }
   }
 </style>
+
+<script>
+  function initAgentsCloud() {
+    const sections = document.querySelectorAll<HTMLElement>(
+      '[data-agents-section]:not([data-agents-init])'
+    );
+
+    sections.forEach((section) => {
+      section.setAttribute('data-agents-init', 'true');
+
+      const triggers = Array.from(
+        section.querySelectorAll<HTMLButtonElement>('[data-agent-trigger]')
+      );
+      const panels = Array.from(
+        section.querySelectorAll<HTMLElement>('[data-agent-panel]')
+      );
+      const nodes = Array.from(
+        section.querySelectorAll<HTMLElement>('[data-agent-node]')
+      );
+
+      const activateAgent = (targetIndex: number) => {
+        triggers.forEach((btn, idx) => {
+          const isActive = idx === targetIndex;
+          btn.dataset.active = isActive ? 'true' : 'false';
+          btn.setAttribute('aria-selected', isActive ? 'true' : 'false');
+        });
+
+        panels.forEach((panel, idx) => {
+          panel.classList.toggle('hidden', idx !== targetIndex);
+          panel.classList.toggle('block', idx === targetIndex);
+        });
+      };
+
+      triggers.forEach((btn, idx) => {
+        btn.addEventListener('click', () => activateAgent(idx));
+        btn.addEventListener('mouseenter', () => activateAgent(idx));
+      });
+
+      // Keep the spotlight stage synced if the user filters agents via the search bar
+      const observer = new MutationObserver(() => {
+        const visibleIndices = nodes
+          .map((node, idx) => (!node.classList.contains('hidden') ? idx : -1))
+          .filter((idx) => idx !== -1);
+
+        if (visibleIndices.length > 0) {
+          const currentActive = triggers.findIndex((t) => t.dataset.active === 'true');
+          if (!visibleIndices.includes(currentActive)) {
+            activateAgent(visibleIndices[0]);
+          }
+        }
+      });
+
+      nodes.forEach((node) => {
+        observer.observe(node, { attributes: true, attributeFilter: ['class'] });
+      });
+    });
+  }
+
+  initAgentsCloud();
+  document.addEventListener('astro:after-swap', initAgentsCloud);
+</script>
