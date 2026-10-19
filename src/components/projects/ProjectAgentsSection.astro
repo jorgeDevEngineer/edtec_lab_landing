@@ -1,18 +1,22 @@
 ---
 /**
- * ProjectAgentsSection — interactive floating cloud ("Constellation") of
+ * ProjectAgentsSection — interactive planetary orbit ("Turntable") of
  * specialized academic AI agents.
  *
- * Layout:
- * - Desktop (`lg+`): Two-column split layout. The floating constellation cloud
- *   lives on the left and the spotlight detail panel sits immediately to the
- *   right so visitors can read every agent's description without scrolling.
- * - Mobile / Tablet (`< lg`): Compact horizontal/wrapped pill cloud on top with
- *   the spotlight detail card directly underneath, fitting comfortably on
- *   small screens without horizontal overflow or layout shifts.
- * - All 5 agent spotlight panels share a single CSS grid cell (`col-start-1
- *   row-start-1`) so switching agents cross-fades in place with zero height
- *   change or scroll jumping.
+ * Layout & Interaction:
+ * - Left column (`lg:col-span-6`): A genuine 2D/3D planetary orbit where the 5
+ *   agents sit at 72° intervals around a central core. Clicking any agent or
+ *   pressing Anterior / Siguiente rotates the entire orbit smoothly so the
+ *   selected agent comes to the front/focus position (`slot 0`: closest,
+ *   largest, full opacity) while the previous agent recedes along the orbital
+ *   ring into the background (smaller scale, lower opacity, deeper z-index).
+ * - Right column (`lg:col-span-6`): Fixed-height stacked Spotlight Stage where
+ *   all 5 agent detail cards share `col-start-1 row-start-1`, cross-fading in
+ *   place with zero layout shift or page scroll jump.
+ * - Mobile (`< sm`): Proportional orbital radius (`--rx: 108px`, `--ry: 86px`)
+ *   so the full planetary ring fits inside narrow viewports without overflow,
+ *   with Anterior/Siguiente controls right below the ring and the detail card
+ *   underneath.
  */
 import Icon from '@/components/ui/primitives/Icon/Icon.astro';
 import { t, tData, defaultLocale } from '@/i18n';
@@ -35,29 +39,23 @@ const { locale = defaultLocale, showHeader = false } = Astro.props;
 
 const agents = tData<AgentItem[]>('projects.agents.items', locale) ?? [];
 const authorLabel = t('projects.agents.authorLabel', locale);
-
-const cloudOffsets = [
-  'lg:-translate-x-2 lg:-translate-y-1',
-  'lg:translate-x-3 lg:translate-y-2',
-  'lg:translate-x-1 lg:-translate-y-1',
-  'lg:-translate-x-3 lg:translate-y-1',
-  'lg:translate-x-2 lg:translate-y-0',
-];
+const prevLabel = t('common.previous', locale);
+const nextLabel = t('common.next', locale);
 ---
 
 {agents.length > 0 && (
   <section
-    class="agents-cloud-section relative overflow-hidden py-8 sm:py-12 lg:py-14 bg-background-secondary border-t border-border"
+    class="agents-orbit-section relative overflow-hidden py-8 sm:py-12 lg:py-14 bg-background-secondary border-t border-border"
     data-agents-section
   >
-    <!-- Ambient atmospheric cloud backdrop -->
+    <!-- Ambient atmospheric nebula backdrop -->
     <div
       class="pointer-events-none absolute inset-0 overflow-hidden"
       aria-hidden="true"
     >
       <div class="
         absolute left-1/4 top-1/2 -translate-x-1/2 -translate-y-1/2
-        h-[24rem] w-[38rem] rounded-full
+        h-[26rem] w-[42rem] rounded-full
         bg-gradient-to-r from-brand-500/10 via-brand-400/15 to-brand-500/10
         blur-3xl dark:from-brand-500/15 dark:via-brand-400/20 dark:to-brand-500/15
       " />
@@ -75,28 +73,37 @@ const cloudOffsets = [
         </div>
       )}
 
-      <!-- Side-by-side on desktop (constellation left, description right), stacked cleanly on mobile -->
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-center">
-        <!-- Left column: Floating Cloud Constellation -->
-        <div
-          class="lg:col-span-5 relative py-2 sm:py-4 lg:py-6"
-          role="tablist"
-          aria-label={t('projects.agents.title', locale)}
-          data-agents-cloud
-        >
-          <!-- Subtle orbital ring behind the cloud on desktop -->
+      <!-- Side-by-side on desktop (Planetary Orbit left, Spotlight description right) -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
+        <!-- Left column: Interactive Planetary Orbit + Turntable Controls -->
+        <div class="lg:col-span-6 flex flex-col items-center">
           <div
-            class="pointer-events-none hidden lg:block absolute inset-2 rounded-[100%] border border-dashed border-brand-500/20 dark:border-brand-400/20"
-            aria-hidden="true"
-          />
+            class="orbit-stage relative w-full h-[290px] sm:h-[360px] lg:h-[400px] flex items-center justify-center select-none"
+            role="tablist"
+            aria-label={t('projects.agents.title', locale)}
+            data-agents-cloud
+          >
+            <!-- Outer & Inner Orbital Tracks -->
+            <div class="orbit-ring-outer pointer-events-none absolute rounded-[100%] border border-dashed border-brand-500/30 dark:border-brand-400/25" aria-hidden="true" />
+            <div class="orbit-ring-inner pointer-events-none absolute rounded-[100%] border border-brand-500/15 dark:border-brand-400/10" aria-hidden="true" />
 
-          <div class="relative z-10 flex flex-wrap items-center justify-center gap-2.5 sm:gap-3.5 lg:gap-4">
+            <!-- Central Star / Core Hub -->
+            <div
+              class="pointer-events-none relative z-10 flex flex-col items-center justify-center h-16 w-16 sm:h-20 sm:w-20 rounded-full bg-card/90 border border-brand-500/35 shadow-lg backdrop-blur-md"
+              aria-hidden="true"
+            >
+              <div class="absolute inset-0 rounded-full bg-brand-500/15 animate-pulse" />
+              <Icon name="sparkles" size="md" class="text-brand-500 relative z-10" />
+              <span class="relative z-10 mt-0.5 text-[9px] sm:text-[10px] font-bold uppercase tracking-widest text-brand-600 dark:text-brand-300">
+                IA UCAB
+              </span>
+            </div>
+
+            <!-- Orbiting Agent Nodes -->
             {agents.map((agent, index) => (
               <div
-                class:list={[
-                  'agent-node-wrap transition-transform duration-500',
-                  cloudOffsets[index % cloudOffsets.length],
-                ]}
+                class="agent-orbit-node"
+                data-slot={index}
                 data-project-card
                 data-project-title={agent.name}
                 data-agent-node={index}
@@ -109,25 +116,25 @@ const cloudOffsets = [
                   id={`agent-tab-${index}`}
                   data-agent-trigger={index}
                   data-active={index === 0 ? 'true' : 'false'}
-                  style={`--float-delay: ${index * -1.3}s;`}
                   class="
-                    agent-cloud-pill group relative flex items-center gap-2.5 sm:gap-3
-                    rounded-full px-3.5 py-2.5 sm:px-5 sm:py-3
+                    agent-orbit-pill group relative flex items-center gap-2.5 sm:gap-3
+                    rounded-full px-3.5 py-2 sm:px-4.5 sm:py-2.5
                     bg-card/95 backdrop-blur-md
                     border border-brand-500/30
-                    shadow-sm hover:shadow-lg
-                    transition-all duration-300 cursor-pointer
-                    hover:-translate-y-0.5 hover:border-brand-500
+                    shadow-md hover:shadow-xl
+                    transition-colors duration-300 cursor-pointer
+                    hover:border-brand-500
                     data-[active=true]:border-brand-500
-                    data-[active=true]:bg-brand-500/10
-                    data-[active=true]:dark:bg-brand-500/20
-                    data-[active=true]:shadow-lg
-                    data-[active=true]:scale-[1.03]
+                    data-[active=true]:bg-brand-500/15
+                    data-[active=true]:dark:bg-brand-500/25
+                    data-[active=true]:shadow-2xl
+                    data-[active=true]:ring-2
+                    data-[active=true]:ring-brand-500/40
                     focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500
                   "
                 >
                   <span class="
-                    flex h-8 w-8 sm:h-10 sm:w-10 shrink-0 items-center justify-center rounded-full
+                    flex h-8 w-8 sm:h-9 sm:w-9 shrink-0 items-center justify-center rounded-full
                     bg-gradient-to-br from-brand-500/20 to-brand-500/5
                     text-brand-500 border border-brand-500/25
                     transition-all duration-300
@@ -140,10 +147,10 @@ const cloudOffsets = [
                   </span>
 
                   <div class="text-left pr-1">
-                    <span class="block font-display text-sm sm:text-base font-bold text-foreground leading-tight">
+                    <span class="block font-display text-xs sm:text-sm font-bold text-foreground leading-tight whitespace-nowrap">
                       {agent.name}
                     </span>
-                    <span class="block text-[11px] sm:text-xs text-foreground-muted mt-0.5 line-clamp-1">
+                    <span class="hidden sm:block text-[11px] text-foreground-muted mt-0.5 whitespace-nowrap">
                       {agent.author}
                     </span>
                   </div>
@@ -151,11 +158,62 @@ const cloudOffsets = [
               </div>
             ))}
           </div>
+
+          <!-- Orbital Rotation Controls (Prev / Counter / Next) -->
+          <div class="mt-2 flex items-center gap-3">
+            <button
+              type="button"
+              data-orbit-prev
+              aria-label={prevLabel}
+              class="
+                inline-flex items-center gap-1.5 rounded-full
+                border border-brand-500/30 bg-card/90 px-3.5 py-1.5
+                text-xs font-medium text-foreground shadow-sm
+                hover:border-brand-500 hover:bg-brand-500/10
+                transition-all cursor-pointer
+                focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500
+              "
+            >
+              <Icon name="arrow-left" size="xs" />
+              <span>Anterior</span>
+            </button>
+
+            <div class="flex items-center gap-1.5 px-2" aria-hidden="true">
+              {agents.map((_, idx) => (
+                <span
+                  data-orbit-dot={idx}
+                  data-active={idx === 0 ? 'true' : 'false'}
+                  class="
+                    h-2 rounded-full transition-all duration-300
+                    w-2 bg-brand-500/30
+                    data-[active=true]:w-6 data-[active=true]:bg-brand-500
+                  "
+                />
+              ))}
+            </div>
+
+            <button
+              type="button"
+              data-orbit-next
+              aria-label={nextLabel}
+              class="
+                inline-flex items-center gap-1.5 rounded-full
+                border border-brand-500/30 bg-card/90 px-3.5 py-1.5
+                text-xs font-medium text-foreground shadow-sm
+                hover:border-brand-500 hover:bg-brand-500/10
+                transition-all cursor-pointer
+                focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500
+              "
+            >
+              <span>Siguiente</span>
+              <Icon name="arrow-right" size="xs" />
+            </button>
+          </div>
         </div>
 
         <!-- Right column: Fixed-height stacked Spotlight Stage (zero layout shift, smooth fade/pop) -->
         <div
-          class="lg:col-span-7 agent-stage-stack relative grid items-center"
+          class="lg:col-span-6 agent-stage-stack relative grid items-center"
           data-agents-stage
         >
           {agents.map((agent, index) => (
@@ -216,23 +274,96 @@ const cloudOffsets = [
 )}
 
 <style>
-  @keyframes agent-float {
-    0%, 100% {
-      transform: translateY(0px);
-    }
-    50% {
-      transform: translateY(-6px);
+  /* Responsive orbital radii so all 5 nodes form a true 2D/3D planetary ring
+     without overflowing narrow mobile screens */
+  .orbit-stage {
+    --rx: 102px;
+    --ry: 96px;
+  }
+
+  @media (min-width: 640px) {
+    .orbit-stage {
+      --rx: 168px;
+      --ry: 128px;
     }
   }
 
-  .agent-cloud-pill {
-    animation: agent-float 5.5s ease-in-out infinite;
-    animation-delay: var(--float-delay, 0s);
+  @media (min-width: 1024px) {
+    .orbit-stage {
+      --rx: 175px;
+      --ry: 142px;
+    }
   }
 
-  .agent-cloud-pill:hover,
-  .agent-cloud-pill[data-active="true"] {
-    animation-play-state: paused;
+  .orbit-ring-outer {
+    width: calc(var(--rx) * 2.05);
+    height: calc(var(--ry) * 2.05);
+  }
+
+  .orbit-ring-inner {
+    width: calc(var(--rx) * 1.25);
+    height: calc(var(--ry) * 1.25);
+  }
+
+  .agent-orbit-node {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transition:
+      transform 650ms cubic-bezier(0.22, 1, 0.36, 1),
+      opacity 650ms cubic-bezier(0.22, 1, 0.36, 1),
+      filter 650ms cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: transform, opacity;
+  }
+
+  /* Slot 0: Front / Active Planet (closest to the detail card on desktop, foreground) */
+  .agent-orbit-node[data-slot="0"] {
+    transform: translate(-50%, -50%)
+      translate3d(calc(var(--rx) * 0.92), calc(var(--ry) * 0.12), 0)
+      scale(1.1);
+    z-index: 30;
+    opacity: 1;
+    filter: none;
+  }
+
+  /* Slot 1: Bottom-Right / Front-Lower Orbit */
+  .agent-orbit-node[data-slot="1"] {
+    transform: translate(-50%, -50%)
+      translate3d(calc(var(--rx) * 0.15), calc(var(--ry) * 0.98), 0)
+      scale(0.95);
+    z-index: 24;
+    opacity: 0.9;
+    filter: brightness(0.95);
+  }
+
+  /* Slot 2: Bottom-Left / Receding Back Orbit */
+  .agent-orbit-node[data-slot="2"] {
+    transform: translate(-50%, -50%)
+      translate3d(calc(var(--rx) * -0.88), calc(var(--ry) * 0.56), 0)
+      scale(0.84);
+    z-index: 15;
+    opacity: 0.68;
+    filter: brightness(0.85);
+  }
+
+  /* Slot 3: Top-Left / Far Back Orbit */
+  .agent-orbit-node[data-slot="3"] {
+    transform: translate(-50%, -50%)
+      translate3d(calc(var(--rx) * -0.84), calc(var(--ry) * -0.62), 0)
+      scale(0.84);
+    z-index: 14;
+    opacity: 0.68;
+    filter: brightness(0.85);
+  }
+
+  /* Slot 4: Top-Right / Approaching Orbit */
+  .agent-orbit-node[data-slot="4"] {
+    transform: translate(-50%, -50%)
+      translate3d(calc(var(--rx) * 0.22), calc(var(--ry) * -0.96), 0)
+      scale(0.95);
+    z-index: 25;
+    opacity: 0.9;
+    filter: brightness(0.95);
   }
 
   /* Overlapping grid stack: all panels occupy row 1 / col 1 so the stage
@@ -244,9 +375,9 @@ const cloudOffsets = [
     pointer-events: none;
     transform: translateY(8px) scale(0.985);
     transition:
-      opacity 320ms cubic-bezier(0.22, 1, 0.36, 1),
-      transform 320ms cubic-bezier(0.22, 1, 0.36, 1),
-      visibility 0ms linear 320ms;
+      opacity 360ms cubic-bezier(0.22, 1, 0.36, 1),
+      transform 360ms cubic-bezier(0.22, 1, 0.36, 1),
+      visibility 0ms linear 360ms;
   }
 
   .agent-spotlight[data-active="true"] {
@@ -255,25 +386,22 @@ const cloudOffsets = [
     pointer-events: auto;
     transform: translateY(0) scale(1);
     transition:
-      opacity 320ms cubic-bezier(0.22, 1, 0.36, 1),
-      transform 320ms cubic-bezier(0.22, 1, 0.36, 1),
+      opacity 360ms cubic-bezier(0.22, 1, 0.36, 1),
+      transform 360ms cubic-bezier(0.22, 1, 0.36, 1),
       visibility 0ms linear 0ms;
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .agent-cloud-pill {
-      animation: none;
-    }
+    .agent-orbit-node,
     .agent-spotlight,
     .agent-spotlight[data-active="true"] {
       transition: none;
-      transform: none;
     }
   }
 </style>
 
 <script>
-  function initAgentsCloud() {
+  function initAgentsOrbit() {
     const sections = document.querySelectorAll<HTMLElement>(
       '[data-agents-section]:not([data-agents-init])'
     );
@@ -290,61 +418,80 @@ const cloudOffsets = [
       const nodes = Array.from(
         section.querySelectorAll<HTMLElement>('[data-agent-node]')
       );
+      const dots = Array.from(
+        section.querySelectorAll<HTMLElement>('[data-orbit-dot]')
+      );
+      const prevBtn = section.querySelector<HTMLButtonElement>('[data-orbit-prev]');
+      const nextBtn = section.querySelector<HTMLButtonElement>('[data-orbit-next]');
 
-      let hoverTimer: number | undefined;
+      const total = triggers.length;
+      if (total === 0) return;
+
+      let activeIndex = 0;
 
       const activateAgent = (targetIndex: number) => {
+        activeIndex = ((targetIndex % total) + total) % total;
+
         triggers.forEach((btn, idx) => {
-          const isActive = idx === targetIndex;
+          const isActive = idx === activeIndex;
           btn.dataset.active = isActive ? 'true' : 'false';
           btn.setAttribute('aria-selected', isActive ? 'true' : 'false');
         });
 
+        // Rotate every planet around the orbit ring relative to the newly active agent
+        nodes.forEach((node, idx) => {
+          const slot = (idx - activeIndex + total) % total;
+          node.setAttribute('data-slot', String(slot));
+        });
+
         panels.forEach((panel, idx) => {
-          const isActive = idx === targetIndex;
+          const isActive = idx === activeIndex;
           panel.dataset.active = isActive ? 'true' : 'false';
           panel.setAttribute('aria-hidden', isActive ? 'false' : 'true');
+        });
+
+        dots.forEach((dot, idx) => {
+          dot.dataset.active = idx === activeIndex ? 'true' : 'false';
         });
       };
 
       triggers.forEach((btn, idx) => {
         btn.addEventListener('click', () => {
-          if (hoverTimer) window.clearTimeout(hoverTimer);
           activateAgent(idx);
         });
-
-        btn.addEventListener('mouseenter', () => {
-          if (hoverTimer) window.clearTimeout(hoverTimer);
-          hoverTimer = window.setTimeout(() => {
-            activateAgent(idx);
-          }, 90);
-        });
-
-        btn.addEventListener('mouseleave', () => {
-          if (hoverTimer) window.clearTimeout(hoverTimer);
-        });
       });
 
-      // Keep the spotlight stage synced if the user filters agents via the search bar
-      const observer = new MutationObserver(() => {
-        const visibleIndices = nodes
-          .map((node, idx) => (!node.classList.contains('hidden') ? idx : -1))
-          .filter((idx) => idx !== -1);
+      prevBtn?.addEventListener('click', () => {
+        activateAgent(activeIndex - 1);
+      });
 
-        if (visibleIndices.length > 0) {
-          const currentActive = triggers.findIndex((t) => t.dataset.active === 'true');
-          if (!visibleIndices.includes(currentActive)) {
-            activateAgent(visibleIndices[0]);
+      nextBtn?.addEventListener('click', () => {
+        activateAgent(activeIndex + 1);
+      });
+
+      // Keyboard arrow support when focused inside the orbit tablist
+      section.addEventListener('keydown', (e: KeyboardEvent) => {
+        if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+          const activeEl = document.activeElement;
+          if (activeEl && section.contains(activeEl) && activeEl.hasAttribute('data-agent-trigger')) {
+            e.preventDefault();
+            const nextIdx = (activeIndex + 1) % total;
+            activateAgent(nextIdx);
+            triggers[nextIdx]?.focus();
+          }
+        } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+          const activeEl = document.activeElement;
+          if (activeEl && section.contains(activeEl) && activeEl.hasAttribute('data-agent-trigger')) {
+            e.preventDefault();
+            const prevIdx = (activeIndex - 1 + total) % total;
+            activateAgent(prevIdx);
+            triggers[prevIdx]?.focus();
           }
         }
-      });
-
-      nodes.forEach((node) => {
-        observer.observe(node, { attributes: true, attributeFilter: ['class'] });
       });
     });
   }
 
-  initAgentsCloud();
-  document.addEventListener('astro:after-swap', initAgentsCloud);
+  initAgentsOrbit();
+  document.addEventListener('astro:after-swap', initAgentsOrbit);
 </script>
