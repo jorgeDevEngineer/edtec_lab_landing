@@ -66,11 +66,15 @@ const aboutUrl = localizedPath('/about', locale);
     <p slot="description" class="!text-sm sm:!text-base max-w-xl mx-auto">
       {t('projects.heroDescription', locale)}
     </p>
+
+    <div class="w-full flex justify-center">
+      <ProjectSearchBar locale={locale} />
+    </div>
   </Hero>
 
   <section class="bg-background-secondary pt-6 pb-12 border-t border-border">
     <div class="mx-auto max-w-6xl px-6 flex flex-col gap-6">
-      <div class="flex flex-col items-center gap-4" data-reveal>
+      <div class="flex flex-col items-center gap-2" data-reveal>
         <a
           href={projectsHref}
           class="group inline-flex items-center gap-2 rounded-lg border border-brand-500/40 bg-transparent px-3 py-1.5 text-xs font-medium text-brand-700 dark:text-brand-400 hover:border-brand-500/80 hover:bg-brand-500/10 transition-colors"
@@ -78,8 +82,6 @@ const aboutUrl = localizedPath('/about', locale);
           <Icon name="arrow-left" size="sm" />
           {t('projects.allProjects', locale)}
         </a>
-
-        <ProjectSearchBar locale={locale} />
 
         {topTags.length > 0 && (
           <ProjectTagList tags={topTags} locale={locale} class="justify-center" />

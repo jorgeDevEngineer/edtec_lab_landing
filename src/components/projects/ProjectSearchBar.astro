@@ -12,7 +12,7 @@ interface Props {
 const { locale = defaultLocale } = Astro.props;
 ---
 
-<div class="w-full max-w-md mx-auto" data-project-search-wrap>
+<div class="project-search-bar w-full max-w-md mx-auto" data-project-search-wrap>
   <Input
     type="search"
     size="md"
@@ -23,6 +23,23 @@ const { locale = defaultLocale } = Astro.props;
     data-project-search-input
   />
 </div>
+
+<style>
+  .project-search-bar :global(input[data-project-search-input]) {
+    background-color: #ffffff !important;
+    color: #0f172a !important;
+    border-color: #cbd5e1 !important;
+    box-shadow: 0 4px 14px -2px rgba(0, 0, 0, 0.08);
+  }
+
+  .project-search-bar :global(input[data-project-search-input]::placeholder) {
+    color: #64748b !important;
+  }
+
+  .project-search-bar :global(.text-foreground-muted) {
+    color: #475569 !important;
+  }
+</style>
 
 <script>
   function normalizeText(value: string): string {
@@ -41,12 +58,12 @@ const { locale = defaultLocale } = Astro.props;
     inputs.forEach((input) => {
       input.setAttribute('data-search-initialized', 'true');
 
-      const section = input.closest('section') ?? document;
+      const root = input.closest('main') ?? document;
       const cards = Array.from(
-        section.querySelectorAll<HTMLElement>('[data-project-card]')
+        root.querySelectorAll<HTMLElement>('[data-project-card]')
       );
-      const emptyState = section.querySelector<HTMLElement>('[data-project-search-empty]');
-      const pagination = section.querySelector<HTMLElement>('[data-project-pagination]');
+      const emptyState = root.querySelector<HTMLElement>('[data-project-search-empty]');
+      const pagination = root.querySelector<HTMLElement>('[data-project-pagination]');
 
       const applyFilter = () => {
         const query = normalizeText(input.value);

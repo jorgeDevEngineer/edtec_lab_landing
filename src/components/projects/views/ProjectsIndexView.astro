@@ -57,6 +57,10 @@ const aboutUrl = localizedPath('/about', locale);
     <p slot="description" class="!text-sm sm:!text-base max-w-xl mx-auto">
       {t('projects.heroDescription', locale)}
     </p>
+
+    <div class="w-full flex justify-center">
+      <ProjectSearchBar locale={locale} />
+    </div>
   </Hero>
 
   <!-- All projects -->
@@ -64,12 +68,11 @@ const aboutUrl = localizedPath('/about', locale);
     <section class="pt-6 pb-12 bg-background-secondary border-t border-border">
       <div class="mx-auto max-w-6xl px-6 flex flex-col gap-6">
 
-        <div class="flex flex-col items-center gap-4" data-reveal>
-          <ProjectSearchBar locale={locale} />
-          {topTags.length > 0 && (
+        {topTags.length > 0 && (
+          <div class="flex flex-col items-center gap-2" data-reveal>
             <ProjectTagList tags={topTags} locale={locale} class="justify-center" />
-          )}
-        </div>
+          </div>
+        )}
 
         <div class="grid gap-6 md:grid-cols-2">
           {pageProjects.map((project, i) => (
