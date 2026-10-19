@@ -23,8 +23,8 @@ Un proyecto se considera **100% completado** cuando cumple con sus criterios de 
 | 4 | **Diálogo`s** | ✔ | ✔ | ✔ | ❌ | ❌ | 3 / 5 |
 | 5 | **EDU Quest Jumper** | ✔ | ✔ | ✔ | ✔ | ❌ | 4 / 5 |
 | 6 | **Simulador Virtual de Inmersión (NexU)** | ✔ | ✔ | ❌ | ✔ | ❌ | 3 / 5 |
-| 7 | **Combinare** | ✔ | ✔ | ❌ | ✔ | ❌ | 3 / 5 |
-| 8 | **Solid Sandbox** | ✔ | ✔ | ❌ | ✔ | ❌ | 3 / 5 |
+| 7 | **Combinare** | ✔ | ✔ | ✔ | ✔ | ❌ | 4 / 5 |
+| 8 | **Solid Sandbox** | ✔ | ✔ | ✔ | ✔ | ❌ | 4 / 5 |
 | 9 | **Nova Academy** | ✔ | ✔ | ✔ | ❌ | ❌ | 3 / 5 |
 | 10 | **PredixIA** | ✔ | ✔ | ✔ | ❌ | ❌ | 3 / 5 |
 | 11 | **NEO** | ❌ | ❌ | ✔ | ❌ | ❌ | 1 / 5 |
@@ -96,15 +96,15 @@ Para los **Agentes**, los criterios de completitud son únicamente:
 ### 7. Combinare (`src/content/projects/en/combinare.mdx`)
 - ✔ **Publicado en web**
 - ✔ **Descripción completa**
-- ❌ **Logo**
-- ✔ **Foto del equipo** (`combinare-cover.jpg`)
+- ✔ **Logo** (`combinare-logo.jpg` — centrado en 16:9)
+- ✔ **Foto del equipo** (`combinare-cover.jpg` — encuadrada en 16:9)
 - ❌ **Revisión por owner del proyecto**
 
 ### 8. Solid Sandbox (`src/content/projects/en/solid-sandbox.mdx`)
 - ✔ **Publicado en web**
 - ✔ **Descripción completa**
-- ❌ **Logo**
-- ✔ **Foto del equipo** (`solid-sandbox-cover.jpg`)
+- ✔ **Logo** (`solid-sandbox-logo.jpg` — centrado en 16:9)
+- ✔ **Foto del equipo** (`solid-sandbox-cover.jpg` — encuadrada en 16:9)
 - ❌ **Revisión por owner del proyecto**
 
 ### 9. Nova Academy (`src/content/projects/en/nova-academy.mdx`)
