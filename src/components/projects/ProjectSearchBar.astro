@@ -62,6 +62,10 @@ const { locale = defaultLocale } = Astro.props;
       const cards = Array.from(
         root.querySelectorAll<HTMLElement>('[data-project-card]')
       );
+      const agentsSection = root.querySelector<HTMLElement>('[data-agents-section]');
+      const agentCards = agentsSection
+        ? Array.from(agentsSection.querySelectorAll<HTMLElement>('[data-project-card]'))
+        : [];
       const emptyState = root.querySelector<HTMLElement>('[data-project-search-empty]');
       const pagination = root.querySelector<HTMLElement>('[data-project-pagination]');
 
@@ -80,6 +84,11 @@ const { locale = defaultLocale } = Astro.props;
             card.classList.add('hidden');
           }
         });
+
+        if (agentsSection && agentCards.length > 0) {
+          const anyAgentVisible = agentCards.some((c) => !c.classList.contains('hidden'));
+          agentsSection.classList.toggle('hidden', !anyAgentVisible);
+        }
 
         if (emptyState) {
           emptyState.classList.toggle('hidden', visibleCount > 0);

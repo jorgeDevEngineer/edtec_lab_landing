@@ -15,6 +15,7 @@ import Button from '@/components/ui/form/Button/Button.astro';
 import { Hero } from '@/components/hero';
 import CtaBand from '@/components/patterns/CtaBand.astro';
 import ProjectCard from '@/components/projects/ProjectCard.astro';
+import ProjectAgentsSection from '@/components/projects/ProjectAgentsSection.astro';
 import ProjectSearchBar from '@/components/projects/ProjectSearchBar.astro';
 import ProjectTagList from '@/components/projects/ProjectTagList.astro';
 import Pagination from '@/components/blog/Pagination.astro';
@@ -102,6 +103,9 @@ const aboutUrl = localizedPath('/about', locale);
       </div>
     </section>
   )}
+
+  <!-- Specialized AI Agents -->
+  <ProjectAgentsSection locale={locale} />
 
  <!-- CTA -->
   <section class="relative z-10 py-[var(--space-section-md)] bg-background">

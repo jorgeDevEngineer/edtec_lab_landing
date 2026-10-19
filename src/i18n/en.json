@@ -139,7 +139,62 @@
     "ctaPrimary": "Contáctanos",
     "ctaSecondary": "Conoce más",
     "closingHeading": "¿Tienes una propuesta innovadora?",
-    "closingLead": "Tanto si deseas formular un nuevo proyecto como implementar herramientas existentes, conversemos."
+    "closingLead": "Tanto si deseas formular un nuevo proyecto como implementar herramientas existentes, conversemos.",
+    "agents": {
+      "badge": "Asistentes Especializados con IA",
+      "title": "Agentes",
+      "lead": "Agentes inteligentes diseñados por docentes e investigadores de la UCAB para acompañar procesos de evaluación institucional, planificación curricular, asesoría de tesis y retroalimentación formativa.",
+      "authorLabel": "Autor",
+      "purposeLabel": "Propósito",
+      "statusBadge": "Agente IA",
+      "items": [
+        {
+          "name": "EVALCONECTA",
+          "author": "Prof. Ercilia Vásquez",
+          "icon": "network",
+          "domain": "Evaluación Institucional",
+          "purpose": "Su propósito es garantizar la coherencia metodológica y la alineación constructiva entre los cuatro primeros elementos centrales de la planificación de una evaluación institucional:",
+          "bullets": [
+            "La problemática institucional identificada y sustentada con evidencias.",
+            "Las interrogantes de evaluación.",
+            "Los objetivos de evaluación derivados.",
+            "Los criterios de evaluación correspondientes."
+          ]
+        },
+        {
+          "name": "Gradus",
+          "author": "Prof. Mildred Centeno",
+          "icon": "graduation-cap",
+          "domain": "Postgrado en Educación",
+          "purpose": "Asesorar a los estudiantes de las Maestrías y Especialización en Educación en las etapas de la elaboración de su Trabajo de Grado o Trabajo Especial de Grado. El soporte se centrará en la aplicación de los procedimientos administrativos a cumplir basados en el Reglamento de postgrado de la UCAB.",
+          "bullets": []
+        },
+        {
+          "name": "TutorIA.",
+          "author": "Padre Néstor Briceño Lugo",
+          "icon": "book-open-check",
+          "domain": "Investigación en Teología",
+          "purpose": "Asistente socrático con IA que guía paso a paso la delimitación, el arqueo bibliográfico y el diseño riguroso del proyecto de grado en teología.",
+          "bullets": []
+        },
+        {
+          "name": "PlanIA",
+          "author": "Prof. Benedicto Cadenas",
+          "icon": "compass",
+          "domain": "Diseño Instruccional",
+          "purpose": "Agente que guía y acompaña críticamente al profesor en el diseño de sus sesiones de clases a partir de la correcta articulación entre las competencias establecidas en el modelo curricular de la UCAB y las estrategias didácticas y de evaluación.",
+          "bullets": []
+        },
+        {
+          "name": "EvaluAI",
+          "author": "Prof. Tibaire Labrador",
+          "icon": "bar-chart-3",
+          "domain": "Evaluación Formativa",
+          "purpose": "Como asistente de evaluación formativa, su propósito es analizar el desempeño académico, estructurar datos evaluativos y generar retroalimentaciones pedagógicas personalizadas para optimizar los procesos de aprendizaje de los estudiantes.",
+          "bullets": []
+        }
+      ]
+    }
   },
   "pagination": {
     "page": "Page {current} of {total}",
