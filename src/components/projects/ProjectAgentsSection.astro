@@ -3,10 +3,9 @@
  * ProjectAgentsSection — interactive floating cloud ("Constellation") of
  * specialized academic AI agents.
  *
- * Instead of another boxy card grid, the five agents float at organic heights
- * inside a spacious cloud canvas with subtle orbital rings and connecting
- * paths. Clicking or focusing any floating agent pill smoothly updates the
- * central spotlight stage below with that agent's full purpose and pillars.
+ * All agent spotlight panels share a single CSS grid cell (`grid-area: 1 / 1`)
+ * so switching between agents (whether one has 4 bullet points or a short
+ * paragraph) cross-fades in place with zero layout shift or scroll jumping.
  */
 import Badge from '@/components/ui/data-display/Badge/Badge.astro';
 import Icon from '@/components/ui/primitives/Icon/Icon.astro';
@@ -30,8 +29,6 @@ const { locale = defaultLocale } = Astro.props;
 const agents = tData<AgentItem[]>('projects.agents.items', locale) ?? [];
 const authorLabel = t('projects.agents.authorLabel', locale);
 
-// Organic vertical offsets and gentle float timing so the pills feel like a
-// living cloud rather than a rigid row.
 const cloudOffsets = [
   'lg:-translate-y-4',
   'lg:translate-y-5',
@@ -159,18 +156,21 @@ const cloudOffsets = [
         </div>
       </div>
 
-      <!-- Central Spotlight Stage (displays the selected floating agent) -->
-      <div class="relative mx-auto mt-4 max-w-3xl" data-agents-stage>
+      <!-- Fixed-height stacked Spotlight Stage (zero layout shift, smooth fade/pop) -->
+      <div class="agent-stage-stack relative mx-auto mt-4 max-w-3xl grid items-start" data-agents-stage>
         {agents.map((agent, index) => (
           <div
             id={`agent-panel-${index}`}
             role="tabpanel"
             aria-labelledby={`agent-tab-${index}`}
+            aria-hidden={index === 0 ? 'false' : 'true'}
             data-agent-panel={index}
-            class:list={[
-              'agent-spotlight rounded-3xl border border-brand-500/30 bg-card/95 backdrop-blur-xl p-7 sm:p-9 shadow-2xl transition-all duration-300',
-              index === 0 ? 'block' : 'hidden',
-            ]}
+            data-active={index === 0 ? 'true' : 'false'}
+            class="
+              agent-spotlight col-start-1 row-start-1
+              rounded-3xl border border-brand-500/30 bg-card/95 backdrop-blur-xl
+              p-7 sm:p-9 shadow-2xl
+            "
           >
             <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-5 mb-5 border-b border-border">
               <div class="flex items-center gap-4">
@@ -234,9 +234,39 @@ const cloudOffsets = [
     animation-play-state: paused;
   }
 
+  /* Overlapping grid stack: all panels occupy row 1 / col 1 so the stage
+     keeps a constant height (sized to the tallest card) and never shifts
+     the page scroll when switching between agents. */
+  .agent-spotlight {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateY(8px) scale(0.985);
+    transition:
+      opacity 320ms cubic-bezier(0.22, 1, 0.36, 1),
+      transform 320ms cubic-bezier(0.22, 1, 0.36, 1),
+      visibility 0ms linear 320ms;
+  }
+
+  .agent-spotlight[data-active="true"] {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateY(0) scale(1);
+    transition:
+      opacity 320ms cubic-bezier(0.22, 1, 0.36, 1),
+      transform 320ms cubic-bezier(0.22, 1, 0.36, 1),
+      visibility 0ms linear 0ms;
+  }
+
   @media (prefers-reduced-motion: reduce) {
     .agent-cloud-pill {
       animation: none;
+    }
+    .agent-spotlight,
+    .agent-spotlight[data-active="true"] {
+      transition: none;
+      transform: none;
     }
   }
 </style>
@@ -260,6 +290,8 @@ const cloudOffsets = [
         section.querySelectorAll<HTMLElement>('[data-agent-node]')
       );
 
+      let hoverTimer: number | undefined;
+
       const activateAgent = (targetIndex: number) => {
         triggers.forEach((btn, idx) => {
           const isActive = idx === targetIndex;
@@ -268,14 +300,28 @@ const cloudOffsets = [
         });
 
         panels.forEach((panel, idx) => {
-          panel.classList.toggle('hidden', idx !== targetIndex);
-          panel.classList.toggle('block', idx === targetIndex);
+          const isActive = idx === targetIndex;
+          panel.dataset.active = isActive ? 'true' : 'false';
+          panel.setAttribute('aria-hidden', isActive ? 'false' : 'true');
         });
       };
 
       triggers.forEach((btn, idx) => {
-        btn.addEventListener('click', () => activateAgent(idx));
-        btn.addEventListener('mouseenter', () => activateAgent(idx));
+        btn.addEventListener('click', () => {
+          if (hoverTimer) window.clearTimeout(hoverTimer);
+          activateAgent(idx);
+        });
+
+        btn.addEventListener('mouseenter', () => {
+          if (hoverTimer) window.clearTimeout(hoverTimer);
+          hoverTimer = window.setTimeout(() => {
+            activateAgent(idx);
+          }, 90);
+        });
+
+        btn.addEventListener('mouseleave', () => {
+          if (hoverTimer) window.clearTimeout(hoverTimer);
+        });
       });
 
       // Keep the spotlight stage synced if the user filters agents via the search bar
