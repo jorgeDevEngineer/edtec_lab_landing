@@ -4,7 +4,6 @@
  */
 import PageLayout from '@/layouts/PageLayout.astro';
 import Icon from '@/components/ui/primitives/Icon/Icon.astro';
-import Badge from '@/components/ui/data-display/Badge/Badge.astro';
 import Button from '@/components/ui/form/Button/Button.astro';
 import { Hero } from '@/components/hero';
 import CtaBand from '@/components/patterns/CtaBand.astro';
@@ -28,11 +27,6 @@ const projectsUrl = localizedPath('/projects', locale);
   footerBackground="secondary"
 >
   <Hero layout="centered" size="sm" class="isolate !pt-24 !pb-4" showHeroHalo>
-    <Badge slot="badge" variant="brand" pill>
-      <Icon name="sparkles" size="xs" />
-      {t('projects.agents.badge', locale)}
-    </Badge>
-
     <h1 slot="title" class="!text-3xl sm:!text-4xl md:!text-5xl">
       {t('projects.agents.title', locale)}
     </h1>
