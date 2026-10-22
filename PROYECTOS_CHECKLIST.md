@@ -27,7 +27,7 @@ Un proyecto se considera **100% completado** cuando cumple con sus criterios de 
 | 8 | **Solid Sandbox** | ✔ | ✔ | ✔ | ✔ | ❌ | 4 / 5 |
 | 9 | **Nova Academy** | ✔ | ✔ | ✔ | ❌ | ❌ | 3 / 5 |
 | 10 | **PredixIA** | ✔ | ✔ | ✔ | ❌ | ❌ | 3 / 5 |
-| 11 | **NEO** | ❌ | ❌ | ✔ | ❌ | ❌ | 1 / 5 |
+| 11 | **NEO** | ✔ | ✔ | ✔ | ❌ | ❌ | 3 / 5 |
 
 ---
 
@@ -121,10 +121,10 @@ Para los **Agentes**, los criterios de completitud son únicamente:
 - ❌ **Foto del equipo**
 - ❌ **Revisión por owner del proyecto**
 
-### 11. NEO *(En preparación — assets en `src/assets/projects/neo-logo-*.png`)*
-- ❌ **Publicado en web** *(Falta crear su archivo `.mdx` en `src/content/projects/en/`)*
-- ❌ **Descripción completa**
-- ✔ **Logo** (`neo-logo-black.png` / `neo-logo-green.png`)
+### 11. NEO (`src/content/projects/en/neo.mdx`)
+- ✔ **Publicado en web**
+- ✔ **Descripción completa** *(RAG en 3 capas, crítico virtual, tutor socrático para arquitectura y diseño)*
+- ✔ **Logo** (`neo-logo.jpg` / `neo-logo-dark.jpg` — 16:9 fondo blanco y fondo oscuro)
 - ❌ **Foto del equipo**
 - ❌ **Revisión por owner del proyecto**
 
