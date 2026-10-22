@@ -13,7 +13,18 @@ Un proyecto se considera **100% completado** cuando cumple con sus criterios de 
 
 ---
 
-## 1. Proyectos (Tabla de Control)
+## Resumen de Avance General
+
+- **Total Proyectos Registrados:** 11
+- **Publicados en Web:** 11 / 11 (**100%**)
+- **Ficha Técnica y Descripción Completa:** 11 / 11 (**100%**)
+- **Logo / Identidad Gráfica Oficial:** 11 / 11 (**100%**)
+- **Foto del Equipo:** 6 / 11 (**55%** — Socra, Sinfonía, Fray Tempus, EDU Quest Jumper, NexU, Combinare, Solid Sandbox)
+- **Revisión y Aprobación por Owner:** 0 / 11 (**Pendiente** por validación final con los profesores/líderes)
+
+---
+
+## 1. Proyectos (Tabla de Control / Grilla)
 
 | # | Proyecto | Publicado | Descripción completa | Logo | Foto del equipo | Revisión por owner | Estado Global |
 |---|---|:---:|:---:|:---:|:---:|:---:|:---:|
